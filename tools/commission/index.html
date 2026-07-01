@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>提成计算器 | Yang Strive Tools</title>
+  <meta name="description" content="阶梯式提成计算器，按销售额区间分段计算提成。">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div class="site-shell">
+    <header class="site-header" data-header>
+      <a class="brand" href="/">
+        <span class="brand-mark">YS</span>
+        <span class="brand-text"><strong>Yang Strive</strong><small>Personal Tech Lab</small></span>
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation"
+        aria-expanded="false"><span></span><span></span></button>
+      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/tools/" class="is-active">Tools</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/about/">About</a>
+        <a href="/archives/">Archive</a>
+      </nav>
+    </header>
+
+    <main class="tool-page">
+      <section class="calculator-shell layout">
+        <div class="calculator-head">
+          <p class="eyebrow">Tool · Commission</p>
+          <h1>提成计算器</h1>
+          <p>按阶梯区间分段计算：0-50,000 为 5%，50,000-100,000 为 6%，之后每 50,000 提高 1%，最高 9%。</p>
+        </div>
+
+        <div class="calculator-grid">
+          <section class="calculator-card" aria-labelledby="calculator-input-title">
+            <h2 id="calculator-input-title">输入销售额</h2>
+            <label class="field-label" for="salesAmount">销售额</label>
+            <div class="money-input">
+              <span>¥</span>
+              <input id="salesAmount" data-commission-input type="text" inputmode="decimal" autocomplete="off"
+                placeholder="例如 128,000">
+            </div>
+            <div class="quick-actions" aria-label="快速填入金额">
+              <button type="button" data-quick-amount="30000">3 W</button>
+              <button type="button" data-quick-amount="75000">7.5 W</button>
+              <button type="button" data-quick-amount="150000">15 W</button>
+              <button type="button" data-quick-amount="250000">25 W</button>
+            </div>
+            <button class="button button-primary calculator-button" type="button" data-commission-calc>计算提成</button>
+          </section>
+
+          <section class="calculator-card result-card" aria-live="polite">
+            <p class="result-label">应得提成</p>
+            <strong data-commission-total>¥0.00</strong>
+            <dl class="result-stats">
+              <div>
+                <dt>销售额</dt>
+                <dd data-commission-sales>¥0.00</dd>
+              </div>
+              <div>
+                <dt>综合提点</dt>
+                <dd data-commission-rate>0.00%</dd>
+              </div>
+            </dl>
+          </section>
+        </div>
+
+        <section class="breakdown-panel" aria-labelledby="breakdown-title">
+          <div class="breakdown-head">
+            <h2 id="breakdown-title">阶梯明细</h2>
+            <span>按实际落入区间分段累加</span>
+          </div>
+          <div class="breakdown-table">
+            <div class="breakdown-row breakdown-header">
+              <span>区间</span>
+              <span>提点</span>
+              <span>计提金额</span>
+              <span>提成</span>
+            </div>
+            <div data-commission-breakdown></div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer layout">
+      <div><strong>Yang Strive</strong>
+        <p>Simple static tools for daily calculations.</p>
+      </div>
+      <div class="footer-links"><a href="/tools/">Tools</a><a href="/">Home</a><a href="/about/">About</a></div>
+    </footer>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

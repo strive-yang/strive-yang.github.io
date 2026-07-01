@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects | Yang Strive</title>
+  <meta name="description" content="Yang Strive 的项目展示页面，汇总开源项目、实验代码和静态 Demo。">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header" data-header>
+      <a class="brand" href="/">
+        <span class="brand-mark">YS</span>
+        <span class="brand-text"><strong>Yang Strive</strong><small>Personal Tech Lab</small></span>
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span></button>
+      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/tools/">Tools</a>
+        <a href="/projects/" class="is-active">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/about/">About</a>
+        <a href="/archives/">Archive</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="page-hero-inner layout">
+          <div>
+            <p class="eyebrow">Build Log</p>
+            <h1>把想法做成能被访问、复现和继续迭代的项目。</h1>
+            <p>项目页用于放置开源仓库、课程/研究 Demo、Web 小应用和实验代码说明。</p>
+          </div>
+          <div class="hero-note">
+            <strong>project.rule</strong>
+            screenshot + problem + stack + link
+          </div>
+        </div>
+      </section>
+
+      <section class="section layout">
+        <div class="section-heading">
+          <p class="eyebrow">Showcase</p>
+          <h2>项目展位</h2>
+          <p>每个项目建议包含背景问题、技术栈、关键截图、GitHub 链接和 Demo 入口。</p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <span class="tag">Template</span>
+            <h3>Personal Tech Lab</h3>
+            <p>当前个人网站本身，作为模块化静态站点和内容中枢的第一个项目。</p>
+            <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
+            <a class="card-link" href="/">View site</a>
+          </article>
+          <article class="project-card">
+            <span class="tag">Planned</span>
+            <h3>ML Experiment Dashboard</h3>
+            <p>展示模型实验结果、指标曲线和参数对比的静态仪表盘。</p>
+            <div class="tag-row"><span class="tag">Python</span><span class="tag">Visualization</span></div>
+          </article>
+          <article class="project-card">
+            <span class="tag">Planned</span>
+            <h3>Paper Reproduction Notes</h3>
+            <p>把论文复现过程整理为代码、结果和问题清单，提升研究可追踪性。</p>
+            <div class="tag-row"><span class="tag">Research</span><span class="tag">Reproducible</span></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer layout">
+      <div><strong>Yang Strive</strong><p>Projects connect ideas with working artifacts.</p></div>
+      <div class="footer-links"><a href="/">Home</a><a href="/tools/">Tools</a><a href="/about/">About</a></div>
+    </footer>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+</html>
