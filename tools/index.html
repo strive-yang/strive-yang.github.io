@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tools | Yang Strive</title>
+  <meta name="description" content="Yang Strive 的工具模块，收集实验、写作、数据处理和工程辅助工具。">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div class="site-shell">
+    <header class="site-header" data-header>
+      <a class="brand" href="/">
+        <span class="brand-mark">YS</span>
+        <span class="brand-text"><strong>Yang Strive</strong><small>Personal Tech Lab</small></span>
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation"
+        aria-expanded="false"><span></span><span></span></button>
+      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/tools/" class="is-active">Tools</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/about/">About</a>
+        <a href="/archives/">Archive</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="page-hero-inner layout">
+          <div>
+            <p class="eyebrow">Toolbox</p>
+            <h1>把重复工作压缩成可复用工具。</h1>
+            <p>这里用于放置在线小工具、实验辅助脚本、格式转换器和论文写作工作流。</p>
+          </div>
+          <div class="hero-note">
+            <strong>module.path</strong>
+            /tools/index.html<br>
+            static apps can live in /tools/name/
+          </div>
+        </div>
+      </section>
+
+      <section class="section layout">
+        <div class="section-heading">
+          <p class="eyebrow">Catalog</p>
+          <h2>工具规划</h2>
+          <p>第一版先建立入口和分类，后续可以把每个工具拆成独立静态页面或纯前端应用。</p>
+        </div>
+        <div class="tool-grid">
+          <article class="tool-card">
+            <span class="tag">Ready</span>
+            <h3>提成计算器</h3>
+            <p>按销售额分段阶梯计算提成，0-50,000 为 5%，最高按 9% 计提。</p>
+            <div class="tag-row">
+              <span class="tag">Finance</span>
+              <span class="tag">Calculator</span>
+            </div>
+            <a class="card-link" href="/tools/commission/">Open tool</a>
+          </article>
+          <article class="tool-card">
+            <span class="tag">Planned</span>
+            <h3>Paper Note Template</h3>
+            <p>快速生成论文阅读模板，包含问题定义、方法框架、实验结论和复现记录。</p>
+            <div class="tag-row">
+              <span class="tag">Paper</span>
+              <span class="tag">Markdown</span>
+            </div>
+          </article>
+          <article class="tool-card">
+            <span class="tag">Planned</span>
+            <h3>Dataset Checklist</h3>
+            <p>整理数据集统计、缺失率、视图数量、类别分布和实验划分方案。</p>
+            <div class="tag-row">
+              <span class="tag">Data</span>
+              <span class="tag">Research</span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer layout">
+      <div><strong>Yang Strive</strong>
+        <p>Tools for research and engineering workflows.</p>
+      </div>
+      <div class="footer-links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/archives/">Archive</a></div>
+    </footer>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Yang Strive Personal Tech Lab</title>
+  <link href="/" />
+  <link href="/atom.xml" rel="self" />
+  <updated>2026-07-01T00:00:00Z</updated>
+  <id>/</id>
+  <author>
+    <name>Yang Strive</name>
+  </author>
+  <entry>
+    <title>Hello World</title>
+    <link href="/2026/07/01/hello-world/" />
+    <id>/2026/07/01/hello-world/</id>
+    <updated>2026-07-01T00:00:00Z</updated>
+    <summary>个人技术网站初始化与模块化改造起点。</summary>
+  </entry>
+</feed>

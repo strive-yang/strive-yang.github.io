@@ -1,207 +1,190 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yang Strive | Personal Tech Lab</title>
+  <meta name="description" content="Yang Strive 的个人技术网站，记录机器学习、工程工具、研究笔记与项目实践。">
+  <meta name="theme-color" content="#080a0f">
   <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
-
-<meta name="generator" content="Hexo 7.3.0"></head>
-
+  <meta property="og:title" content="Yang Strive | Personal Tech Lab">
+  <meta property="og:description" content="Research, engineering, tools and notes.">
+  <meta property="og:image" content="/css/images/banner.jpg">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
+  <div class="site-shell">
+    <header class="site-header" data-header>
+      <a class="brand" href="/" aria-label="Yang Strive home">
+        <span class="brand-mark">YS</span>
+        <span class="brand-text">
+          <strong>Yang Strive</strong>
+          <small>Personal Tech Lab</small>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
+        <a href="/" class="is-active">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/tools/">Tools</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/about/">About</a>
+        <a href="/archives/">Archive</a>
       </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+    </header>
+
+    <main>
+      <section class="hero">
+        <canvas class="hero-canvas" data-network-canvas aria-hidden="true"></canvas>
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-content layout">
+          <div class="hero-copy">
+            <p class="eyebrow">Research · Engineering · Tools</p>
+            <h1>把研究、代码和工具整理成可持续生长的个人技术中枢。</h1>
+            <p class="hero-lead">
+              这里会沉淀多视图学习、机器学习实验、MATLAB/Python 工程实践、论文笔记和自用工具。
+            </p>
+            <div class="hero-actions" aria-label="Primary actions">
+              <a class="button button-primary" href="/tools/">进入工具箱</a>
+              <a class="button button-ghost" href="/blog/">阅读文章</a>
+            </div>
+          </div>
+          <aside class="status-panel" aria-label="Site status">
+            <div class="panel-header">
+              <span>system.status</span>
+              <strong>online</strong>
+            </div>
+            <dl class="metric-grid">
+              <div>
+                <dt>Focus</dt>
+                <dd>Multi-view ML</dd>
+              </div>
+              <div>
+                <dt>Stack</dt>
+                <dd>MATLAB · Python</dd>
+              </div>
+              <div>
+                <dt>Mode</dt>
+                <dd>Build in public</dd>
+              </div>
+              <div>
+                <dt>Updated</dt>
+                <dd>2026.07</dd>
+              </div>
+            </dl>
+            <div class="terminal">
+              <p><span>$</span> site.map --modules</p>
+              <p>blog tools projects research archive</p>
+              <p><span>$</span> lab.status</p>
+              <p>ready for iteration</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section layout">
+        <div class="section-heading">
+          <p class="eyebrow">Directory</p>
+          <h2>模块入口</h2>
+          <p>首页只保留高价值导航，具体内容分散到独立模块，方便后续扩展和维护。</p>
+        </div>
+        <div class="module-grid">
+          <a class="module-card" href="/tools/">
+            <span class="module-icon">⌘</span>
+            <span class="module-status">Active</span>
+            <h3>Tools</h3>
+            <p>沉淀常用脚本、数据处理、论文写作和实验辅助工具。</p>
+          </a>
+          <a class="module-card" href="/blog/">
+            <span class="module-icon">✎</span>
+            <span class="module-status">Writing</span>
+            <h3>Blog</h3>
+            <p>技术文章、工程记录、踩坑复盘和长期学习笔记。</p>
+          </a>
+          <a class="module-card" href="/projects/">
+            <span class="module-icon">◇</span>
+            <span class="module-status">Building</span>
+            <h3>Projects</h3>
+            <p>展示开源项目、实验代码、Web 小应用和可复现 Demo。</p>
+          </a>
+          <a class="module-card" href="/research/">
+            <span class="module-icon">∑</span>
+            <span class="module-status">Lab</span>
+            <h3>Research</h3>
+            <p>论文阅读、算法整理、实验设计和研究时间线。</p>
+          </a>
+          <a class="module-card" href="/about/">
+            <span class="module-icon">◎</span>
+            <span class="module-status">Profile</span>
+            <h3>About</h3>
+            <p>个人介绍、研究方向、联系方式和站点维护说明。</p>
+          </a>
+          <a class="module-card" href="/archives/">
+            <span class="module-icon">▣</span>
+            <span class="module-status">Index</span>
+            <h3>Archive</h3>
+            <p>按时间线浏览所有文章与站点更新记录。</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="section section-split layout">
+        <div class="content-panel">
+          <div class="section-heading compact">
+            <p class="eyebrow">Recent</p>
+            <h2>最新内容</h2>
+          </div>
+          <div class="timeline-list">
+            <a class="timeline-item" href="/2026/07/01/hello-world/">
+              <time datetime="2026-07-01">2026.07.01</time>
+              <span>Hello World</span>
+              <small>站点初始化与后续内容规划。</small>
+            </a>
+            <a class="timeline-item" href="/research/">
+              <time datetime="2026-07-01">2026.07.01</time>
+              <span>Research Lab</span>
+              <small>预留论文笔记、算法实验和复现记录入口。</small>
+            </a>
+            <a class="timeline-item" href="/tools/">
+              <time datetime="2026-07-01">2026.07.01</time>
+              <span>Tools Directory</span>
+              <small>搭建工具模块，准备接入常用工程助手。</small>
+            </a>
+          </div>
+        </div>
+        <div class="content-panel accent-panel">
+          <div class="section-heading compact">
+            <p class="eyebrow">Roadmap</p>
+            <h2>下一步</h2>
+          </div>
+          <ul class="check-list">
+            <li>补充真实个人资料、头像和外部链接。</li>
+            <li>把研究方向拆成论文、实验和数据集三个子栏目。</li>
+            <li>为工具页加入可运行的小组件或独立静态应用。</li>
+            <li>迁移 Hexo 模板源文件，避免重新生成时覆盖发布页。</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer layout">
+      <div>
+        <strong>Yang Strive</strong>
+        <p>Personal Tech Lab for research notes, engineering tools and project logs.</p>
       </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2026/07/01/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2026-07-01T02:24:30.625Z" itemprop="datePublished">2026-07-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2026/07/01/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2026/07/01/hello-world/" data-id="cmr1gf3rd0000yov7363vge7b" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
+      <div class="footer-links">
+        <a href="/about/">About</a>
+        <a href="/archives/">Archive</a>
+        <a href="/atom.xml">RSS</a>
+      </div>
     </footer>
   </div>
-  
-</article>
-
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/07/">July 2026</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2026/07/01/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2026 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
+  <script src="/js/script.js"></script>
 </body>
 </html>
