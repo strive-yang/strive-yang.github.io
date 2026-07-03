@@ -53,7 +53,7 @@
           <p>第一版先建立入口和分类，后续可以把每个工具拆成独立静态页面或纯前端应用。</p>
         </div>
         <div class="tool-grid">
-          <article class="tool-card">
+          <a class="tool-card tool-card-link" href="/tools/commission/" aria-label="打开提成计算器">
             <span class="tag">Ready</span>
             <h3>提成计算器</h3>
             <p>按销售额分段阶梯计算提成，0-50,000 为 5%，最高按 9% 计提。</p>
@@ -61,8 +61,18 @@
               <span class="tag">Finance</span>
               <span class="tag">Calculator</span>
             </div>
-            <a class="card-link" href="/tools/commission/">Open tool</a>
-          </article>
+            <span class="card-link">Open tool</span>
+          </a>
+          <a class="tool-card tool-card-link" href="/tools/epub-reader/" aria-label="打开 EPUB 手机阅读器">
+            <span class="tag">Ready</span>
+            <h3>EPUB 手机阅读器</h3>
+            <p>自动加载 booklist 中的 EPUB，按手机电子书样式分页阅读，并保存进度与书签。</p>
+            <div class="tag-row">
+              <span class="tag">Reader</span>
+              <span class="tag">EPUB</span>
+            </div>
+            <span class="card-link">Open tool</span>
+          </a>
           <article class="tool-card">
             <span class="tag">Planned</span>
             <h3>Paper Note Template</h3>
@@ -70,15 +80,6 @@
             <div class="tag-row">
               <span class="tag">Paper</span>
               <span class="tag">Markdown</span>
-            </div>
-          </article>
-          <article class="tool-card">
-            <span class="tag">Planned</span>
-            <h3>Dataset Checklist</h3>
-            <p>整理数据集统计、缺失率、视图数量、类别分布和实验划分方案。</p>
-            <div class="tag-row">
-              <span class="tag">Data</span>
-              <span class="tag">Research</span>
             </div>
           </article>
         </div>

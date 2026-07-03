@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EPUB 手机阅读器 | Yang Strive Tools</title>
+  <meta name="description" content="静态 EPUB 电子书阅读器，支持手机翻页样式、阅读进度保存和书签。">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div class="site-shell">
+    <header class="site-header" data-header>
+      <a class="brand" href="/">
+        <span class="brand-mark">YS</span>
+        <span class="brand-text"><strong>Yang Strive</strong><small>Personal Tech Lab</small></span>
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation"
+        aria-expanded="false"><span></span><span></span></button>
+      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/tools/" class="is-active">Tools</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/about/">About</a>
+        <a href="/archives/">Archive</a>
+      </nav>
+    </header>
+
+    <main class="tool-page reader-tool-page">
+      <section class="reader-shell layout" data-epub-reader>
+        <div class="reader-head">
+          <div>
+            <p class="eyebrow">Tool · EPUB Reader</p>
+            <h1>EPUB 手机阅读器</h1>
+            <p>从 <code>/tools/booklist/</code> 加载书籍，分页阅读并在浏览器本地保存进度和书签。</p>
+          </div>
+          <a class="button button-ghost" href="/tools/">返回工具箱</a>
+        </div>
+
+        <div class="reader-layout">
+          <aside class="reader-sidebar" aria-labelledby="book-list-title">
+            <div class="reader-panel-head">
+              <div>
+                <p class="eyebrow">Library</p>
+                <h2 id="book-list-title">书库</h2>
+              </div>
+              <button class="reader-icon-button" type="button" data-reader-refresh aria-label="刷新书库" title="刷新书库">
+                <span aria-hidden="true">↻</span>
+              </button>
+            </div>
+            <div class="book-list" data-book-list aria-live="polite">
+              <p class="reader-empty">正在读取书库...</p>
+            </div>
+            <p class="reader-help">部署到 GitHub Pages 后，新增 EPUB 到 <code>tools/booklist</code> 并推送即可出现在这里。</p>
+          </aside>
+
+          <section class="reader-stage" aria-label="EPUB 阅读区域">
+            <div class="reader-surface" data-reader-frame>
+              <div class="reader-toolbar">
+                <div class="reader-title-block">
+                  <span class="reader-kicker" data-reader-status>请选择书籍</span>
+                  <strong data-reader-title>EPUB Reader</strong>
+                </div>
+                <div class="reader-toolbar-actions">
+                  <div class="reader-font-controls" aria-label="字体大小">
+                    <button type="button" data-reader-font-smaller aria-label="减小字体">A-</button>
+                    <span data-reader-font-size>105%</span>
+                    <button type="button" data-reader-font-larger aria-label="增大字体">A+</button>
+                  </div>
+                  <button class="reader-icon-button" type="button" data-reader-bookmark aria-label="添加书签" title="添加书签">
+                    <span aria-hidden="true">☆</span>
+                  </button>
+                </div>
+              </div>
+              <div class="reader-viewport-wrap">
+                <button class="page-hit page-hit-prev" type="button" data-reader-prev aria-label="上一页"></button>
+                <div id="epubViewport" class="reader-viewport" data-reader-viewport>
+                  <div class="reader-placeholder">
+                    <strong>选择一本 EPUB 开始阅读</strong>
+                    <span>左右点击或使用底部按钮翻页。</span>
+                  </div>
+                </div>
+                <button class="page-hit page-hit-next" type="button" data-reader-next aria-label="下一页"></button>
+              </div>
+              <div class="reader-progress">
+                <div class="reader-progress-bar" aria-hidden="true"><span data-reader-progress-bar></span></div>
+                <span data-reader-progress>0%</span>
+              </div>
+              <div class="reader-actions" aria-label="阅读控制">
+                <button type="button" data-reader-prev>上一页</button>
+                <button type="button" data-reader-resume>回到进度</button>
+                <button type="button" data-reader-next>下一页</button>
+              </div>
+            </div>
+
+            <aside class="reader-side-panel" aria-labelledby="reader-panel-title">
+              <div class="reader-panel-head">
+                <div>
+                  <p class="eyebrow">Navigate</p>
+                  <h2 id="reader-panel-title">导航</h2>
+                </div>
+                <button class="reader-text-button" type="button" data-reader-clear-bookmarks>清空书签</button>
+              </div>
+              <div class="reader-tabs" role="tablist" aria-label="阅读导航">
+                <button class="is-active" type="button" data-reader-tab="toc">目录</button>
+                <button type="button" data-reader-tab="bookmarks">书签</button>
+              </div>
+              <div class="reader-tab-panel is-active" data-reader-panel="toc">
+                <div class="toc-list" data-toc-list>
+                  <p class="reader-empty">正在读取目录...</p>
+                </div>
+              </div>
+              <div class="reader-tab-panel" data-reader-panel="bookmarks">
+                <div class="bookmark-list" data-bookmark-list>
+                  <p class="reader-empty">当前书籍还没有书签。</p>
+                </div>
+              </div>
+            </aside>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer layout">
+      <div><strong>Yang Strive</strong>
+        <p>Static EPUB reading tool for personal books.</p>
+      </div>
+      <div class="footer-links"><a href="/tools/">Tools</a><a href="/">Home</a><a href="/about/">About</a></div>
+    </footer>
+  </div>
+  <script src="/js/vendor/jszip.min.js"></script>
+  <script src="/js/vendor/epub.min.js"></script>
+  <script src="/js/script.js"></script>
+  <script src="/js/epub-reader.js"></script>
+</body>
+
+</html>
