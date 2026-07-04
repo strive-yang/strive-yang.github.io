@@ -16,12 +16,20 @@
     status: root.querySelector("[data-reader-status]"),
     progress: root.querySelector("[data-reader-progress]"),
     progressBar: root.querySelector("[data-reader-progress-bar]"),
-    bookmark: root.querySelector("[data-reader-bookmark]"),
+    bookmark: root.querySelectorAll("[data-reader-bookmark]"),
     fontSmaller: root.querySelector("[data-reader-font-smaller]"),
     fontLarger: root.querySelector("[data-reader-font-larger]"),
     fontSize: root.querySelector("[data-reader-font-size]"),
-    toc: root.querySelector("[data-toc-list]"),
-    bookmarks: root.querySelector("[data-bookmark-list]"),
+    theme: root.querySelectorAll("[data-reader-theme]"),
+    themeLabel: root.querySelector("[data-reader-theme-label]"),
+    fullscreen: root.querySelectorAll("[data-reader-fullscreen]"),
+    frame: root.querySelector("[data-reader-frame]"),
+    menuToggle: root.querySelector("[data-reader-menu-toggle]"),
+    menuClose: root.querySelectorAll("[data-reader-menu-close]"),
+    controlLayer: root.querySelector("[data-reader-control-layer]"),
+    layerTitle: root.querySelector("[data-reader-layer-title]"),
+    tocLists: root.querySelectorAll("[data-toc-list], [data-toc-list-mobile]"),
+    bookmarkLists: root.querySelectorAll("[data-bookmark-list], [data-bookmark-list-mobile]"),
     clearBookmarks: root.querySelector("[data-reader-clear-bookmarks]"),
     resume: root.querySelector("[data-reader-resume]"),
     tabs: root.querySelectorAll("[data-reader-tab]"),
@@ -37,6 +45,8 @@
     pendingCfi: "",
     isRendering: false,
     fontSize: 105,
+    theme: "day",
+    menuOpen: false,
     toc: [],
     currentChapter: ""
   };
@@ -91,6 +101,91 @@
       setStatus("浏览器无法保存本地记录");
     }
     if (state.rendition) state.rendition.themes.fontSize(state.fontSize + "%");
+  }
+
+  function themeConfig(name) {
+    if (name === "night") {
+      return {
+        body: {
+          color: "#d6d3c8",
+          background: "#11100d"
+        },
+        link: "#78a6c8"
+      };
+    }
+    return {
+      body: {
+        color: "#1e293b",
+        background: "#fffaf0"
+      },
+      link: "#0077b5"
+    };
+  }
+
+  function applyBookTheme() {
+    if (!state.rendition) return;
+    var config = themeConfig(state.theme);
+    state.rendition.themes.default({
+      "body": {
+        "font-family": "Georgia, 'Noto Serif SC', serif",
+        "line-height": "1.72",
+        "color": config.body.color,
+        "background": config.body.background
+      },
+      "p": {
+        "line-height": "1.72"
+      },
+      "a": {
+        "color": config.link
+      }
+    });
+    state.rendition.themes.fontSize(state.fontSize + "%");
+    root.querySelectorAll("#epubViewport iframe").forEach(function (frame) {
+      try {
+        var doc = frame.contentDocument;
+        if (!doc || !doc.body) return;
+        doc.documentElement.style.background = config.body.background;
+        doc.body.style.background = config.body.background;
+        doc.body.style.color = config.body.color;
+      } catch (error) {
+        // Ignore cross-frame styling failures; epub.js theme registration still applies to new renders.
+      }
+    });
+  }
+
+  function setTheme(name) {
+    state.theme = name === "night" ? "night" : "day";
+    root.setAttribute("data-reader-theme-mode", state.theme);
+    if (elements.themeLabel) elements.themeLabel.textContent = state.theme === "night" ? "夜" : "日";
+    try {
+      localStorage.setItem(STORAGE_PREFIX + "theme", state.theme);
+    } catch (error) {
+      setStatus("浏览器无法保存本地记录");
+    }
+    applyBookTheme();
+  }
+
+  function toggleTheme() {
+    setTheme(state.theme === "night" ? "day" : "night");
+  }
+
+  function setMenuOpen(isOpen) {
+    state.menuOpen = !!isOpen;
+    if (!elements.controlLayer) return;
+    elements.controlLayer.classList.toggle("is-open", state.menuOpen);
+    elements.controlLayer.setAttribute("aria-hidden", String(!state.menuOpen));
+    if (state.menuOpen && elements.layerTitle) {
+      elements.layerTitle.textContent = state.currentChapter || "目录与书签";
+    }
+  }
+
+  function toggleFullscreen() {
+    var target = elements.frame || root;
+    if (!document.fullscreenElement) {
+      if (target.requestFullscreen) target.requestFullscreen();
+    } else if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
   }
 
   function setStatus(message) {
@@ -167,45 +262,47 @@
   }
 
   function renderToc() {
-    if (!elements.toc) return;
-    if (!state.toc.length) {
-      elements.toc.innerHTML = '<p class="reader-empty">当前书籍没有可用目录。</p>';
-      return;
-    }
-
-    elements.toc.innerHTML = state.toc.map(function (item, index) {
+    var html = state.toc.length ? state.toc.map(function (item, index) {
       return [
         '<button class="toc-item level-' + Math.min(item.level, 3) + '" type="button" data-toc-index="' + index + '">',
         '<strong>' + twoDigit(index + 1) + "</strong>",
         '<span>' + escapeHtml(item.label) + "</span>",
         "</button>"
       ].join("");
-    }).join("");
+    }).join("") : '<p class="reader-empty">当前书籍没有可用目录。</p>';
 
-    elements.toc.querySelectorAll("[data-toc-index]").forEach(function (button) {
-      button.addEventListener("click", function () {
-        var item = state.toc[Number(button.getAttribute("data-toc-index"))];
-        if (!item || !item.href) return;
-        setActiveTab("toc");
-        display(item.href);
+    elements.tocLists.forEach(function (list) {
+      list.innerHTML = html;
+      list.querySelectorAll("[data-toc-index]").forEach(function (button) {
+        button.addEventListener("click", function () {
+          var item = state.toc[Number(button.getAttribute("data-toc-index"))];
+          if (!item || !item.href) return;
+          setActiveTab("toc");
+          setMenuOpen(false);
+          display(item.href);
+        });
       });
     });
   }
 
   function renderBookmarks() {
     if (!state.currentBook) {
-      elements.bookmarks.innerHTML = '<p class="reader-empty">当前书籍还没有书签。</p>';
+      elements.bookmarkLists.forEach(function (list) {
+        list.innerHTML = '<p class="reader-empty">当前书籍还没有书签。</p>';
+      });
       return;
     }
 
     var bookmarks = getBookmarks(state.currentBook.name);
     if (!bookmarks.length) {
-      elements.bookmarks.innerHTML = '<p class="reader-empty">当前书籍还没有书签。</p>';
+      elements.bookmarkLists.forEach(function (list) {
+        list.innerHTML = '<p class="reader-empty">当前书籍还没有书签。</p>';
+      });
       return;
     }
 
     var chapterCounts = {};
-    elements.bookmarks.innerHTML = bookmarks.map(function (bookmark, index) {
+    var html = bookmarks.map(function (bookmark, index) {
       var percent = bookmark.percent ? Math.round(bookmark.percent) + "%" : "位置";
       var chapter = compactLabel(bookmark.chapter, "书签");
       chapterCounts[chapter] = (chapterCounts[chapter] || 0) + 1;
@@ -220,19 +317,25 @@
       ].join("");
     }).join("");
 
-    elements.bookmarks.querySelectorAll("[data-bookmark-index]").forEach(function (button) {
-      button.addEventListener("click", function () {
-        var bookmark = bookmarks[Number(button.getAttribute("data-bookmark-index"))];
-        if (bookmark && bookmark.cfi) display(bookmark.cfi);
+    elements.bookmarkLists.forEach(function (list) {
+      list.innerHTML = html;
+      list.querySelectorAll("[data-bookmark-index]").forEach(function (button) {
+        button.addEventListener("click", function () {
+          var bookmark = bookmarks[Number(button.getAttribute("data-bookmark-index"))];
+          if (bookmark && bookmark.cfi) {
+            setMenuOpen(false);
+            display(bookmark.cfi);
+          }
+        });
       });
-    });
 
-    elements.bookmarks.querySelectorAll("[data-bookmark-remove]").forEach(function (button) {
-      button.addEventListener("click", function () {
-        var index = Number(button.getAttribute("data-bookmark-remove"));
-        bookmarks.splice(index, 1);
-        saveBookmarks(state.currentBook.name, bookmarks);
-        renderBookmarks();
+      list.querySelectorAll("[data-bookmark-remove]").forEach(function (button) {
+        button.addEventListener("click", function () {
+          var index = Number(button.getAttribute("data-bookmark-remove"));
+          bookmarks.splice(index, 1);
+          saveBookmarks(state.currentBook.name, bookmarks);
+          renderBookmarks();
+        });
       });
     });
   }
@@ -388,7 +491,9 @@
     elements.viewport.innerHTML = "";
     setProgress(0);
     setStatus("正在打开 EPUB");
-    if (elements.toc) elements.toc.innerHTML = '<p class="reader-empty">正在读取目录...</p>';
+    elements.tocLists.forEach(function (list) {
+      list.innerHTML = '<p class="reader-empty">正在读取目录...</p>';
+    });
     markActiveBook();
     renderBookmarks();
 
@@ -403,20 +508,7 @@
       spread: "none"
     });
 
-    state.rendition.themes.default({
-      "body": {
-        "font-family": "Georgia, 'Noto Serif SC', serif",
-        "line-height": "1.72",
-        "color": "#1e293b"
-      },
-      "p": {
-        "line-height": "1.72"
-      },
-      "a": {
-        "color": "#0077b5"
-      }
-    });
-    state.rendition.themes.fontSize(state.fontSize + "%");
+    applyBookTheme();
 
     state.rendition.on("relocated", updateLocation);
     state.rendition.on("rendered", function () {
@@ -549,6 +641,18 @@
     button.addEventListener("click", goNext);
   });
 
+  if (elements.menuToggle) {
+    elements.menuToggle.addEventListener("click", function () {
+      setMenuOpen(true);
+    });
+  }
+
+  elements.menuClose.forEach(function (button) {
+    button.addEventListener("click", function () {
+      setMenuOpen(false);
+    });
+  });
+
   elements.tabs.forEach(function (tab) {
     tab.addEventListener("click", function () {
       setActiveTab(tab.getAttribute("data-reader-tab"));
@@ -567,7 +671,17 @@
     });
   }
 
-  elements.bookmark.addEventListener("click", addBookmark);
+  elements.theme.forEach(function (button) {
+    button.addEventListener("click", toggleTheme);
+  });
+
+  elements.fullscreen.forEach(function (button) {
+    button.addEventListener("click", toggleFullscreen);
+  });
+
+  elements.bookmark.forEach(function (button) {
+    button.addEventListener("click", addBookmark);
+  });
   elements.resume.addEventListener("click", function () {
     if (state.currentBook) display(getSavedPosition(state.currentBook.name));
   });
@@ -582,6 +696,7 @@
   document.addEventListener("keydown", function (event) {
     var tagName = event.target && event.target.tagName ? event.target.tagName : "";
     if (!state.rendition || /input|textarea|select/i.test(tagName)) return;
+    if (event.key === "Escape") setMenuOpen(false);
     if (event.key === "ArrowLeft") goPrevious();
     if (event.key === "ArrowRight") goNext();
   });
@@ -602,5 +717,6 @@
   }
 
   setFontSize(localStorage.getItem(STORAGE_PREFIX + "font-size") || 105);
+  setTheme(localStorage.getItem(STORAGE_PREFIX + "theme") || "day");
   loadLibrary();
 })();

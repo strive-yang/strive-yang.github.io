@@ -71,6 +71,14 @@
                     <span data-reader-font-size>105%</span>
                     <button type="button" data-reader-font-larger aria-label="增大字体">A+</button>
                   </div>
+                  <button class="reader-icon-button" type="button" data-reader-theme aria-label="切换夜间模式"
+                    title="切换日夜模式">
+                    <span aria-hidden="true" data-reader-theme-label>日</span>
+                  </button>
+                  <button class="reader-icon-button" type="button" data-reader-fullscreen aria-label="全屏阅读"
+                    title="全屏阅读">
+                    <span aria-hidden="true">⛶</span>
+                  </button>
                   <button class="reader-icon-button" type="button" data-reader-bookmark aria-label="添加书签" title="添加书签">
                     <span aria-hidden="true">☆</span>
                   </button>
@@ -78,6 +86,7 @@
               </div>
               <div class="reader-viewport-wrap">
                 <button class="page-hit page-hit-prev" type="button" data-reader-prev aria-label="上一页"></button>
+                <button class="page-hit page-hit-menu" type="button" data-reader-menu-toggle aria-label="打开阅读菜单"></button>
                 <div id="epubViewport" class="reader-viewport" data-reader-viewport>
                   <div class="reader-placeholder">
                     <strong>选择一本 EPUB 开始阅读</strong>
@@ -94,6 +103,39 @@
                 <button type="button" data-reader-prev>上一页</button>
                 <button type="button" data-reader-resume>回到进度</button>
                 <button type="button" data-reader-next>下一页</button>
+              </div>
+              <div class="reader-control-layer" data-reader-control-layer aria-hidden="true">
+                <button class="reader-layer-backdrop" type="button" data-reader-menu-close aria-label="关闭阅读菜单"></button>
+                <div class="reader-layer-panel" role="dialog" aria-label="阅读菜单">
+                  <div class="reader-layer-head">
+                    <div>
+                      <span class="reader-kicker">Reader menu</span>
+                      <strong data-reader-layer-title>目录与书签</strong>
+                    </div>
+                    <button class="reader-icon-button" type="button" data-reader-menu-close aria-label="关闭阅读菜单">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  <div class="reader-layer-actions">
+                    <button type="button" data-reader-fullscreen>全屏</button>
+                    <button type="button" data-reader-theme>日 / 夜</button>
+                    <button type="button" data-reader-bookmark>书签</button>
+                  </div>
+                  <div class="reader-tabs" role="tablist" aria-label="沉浸阅读导航">
+                    <button class="is-active" type="button" data-reader-tab="toc">目录</button>
+                    <button type="button" data-reader-tab="bookmarks">书签</button>
+                  </div>
+                  <div class="reader-tab-panel is-active" data-reader-panel="toc" data-reader-panel-mobile="toc">
+                    <div class="toc-list" data-toc-list-mobile>
+                      <p class="reader-empty">正在读取目录...</p>
+                    </div>
+                  </div>
+                  <div class="reader-tab-panel" data-reader-panel="bookmarks" data-reader-panel-mobile="bookmarks">
+                    <div class="bookmark-list" data-bookmark-list-mobile>
+                      <p class="reader-empty">当前书籍还没有书签。</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
