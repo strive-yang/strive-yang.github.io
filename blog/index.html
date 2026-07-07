@@ -12,7 +12,6 @@
   <div class="site-shell">
     <header class="site-header" data-header>
       <a class="brand" href="/">
-        <span class="brand-mark">YS</span>
         <span class="brand-text"><strong>Yang Strive</strong><small>Personal Tech Lab</small></span>
       </a>
       <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span></button>
@@ -46,26 +45,14 @@
         <div class="section-heading">
           <p class="eyebrow">Latest</p>
           <h2>文章列表</h2>
-          <p>当前仍保留 Hexo 默认文章入口，后续可把真实内容迁移到这里按主题组织。</p>
+          <p>文章统一放在 <code>blog/YYYY/MM/DD/slug/</code> 路径下，并由文章清单驱动列表与归档。</p>
         </div>
-        <div class="article-grid">
+        <div class="article-grid" data-post-list="cards">
           <article class="article-card">
             <p class="article-meta-line">2026.07.01 · Site</p>
             <h3>Hello World</h3>
             <p>站点初始化文章，后续可以替换为正式开篇、建站记录或研究路线说明。</p>
-            <a class="card-link" href="/2026/07/01/hello-world/">Read article</a>
-          </article>
-          <article class="article-card">
-            <p class="article-meta-line">Topic · Machine Learning</p>
-            <h3>机器学习实验笔记</h3>
-            <p>预留机器学习实验、模型比较、参数记录和复现过程的文章集合。</p>
-            <a class="card-link" href="/archives/">Browse archive</a>
-          </article>
-          <article class="article-card">
-            <p class="article-meta-line">Topic · Engineering</p>
-            <h3>工程实践记录</h3>
-            <p>记录工具链、部署、调试、自动化脚本和项目结构优化。</p>
-            <a class="card-link" href="/tools/">Open tools</a>
+            <a class="card-link" href="/blog/2026/07/01/hello-world/">Read article</a>
           </article>
         </div>
       </section>

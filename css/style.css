@@ -109,23 +109,8 @@ textarea {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 0;
   min-width: 0;
-}
-
-.brand-mark {
-  display: grid;
-  width: 42px;
-  height: 42px;
-  place-items: center;
-  border: 1px solid rgba(0, 119, 181, 0.28);
-  border-radius: var(--radius);
-  background: linear-gradient(135deg, rgba(0, 119, 181, 0.1), rgba(15, 159, 122, 0.08));
-  color: var(--cyan);
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  font-size: 13px;
-  font-weight: 700;
-  box-shadow: 0 10px 26px rgba(0, 119, 181, 0.12);
 }
 
 .brand-text {
@@ -577,6 +562,15 @@ h3 {
   line-height: 1.5;
 }
 
+.empty-state {
+  margin: 0;
+  border: 1px dashed rgba(0, 119, 181, 0.22);
+  border-radius: var(--radius);
+  padding: 18px;
+  background: rgba(0, 119, 181, 0.04);
+  color: var(--muted);
+}
+
 .check-list {
   display: grid;
   gap: 13px;
@@ -707,6 +701,84 @@ h3 {
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 18px;
+}
+
+.contact-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.contact-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: start;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: var(--radius);
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.contact-row > div:first-child {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+}
+
+.contact-row strong {
+  color: #101827;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.contact-row a:not(.contact-action) {
+  color: #24516b;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.contact-row a:not(.contact-action):hover {
+  color: var(--cyan);
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.contact-action {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 119, 181, 0.18);
+  border-radius: var(--radius);
+  padding: 7px 10px;
+  background: rgba(0, 119, 181, 0.06);
+  color: #24516b;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.contact-action:hover,
+.contact-action:focus-visible {
+  border-color: rgba(0, 119, 181, 0.32);
+  background: rgba(0, 119, 181, 0.1);
+  color: var(--cyan);
+  outline: 0;
+}
+
+.contact-action.is-copied {
+  border-color: rgba(15, 159, 122, 0.3);
+  background: rgba(15, 159, 122, 0.1);
+  color: var(--green);
 }
 
 .card-link {

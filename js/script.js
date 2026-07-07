@@ -24,6 +24,181 @@
   window.addEventListener("scroll", updateHeader, { passive: true });
   updateHeader();
 
+  var copyButtons = document.querySelectorAll("[data-copy-value]");
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+
+    return new Promise(function (resolve, reject) {
+      var textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+      textarea.style.top = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+
+      try {
+        if (document.execCommand("copy")) {
+          resolve();
+        } else {
+          reject(new Error("Copy command failed"));
+        }
+      } catch (error) {
+        reject(error);
+      } finally {
+        document.body.removeChild(textarea);
+      }
+    });
+  }
+
+  copyButtons.forEach(function (button) {
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      var value = button.getAttribute("data-copy-value") || "";
+      var originalText = button.textContent;
+      if (!value) return;
+
+      copyText(value).then(function () {
+        button.textContent = "Copied";
+        button.classList.add("is-copied");
+        window.setTimeout(function () {
+          button.textContent = originalText;
+          button.classList.remove("is-copied");
+        }, 1600);
+      }).catch(function () {
+        button.textContent = "Failed";
+        window.setTimeout(function () {
+          button.textContent = originalText;
+        }, 1800);
+      });
+    });
+  });
+
+  var postLists = document.querySelectorAll("[data-post-list]");
+
+  function formatPostDate(dateText) {
+    return String(dateText || "").replace(/-/g, ".");
+  }
+
+  function sortPosts(posts) {
+    return posts.slice().sort(function (a, b) {
+      return String(b.date || "").localeCompare(String(a.date || ""));
+    });
+  }
+
+  function getFilteredPosts(list, posts) {
+    var year = list.getAttribute("data-post-year");
+    var month = list.getAttribute("data-post-month");
+    var limit = Number(list.getAttribute("data-post-limit")) || 0;
+
+    var filtered = posts.filter(function (post) {
+      var parts = String(post.date || "").split("-");
+      if (year && parts[0] !== year) return false;
+      if (month && parts[1] !== month) return false;
+      return true;
+    });
+
+    return limit > 0 ? filtered.slice(0, limit) : filtered;
+  }
+
+  function renderTimeline(list, posts) {
+    list.innerHTML = "";
+
+    if (!posts.length) {
+      var empty = document.createElement("p");
+      empty.className = "empty-state";
+      empty.textContent = "当前时间范围内暂无文章。";
+      list.appendChild(empty);
+      return;
+    }
+
+    posts.forEach(function (post) {
+      var item = document.createElement("a");
+      var time = document.createElement("time");
+      var title = document.createElement("span");
+      var summary = document.createElement("small");
+
+      item.className = "timeline-item";
+      item.href = post.url || "/blog/";
+      time.dateTime = post.date || "";
+      time.textContent = formatPostDate(post.date);
+      title.textContent = post.title || "Untitled";
+      summary.textContent = post.summary || "";
+
+      item.appendChild(time);
+      item.appendChild(title);
+      item.appendChild(summary);
+      list.appendChild(item);
+    });
+  }
+
+  function renderCards(list, posts) {
+    list.innerHTML = "";
+
+    if (!posts.length) {
+      var empty = document.createElement("p");
+      empty.className = "empty-state";
+      empty.textContent = "暂无文章。";
+      list.appendChild(empty);
+      return;
+    }
+
+    posts.forEach(function (post) {
+      var card = document.createElement("article");
+      var meta = document.createElement("p");
+      var title = document.createElement("h3");
+      var summary = document.createElement("p");
+      var link = document.createElement("a");
+
+      card.className = "article-card";
+      meta.className = "article-meta-line";
+      meta.textContent = formatPostDate(post.date) + " · " + (post.category || "Blog");
+      title.textContent = post.title || "Untitled";
+      summary.textContent = post.summary || "";
+      link.className = "card-link";
+      link.href = post.url || "/blog/";
+      link.textContent = "Read article";
+
+      card.appendChild(meta);
+      card.appendChild(title);
+      card.appendChild(summary);
+      card.appendChild(link);
+      list.appendChild(card);
+    });
+  }
+
+  function renderPostLists(posts) {
+    var sorted = sortPosts(posts);
+
+    postLists.forEach(function (list) {
+      var filtered = getFilteredPosts(list, sorted);
+      if (list.getAttribute("data-post-list") === "cards") {
+        renderCards(list, filtered);
+      } else {
+        renderTimeline(list, filtered);
+      }
+    });
+  }
+
+  if (postLists.length && window.fetch) {
+    fetch("/blog/posts.json", { cache: "no-cache" })
+      .then(function (response) {
+        if (!response.ok) throw new Error("Unable to load posts");
+        return response.json();
+      })
+      .then(function (posts) {
+        renderPostLists(Array.isArray(posts) ? posts : []);
+      })
+      .catch(function () {
+        // Keep the static fallback content when posts.json is unavailable.
+      });
+  }
+
   var commissionInput = document.querySelector("[data-commission-input]");
   var commissionCalc = document.querySelector("[data-commission-calc]");
   var commissionTotal = document.querySelector("[data-commission-total]");

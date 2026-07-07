@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,14 +9,15 @@
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
   <div class="site-shell">
     <header class="site-header" data-header>
       <a class="brand" href="/">
-        <span class="brand-mark">YS</span>
         <span class="brand-text"><strong>Yang Strive</strong><small>Personal Tech Lab</small></span>
       </a>
-      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span></button>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation"
+        aria-expanded="false"><span></span><span></span></button>
       <nav class="site-nav" data-site-nav aria-label="Primary navigation">
         <a href="/">Home</a>
         <a href="/blog/">Blog</a>
@@ -57,11 +59,25 @@
           <article class="profile-card">
             <p class="eyebrow">Contact</p>
             <h3>联系方式</h3>
-            <p>建议补充 GitHub、Email、Google Scholar、ORCID 或个人简历链接。</p>
+            <p>公开联系方式保持可读、可点击、可复制，方便直接访问或保存。</p>
+            <div class="contact-list" aria-label="Contact links">
+              <div class="contact-row">
+                <div>
+                  <strong>GitHub</strong>
+                  <a href="https://github.com/strive-yang" target="_blank"
+                    rel="noopener noreferrer">github.com/strive-yang</a>
+                </div>
+              </div>
+              <div class="contact-row">
+                <div>
+                  <strong>Email</strong>
+                  <a href="mailto:yangzy927@qq.com">yangzy927@qq.com</a>
+                </div>
+              </div>
+            </div>
             <div class="tag-row">
-              <span class="tag">GitHub</span>
-              <span class="tag">Email</span>
-              <span class="tag">Scholar</span>
+              <span class="tag">Public Code</span>
+              <span class="tag">Mail</span>
             </div>
           </article>
         </div>
@@ -69,10 +85,14 @@
     </main>
 
     <footer class="site-footer layout">
-      <div><strong>Yang Strive</strong><p>A durable homepage for public work and private progress.</p></div>
-      <div class="footer-links"><a href="/">Home</a><a href="/research/">Research</a><a href="/archives/">Archive</a></div>
+      <div><strong>Yang Strive</strong>
+        <p>A durable homepage for public work and private progress.</p>
+      </div>
+      <div class="footer-links"><a href="/">Home</a><a href="/research/">Research</a><a href="/archives/">Archive</a>
+      </div>
     </footer>
   </div>
   <script src="/js/script.js"></script>
 </body>
+
 </html>
