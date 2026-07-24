@@ -1291,7 +1291,7 @@ h3 {
 }
 
 .reader-surface:fullscreen .reader-actions {
-  border-radius: 0;
+  display: none;
 }
 
 .reader-surface:fullscreen .reader-toolbar {
@@ -1299,11 +1299,45 @@ h3 {
 }
 
 .reader-surface:fullscreen .reader-viewport-wrap {
-  height: calc(100vh - 106px);
+  height: 100vh;
   min-height: 0;
   border-top: 0;
   border-right: 0;
   border-left: 0;
+}
+
+.reader-surface:fullscreen .reader-progress {
+  position: absolute;
+  right: max(18px, env(safe-area-inset-right));
+  bottom: max(14px, env(safe-area-inset-bottom));
+  left: max(18px, env(safe-area-inset-left));
+  z-index: 8;
+  grid-template-columns: minmax(0, 1fr) 38px;
+  width: min(620px, calc(100% - 36px));
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(36, 81, 107, 0.76);
+  pointer-events: none;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.72);
+}
+
+.reader-surface:fullscreen .reader-progress-bar {
+  height: 3px;
+  background: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.24);
+}
+
+[data-reader-theme-mode="night"] .reader-surface:fullscreen .reader-progress {
+  background: transparent;
+  color: rgba(214, 211, 200, 0.72);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.72);
+}
+
+[data-reader-theme-mode="night"] .reader-surface:fullscreen .reader-progress-bar {
+  background: rgba(214, 211, 200, 0.16);
+  box-shadow: none;
 }
 
 [data-reader-theme-mode="night"] .reader-surface,
@@ -1559,11 +1593,11 @@ h3 {
   0% {
     transform: perspective(1400px) translate3d(var(--swipe-start-x), 0, 0) rotateY(var(--swipe-start-angle));
   }
-  34% {
-    transform: perspective(1400px) translate3d(-28px, 0, 0) rotateY(-4.6deg) scaleX(0.994);
+  32% {
+    transform: perspective(1400px) translate3d(-22px, 0, 0) rotateY(-3.8deg) scaleX(0.996);
   }
-  58% {
-    transform: perspective(1400px) translate3d(12px, 0, 0) rotateY(1.3deg) scaleX(0.998);
+  64% {
+    transform: perspective(1400px) translate3d(-7px, 0, 0) rotateY(-1.1deg) scaleX(0.999);
   }
   100% {
     transform: perspective(1400px) translate3d(0, 0, 0) rotateY(0) scaleX(1);
@@ -1574,11 +1608,11 @@ h3 {
   0% {
     transform: perspective(1400px) translate3d(var(--swipe-start-x), 0, 0) rotateY(var(--swipe-start-angle));
   }
-  34% {
-    transform: perspective(1400px) translate3d(28px, 0, 0) rotateY(4.6deg) scaleX(0.994);
+  32% {
+    transform: perspective(1400px) translate3d(22px, 0, 0) rotateY(3.8deg) scaleX(0.996);
   }
-  58% {
-    transform: perspective(1400px) translate3d(-12px, 0, 0) rotateY(-1.3deg) scaleX(0.998);
+  64% {
+    transform: perspective(1400px) translate3d(7px, 0, 0) rotateY(1.1deg) scaleX(0.999);
   }
   100% {
     transform: perspective(1400px) translate3d(0, 0, 0) rotateY(0) scaleX(1);
@@ -2235,7 +2269,7 @@ h3 {
   }
 
   .reader-surface:fullscreen .reader-viewport-wrap {
-    height: calc(100vh - 106px);
+    height: 100vh;
   }
 
   .reader-layer-panel {
