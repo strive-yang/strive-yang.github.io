@@ -89,7 +89,7 @@
                 <div id="epubViewport" class="reader-viewport" data-reader-viewport>
                   <div class="reader-placeholder">
                     <strong>选择一本 EPUB 开始阅读</strong>
-                    <span>左右点击或使用底部按钮翻页。</span>
+                    <span>左右点击、滑动页面或使用底部按钮翻页。</span>
                   </div>
                 </div>
                 <button class="page-hit page-hit-next" type="button" data-reader-next aria-label="下一页"></button>
@@ -107,17 +107,26 @@
                 <button class="reader-layer-backdrop" type="button" data-reader-menu-close aria-label="关闭阅读菜单"></button>
                 <div class="reader-layer-panel" role="dialog" aria-label="阅读菜单">
                   <div class="reader-layer-head">
-                    <div>
-                      <span class="reader-kicker">Reader menu</span>
-                      <strong data-reader-layer-title>目录与书签</strong>
+                    <div class="reader-layer-title">
+                      <span class="reader-kicker" data-reader-status>请选择书籍</span>
+                      <strong data-reader-title>EPUB Reader</strong>
+                      <small data-reader-layer-title>目录与书签</small>
                     </div>
                     <button class="reader-icon-button" type="button" data-reader-menu-close aria-label="关闭阅读菜单">
                       <span aria-hidden="true">×</span>
                     </button>
                   </div>
+                  <div class="reader-layer-font">
+                    <span>阅读字号</span>
+                    <div class="reader-font-controls" aria-label="阅读菜单字体大小">
+                      <button type="button" data-reader-font-smaller aria-label="减小字体">A-</button>
+                      <span data-reader-font-size>105%</span>
+                      <button type="button" data-reader-font-larger aria-label="增大字体">A+</button>
+                    </div>
+                  </div>
                   <div class="reader-layer-actions">
-                    <button type="button" data-reader-fullscreen>全屏</button>
-                    <button type="button" data-reader-theme>日 / 夜</button>
+                    <button type="button" data-reader-fullscreen><span data-reader-fullscreen-label>全屏</span></button>
+                    <button type="button" data-reader-theme><span data-reader-theme-action>夜间</span></button>
                     <button type="button" data-reader-bookmark>书签</button>
                   </div>
                   <div class="reader-tabs" role="tablist" aria-label="沉浸阅读导航">
