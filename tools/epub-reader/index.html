@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>EPUB 手机阅读器 | Yang Strive Tools</title>
-  <meta name="description" content="静态 EPUB 电子书阅读器，支持手机翻页样式、阅读进度保存和书签。">
+  <meta name="description" content="静态 EPUB 电子书阅读器，支持手机翻页、精确书签与跨设备阅读进度同步。">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -35,7 +35,7 @@
           <div>
             <p class="eyebrow">Tool · EPUB Reader</p>
             <h1>EPUB 手机阅读器</h1>
-            <p>从 <code>/tools/booklist/</code> 加载书籍，分页阅读并在浏览器本地保存进度和书签。</p>
+            <p>从 <code>/tools/booklist/</code> 加载书籍，分页阅读并保存精确进度；登录后可跨设备同步。</p>
           </div>
           <a class="button button-ghost" href="/tools/">返回工具箱</a>
         </div>
@@ -55,6 +55,28 @@
               <p class="reader-empty">正在读取书库...</p>
             </div>
             <p class="reader-help">部署到 GitHub Pages 后，新增 EPUB 到 <code>tools/booklist</code> 并推送即可出现在这里。</p>
+            <section class="reader-sync" data-reader-cloud aria-label="阅读进度云同步">
+              <div class="reader-sync-head">
+                <div>
+                  <span>Cloud sync</span>
+                  <strong data-reader-cloud-status>本机保存</strong>
+                </div>
+                <i data-reader-cloud-dot aria-hidden="true"></i>
+              </div>
+              <form class="reader-sync-form" data-reader-cloud-form hidden>
+                <label for="readerSyncEmail">邮箱登录</label>
+                <div>
+                  <input id="readerSyncEmail" type="email" inputmode="email" autocomplete="email"
+                    placeholder="you@example.com" data-reader-cloud-email required>
+                  <button type="submit" data-reader-cloud-submit>发送链接</button>
+                </div>
+              </form>
+              <div class="reader-sync-account" data-reader-cloud-account hidden>
+                <span data-reader-cloud-user></span>
+                <button type="button" data-reader-cloud-sign-out>退出</button>
+              </div>
+              <p data-reader-cloud-message aria-live="polite">当前进度保存在此浏览器。</p>
+            </section>
           </aside>
 
           <section class="reader-stage" aria-label="EPUB 阅读区域">
@@ -185,6 +207,7 @@
   <script src="/js/vendor/jszip.min.js"></script>
   <script src="/js/vendor/epub.min.js"></script>
   <script src="/js/script.js"></script>
+  <script src="/js/epub-reader-config.js"></script>
   <script src="/js/epub-reader.js"></script>
 </body>
 

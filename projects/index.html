@@ -4,14 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Projects | Yang Strive</title>
-  <meta name="description" content="Yang Strive 的项目展示页面，汇总开源项目、实验代码和静态 Demo。">
+  <meta name="description" content="Yang Strive 的项目索引，收录开源 Skill、静态 Web 应用、个人工具与持续迭代的实验作品。">
+  <meta name="theme-color" content="#f7fafc">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Projects | Yang Strive">
+  <meta property="og:description" content="把问题做成可访问、可复用、可继续迭代的作品。">
+  <meta property="og:image" content="/assets/projects/bootstrap-contract-hero.webp">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/projects.css">
 </head>
-<body>
+<body class="projects-index-page">
   <div class="site-shell">
     <header class="site-header" data-header>
-      <a class="brand" href="/">
+      <a class="brand" href="/" aria-label="Yang Strive home">
         <span class="brand-text"><strong>Yang Strive</strong><small>Personal Tech Lab</small></span>
       </a>
       <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span></button>
@@ -27,46 +33,132 @@
     </header>
 
     <main>
-      <section class="page-hero">
-        <div class="page-hero-inner layout">
-          <div>
-            <p class="eyebrow">Build Log</p>
-            <h1>把想法做成能被访问、复现和继续迭代的项目。</h1>
-            <p>项目页用于放置开源仓库、课程/研究 Demo、Web 小应用和实验代码说明。</p>
+      <section class="projects-index-hero">
+        <div class="layout projects-index-hero-grid">
+          <div class="projects-index-copy">
+            <p class="eyebrow">Project Directory · Build in public</p>
+            <h1>把问题做成<br><span>可以被使用</span>的作品。</h1>
+            <p class="projects-index-lead">这里收录已经可以访问的开源项目、静态应用和个人工具。每个项目从一个具体问题开始，并保留继续迭代的入口。</p>
+            <div class="projects-index-jump">
+              <a class="button button-primary" href="#featured-project">查看主项目</a>
+              <a class="button button-ghost" href="#project-catalog">浏览全部</a>
+            </div>
           </div>
-          <div class="hero-note">
-            <strong>project.rule</strong>
-            screenshot + problem + stack + link
+
+          <aside class="projects-index-panel" aria-label="项目目录状态">
+            <div class="projects-index-panel-head">
+              <span>projects.index</span>
+              <strong><i aria-hidden="true"></i> maintained</strong>
+            </div>
+            <div class="projects-index-count"><span>04</span><small>published artifacts</small></div>
+            <div class="projects-index-types">
+              <span><b>01</b> Agent Skill</span>
+              <span><b>02</b> Web Apps</span>
+              <span><b>01</b> Living Site</span>
+            </div>
+            <div class="projects-index-command"><span>$</span> open /projects/<i aria-hidden="true"></i></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section layout" id="featured-project">
+        <div class="projects-index-heading">
+          <div>
+            <p class="eyebrow">Featured · 01</p>
+            <h2>当前主项目</h2>
+          </div>
+          <p>从项目索引进入完整说明、设计原则与实际用法。</p>
+        </div>
+
+        <article class="projects-featured-card">
+          <a class="projects-featured-media" href="/projects/bootstrap-project-contract-skill/" aria-label="查看 bootstrap-project-contract 项目详情">
+            <img src="/assets/projects/bootstrap-contract-hero.webp" width="1536" height="1024" alt="证据、契约与治理等级组成的抽象技术图景">
+            <span>Open source · Apache-2.0</span>
+          </a>
+          <div class="projects-featured-copy">
+            <div class="projects-card-meta"><span>Agent Skill</span><span>2026</span></div>
+            <h2>bootstrap-project-contract</h2>
+            <p>为代码仓库选择并建立<strong>最低充分 Agent 治理契约</strong>。它先读取代码、配置、测试和既有规范，再决定应该复用、修订、创建、跳过还是询问。</p>
+            <div class="projects-featured-points" aria-label="项目特点">
+              <span>Evidence first</span>
+              <span>Level 0 → 3</span>
+              <span>Risk-gated writes</span>
+              <span>Platform independent</span>
+            </div>
+            <div class="projects-card-actions">
+              <a class="button button-primary" href="/projects/bootstrap-project-contract-skill/">阅读项目详情</a>
+              <a class="projects-text-link" href="https://github.com/strive-yang/bootstrap-project-contract-skill" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="projects-catalog-section" id="project-catalog">
+        <div class="layout">
+          <div class="projects-index-heading">
+            <div>
+              <p class="eyebrow">Catalog · 02—04</p>
+              <h2>项目与实验</h2>
+            </div>
+            <p>站点、工具和实验应用会在达到可访问状态后加入这里。</p>
+          </div>
+
+          <div class="projects-catalog-grid">
+            <article class="projects-catalog-card projects-catalog-card-site">
+              <div class="projects-card-topline"><span>02 / Living Site</span><i>Active</i></div>
+              <div class="projects-card-visual projects-site-visual" aria-hidden="true">
+                <span class="projects-site-dot"></span>
+                <span></span><span></span><span></span>
+                <strong>YS</strong>
+              </div>
+              <h3>Personal Tech Lab</h3>
+              <p>当前个人网站本身：以静态 HTML、CSS 和 JavaScript 连接文章、工具、项目与研究记录。</p>
+              <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">GitHub Pages</span></div>
+              <a class="projects-card-link" href="/">访问网站 <span aria-hidden="true">→</span></a>
+            </article>
+
+            <article class="projects-catalog-card projects-catalog-card-reader">
+              <div class="projects-card-topline"><span>03 / Web App</span><i>Experimental</i></div>
+              <div class="projects-card-visual projects-reader-visual" aria-hidden="true">
+                <span></span><span></span><span></span>
+                <i>EPUB</i>
+              </div>
+              <h3>EPUB 手机阅读器</h3>
+              <p>直接从站点书库加载 EPUB，支持移动端分页、精确进度、书签以及登录后的跨设备同步。</p>
+              <div class="tag-row"><span class="tag">EPUB.js</span><span class="tag">Mobile</span><span class="tag">Cloud Sync</span></div>
+              <a class="projects-card-link" href="/tools/epub-reader/">打开阅读器 <span aria-hidden="true">→</span></a>
+            </article>
+
+            <article class="projects-catalog-card projects-catalog-card-calculator">
+              <div class="projects-card-topline"><span>04 / Utility</span><i>Available</i></div>
+              <div class="projects-card-visual projects-calc-visual" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+                <strong>¥</strong>
+              </div>
+              <h3>阶梯提成计算器</h3>
+              <p>按销售额区间逐段计算提成，实时展示各档金额、提成比例和最终有效费率。</p>
+              <div class="tag-row"><span class="tag">JavaScript</span><span class="tag">Calculator</span><span class="tag">Responsive</span></div>
+              <a class="projects-card-link" href="/tools/commission/">使用计算器 <span aria-hidden="true">→</span></a>
+            </article>
+          </div>
+
+          <div class="projects-next-slot">
+            <div><span>Next slot</span><strong>05</strong></div>
+            <p>新的项目完成最小可访问版本后，会在这里获得一张索引卡片；需要完整叙事的项目，再进入独立详情页。</p>
+            <a href="/research/">查看正在沉淀的研究方向 <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </section>
 
-      <section class="section layout">
-        <div class="section-heading">
-          <p class="eyebrow">Showcase</p>
-          <h2>项目展位</h2>
-          <p>每个项目建议包含背景问题、技术栈、关键截图、GitHub 链接和 Demo 入口。</p>
+      <section class="section layout projects-crosslinks">
+        <div class="projects-index-heading compact">
+          <div><p class="eyebrow">Explore more</p><h2>作品之外</h2></div>
+          <p>工具页偏向直接使用，研究页保留过程，项目页负责呈现已经形成完整作品的成果。</p>
         </div>
-        <div class="project-grid">
-          <article class="project-card">
-            <span class="tag">Template</span>
-            <h3>Personal Tech Lab</h3>
-            <p>当前个人网站本身，作为模块化静态站点和内容中枢的第一个项目。</p>
-            <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-            <a class="card-link" href="/">View site</a>
-          </article>
-          <article class="project-card">
-            <span class="tag">Planned</span>
-            <h3>ML Experiment Dashboard</h3>
-            <p>展示模型实验结果、指标曲线和参数对比的静态仪表盘。</p>
-            <div class="tag-row"><span class="tag">Python</span><span class="tag">Visualization</span></div>
-          </article>
-          <article class="project-card">
-            <span class="tag">Planned</span>
-            <h3>Paper Reproduction Notes</h3>
-            <p>把论文复现过程整理为代码、结果和问题清单，提升研究可追踪性。</p>
-            <div class="tag-row"><span class="tag">Research</span><span class="tag">Reproducible</span></div>
-          </article>
+        <div class="projects-crosslink-grid">
+          <a href="/tools/"><span>Tools</span><strong>直接使用的小工具与应用</strong><i aria-hidden="true">↗</i></a>
+          <a href="/research/"><span>Research</span><strong>论文、算法与实验过程</strong><i aria-hidden="true">↗</i></a>
+          <a href="/blog/"><span>Blog</span><strong>实现记录与经验复盘</strong><i aria-hidden="true">↗</i></a>
         </div>
       </section>
     </main>

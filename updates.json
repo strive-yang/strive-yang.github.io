@@ -1,0 +1,30 @@
+[
+  {
+    "title": "发布 bootstrap-project-contract 项目",
+    "date": "2026-09-19",
+    "type": "Project",
+    "summary": "上线项目索引与独立详情页，完整介绍最低充分 Agent 治理契约及其应用方式。",
+    "url": "/projects/bootstrap-project-contract-skill/"
+  },
+  {
+    "title": "上线 EPUB 手机阅读器",
+    "date": "2026-07-03",
+    "type": "Tool",
+    "summary": "支持移动端分页、精确进度、书签管理，并逐步加入登录后的跨设备同步。",
+    "url": "/tools/epub-reader/"
+  },
+  {
+    "title": "上线阶梯提成计算器",
+    "date": "2026-07-01",
+    "type": "Tool",
+    "summary": "按销售额区间逐段计算提成，实时展示各档金额、比例和最终有效费率。",
+    "url": "/tools/commission/"
+  },
+  {
+    "title": "重构 Personal Tech Lab",
+    "date": "2026-07-01",
+    "type": "Site",
+    "summary": "建立 Blog、Tools、Projects、Research 与 Archive 等独立模块，形成个人技术中枢。",
+    "url": "/"
+  }
+]

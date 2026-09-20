@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap Project Contract | Yang Strive</title>
+  <meta name="description" content="bootstrap-project-contract：为代码仓库选择并建立最低充分 Agent 治理契约的开源 Skill。">
+  <meta name="theme-color" content="#0b0e10">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Bootstrap Project Contract — 最低充分 Agent 治理">
+  <meta property="og:description" content="先读证据，再做决定。让仓库只拥有它真正需要的 Agent 治理。">
+  <meta property="og:image" content="/assets/projects/bootstrap-contract-hero.webp">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/projects.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": "bootstrap-project-contract",
+      "description": "为代码仓库选择并建立最低充分 Agent 治理契约的 Skill。",
+      "codeRepository": "https://github.com/strive-yang/bootstrap-project-contract-skill",
+      "license": "https://www.apache.org/licenses/LICENSE-2.0",
+      "programmingLanguage": "Markdown"
+    }
+  </script>
+</head>
+<body class="project-contract-page">
+  <a class="contract-skip-link" href="#main-content">跳到正文</a>
+  <div class="site-shell">
+    <header class="site-header" data-header>
+      <a class="brand" href="/" aria-label="Yang Strive home">
+        <span class="brand-text"><strong>Yang Strive</strong><small>Personal Tech Lab</small></span>
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span></button>
+      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/tools/">Tools</a>
+        <a href="/projects/" class="is-active">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/about/">About</a>
+        <a href="/archives/">Archive</a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="contract-hero" aria-labelledby="project-title">
+        <div class="contract-grid contract-hero-grid">
+          <div class="contract-hero-copy">
+            <div class="contract-kicker">
+              <span><i aria-hidden="true"></i> Open source</span>
+              <span>Agent governance skill</span>
+              <a href="/projects/">← Project index</a>
+            </div>
+            <h1 id="project-title">让仓库只拥有<br><em>真正需要</em>的治理。</h1>
+            <p class="contract-lead">
+              <strong>bootstrap-project-contract</strong> 先检查代码、配置、测试与既有规范，再从 Level 0 开始逐级判断，为项目选择最低充分的 Agent 治理契约。
+            </p>
+            <div class="contract-actions" aria-label="项目操作">
+              <a class="contract-button contract-button-primary" href="https://github.com/strive-yang/bootstrap-project-contract-skill" target="_blank" rel="noopener noreferrer">
+                查看 GitHub <span aria-hidden="true">↗</span>
+              </a>
+              <a class="contract-button contract-button-ghost" href="#use-cases">立即使用 <span aria-hidden="true">↓</span></a>
+            </div>
+            <dl class="contract-facts" aria-label="项目摘要">
+              <div><dt>Contract</dt><dd>Level 0 → 3</dd></div>
+              <div><dt>Actions</dt><dd>5 种最小动作</dd></div>
+              <div><dt>License</dt><dd>Apache-2.0</dd></div>
+            </dl>
+          </div>
+
+          <figure class="contract-hero-art">
+            <div class="contract-art-frame">
+              <img src="/assets/projects/bootstrap-contract-hero.webp" width="1536" height="1024" alt="证据来源汇入契约，并经过决策门禁形成不同治理等级的抽象图景" fetchpriority="high">
+              <span class="contract-art-code" aria-hidden="true">BPC / 00—03</span>
+              <span class="contract-art-axis" aria-hidden="true">evidence → decision → contract</span>
+            </div>
+            <figcaption><span>01</span> Govern only as much as the evidence requires.</figcaption>
+          </figure>
+        </div>
+        <a class="contract-scroll-cue" href="#principle"><span>继续阅读</span><i aria-hidden="true"></i></a>
+      </section>
+
+      <section class="contract-principle" id="principle">
+        <div class="contract-grid contract-principle-grid">
+          <div class="contract-section-mark" aria-hidden="true"><span>02</span><i></i><small>POSITION</small></div>
+          <div class="contract-principle-copy">
+            <p class="contract-eyebrow">Not a scaffold</p>
+            <h2>它不是文件脚手架，<br>而是治理决策引擎。</h2>
+            <p class="contract-large-copy">传统 bootstrap 从“可以生成什么”出发；这个 Skill 从“当前究竟缺什么”出发。</p>
+          </div>
+          <div class="contract-contrast" aria-label="方法对比">
+            <article>
+              <span class="contract-contrast-sign contract-contrast-sign-muted" aria-hidden="true">−</span>
+              <p class="contract-card-label">Template-first</p>
+              <h3>先生成，再让项目适应模板</h3>
+              <p>README、AGENTS、specs、plans、decisions……文件齐全，不代表边界清晰。</p>
+            </article>
+            <article class="is-positive">
+              <span class="contract-contrast-sign" aria-hidden="true">+</span>
+              <p class="contract-card-label">Evidence-first</p>
+              <h3>先证明问题，再增加治理</h3>
+              <p>能复用就不修订，能跳过就不创建；“什么都不改”也是合法且有价值的结论。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="contract-levels" aria-labelledby="levels-title">
+        <div class="contract-grid">
+          <div class="contract-section-head contract-section-head-dark">
+            <div>
+              <p class="contract-eyebrow">Governance ladder</p>
+              <h2 id="levels-title">从零开始，只在证据要求时升级。</h2>
+            </div>
+            <p>每一次升级都必须说清：低一级为什么解决不了当前的协作、交付或风险问题。</p>
+          </div>
+
+          <ol class="contract-level-list">
+            <li>
+              <div class="contract-level-number"><span>0</span><small>NONE</small></div>
+              <div><h3>无需新增治理</h3><p>默认行为或既有约定已经足够，输出 <code>No additional governance required</code>。</p></div>
+            </li>
+            <li>
+              <div class="contract-level-number"><span>1</span><small>LIGHT</small></div>
+              <div><h3>轻量契约</h3><p>用一个持久化说明解决边界问题，通常最多增加 1–2 个简洁产物。</p></div>
+            </li>
+            <li>
+              <div class="contract-level-number"><span>2</span><small>STRUCTURED</small></div>
+              <div><h3>结构化协作</h3><p>持续协作确实需要独立的规范角色、计划或作用域策略。</p></div>
+            </li>
+            <li>
+              <div class="contract-level-number"><span>3</span><small>GOVERNED</small></div>
+              <div><h3>正式治理</h3><p>仅用于审计、合规、严格追踪、高风险审批或明确的多团队边界。</p></div>
+            </li>
+          </ol>
+
+          <div class="contract-budget-note">
+            <span>Governance budget</span>
+            <p>每个候选产物只能选择 <strong>create</strong> / <strong>reuse</strong> / <strong>revise</strong> / <strong>skip</strong> / <strong>ask</strong>，且每个非 skip 动作都必须解决一个已被识别的问题。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="contract-system" aria-labelledby="workflow-title">
+        <div class="contract-grid">
+          <div class="contract-section-head">
+            <div>
+              <p class="contract-eyebrow">How it works</p>
+              <h2 id="workflow-title">一次完整判断，七个可验证阶段。</h2>
+            </div>
+            <p>先把“现状是什么”与“目标需要什么”彻底分开，再决定是否写入。</p>
+          </div>
+
+          <ol class="contract-workflow">
+            <li><span>01</span><div><h3>Discover</h3><p>扫描代码、配置、测试、文档与既有 Agent 指令。</p></div></li>
+            <li><span>02</span><div><h3>Classify</h3><p>独立判断成熟度、当前治理状态与交付模式。</p></div></li>
+            <li><span>03</span><div><h3>Resolve roles</h3><p>为规范权威、实现证据和描述文档划清边界。</p></div></li>
+            <li><span>04</span><div><h3>Select level</h3><p>从 Level 0 开始，停在第一个足够的等级。</p></div></li>
+            <li><span>05</span><div><h3>Write gate</h3><p>按风险决定直接写入、确认或暂停。</p></div></li>
+            <li><span>06</span><div><h3>Write minimally</h3><p>只修改必要的最小语义表面，并保持幂等。</p></div></li>
+            <li><span>07</span><div><h3>Validate</h3><p>检查权威唯一性、链接、安全、平台假设与二次运行结果。</p></div></li>
+          </ol>
+
+          <div class="contract-knowledge" aria-label="仓库知识模型">
+            <div class="contract-knowledge-intro">
+              <p class="contract-card-label">Repository knowledge model</p>
+              <h3>三类知识，不能混作一个事实来源。</h3>
+              <div class="contract-state-legend" aria-label="状态标签">
+                <span><i class="is-verified"></i> verified</span>
+                <span><i class="is-designed"></i> designed</span>
+                <span><i class="is-unknown"></i> unknown</span>
+              </div>
+            </div>
+            <article><span>A</span><h4>Normative authorities</h4><p>回答“应该是什么？”——策略、需求、计划、架构决策与作用域规范。</p></article>
+            <article><span>B</span><h4>Implementation evidence</h4><p>回答“实际是什么？”——代码、配置、测试、Manifest 与安全的运行检查。</p></article>
+            <article><span>C</span><h4>Descriptive documentation</h4><p>回答“如何向人解释？”——README、运维文档、Onboarding 与参考页面。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="contract-use-cases" id="use-cases" aria-labelledby="use-cases-title">
+        <div class="contract-grid">
+          <div class="contract-section-head contract-section-head-dark">
+            <div>
+              <p class="contract-eyebrow">Put it to work</p>
+              <h2 id="use-cases-title">把它应用到你的仓库。</h2>
+            </div>
+            <p>该 Skill 默认只接受显式调用。选择最接近当前场景的提示词，复制后交给 Agent。</p>
+          </div>
+
+          <div class="contract-prompt-grid">
+            <article class="contract-prompt-card">
+              <div class="contract-prompt-top"><span>01</span><small>NEW REPOSITORY</small></div>
+              <h3>新项目接入 Agent</h3>
+              <p>判断当前成熟度，并只建立真正必要的起步契约。</p>
+              <pre><code>Use $bootstrap-project-contract to inspect this new repository and establish the minimum Agent governance it actually needs.</code></pre>
+              <button type="button" data-copy-value="Use $bootstrap-project-contract to inspect this new repository and establish the minimum Agent governance it actually needs.">复制提示词</button>
+            </article>
+
+            <article class="contract-prompt-card">
+              <div class="contract-prompt-top"><span>02</span><small>EXISTING REPOSITORY</small></div>
+              <h3>已有项目重新评估</h3>
+              <p>识别事实来源、冲突与漂移，仅补齐缺失的契约片段。</p>
+              <pre><code>Use $bootstrap-project-contract to reassess this repository's current governance, identify the source-of-truth files, and add only the missing Agent contract pieces.</code></pre>
+              <button type="button" data-copy-value="Use $bootstrap-project-contract to reassess this repository's current governance, identify the source-of-truth files, and add only the missing Agent contract pieces.">复制提示词</button>
+            </article>
+
+            <article class="contract-prompt-card">
+              <div class="contract-prompt-top"><span>03</span><small>OVER-GOVERNED</small></div>
+              <h3>检查是否治理过度</h3>
+              <p>推荐最低充分目标，但不未经确认删除或迁移现有权威。</p>
+              <pre><code>Use $bootstrap-project-contract to determine whether this repository is over-governed. Recommend the lowest sufficient target contract and do not delete or migrate existing authorities without confirmation.</code></pre>
+              <button type="button" data-copy-value="Use $bootstrap-project-contract to determine whether this repository is over-governed. Recommend the lowest sufficient target contract and do not delete or migrate existing authorities without confirmation.">复制提示词</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="contract-install" aria-labelledby="install-title">
+        <div class="contract-grid contract-install-grid">
+          <div class="contract-install-copy">
+            <p class="contract-eyebrow">Installation</p>
+            <h2 id="install-title">保留完整目录，放入 Skill 搜索路径。</h2>
+            <p>核心模型保持平台无关。只有仓库已采用某个平台约定，或你明确选择平台时，才加载相应适配规则。</p>
+            <div class="contract-install-path">
+              <span>Codex repository-local 示例</span>
+              <code>.codex/skills/bootstrap-project-contract/</code>
+            </div>
+            <p class="contract-install-note">不同 Agent 平台的 Skill 搜索路径可能不同，应以实际平台配置为准。</p>
+          </div>
+          <div class="contract-file-tree" aria-label="Skill 完整目录结构">
+            <div class="contract-file-tree-head"><span>bootstrap-project-contract/</span><i>完整目录</i></div>
+            <pre><code>├── SKILL.md
+├── agents/
+│   └── openai.yaml
+└── references/
+    ├── decision-matrix.md
+    ├── file-contracts.md
+    ├── optional-dependencies.md
+    ├── platform-adapters.md
+    └── validation-checklist.md</code></pre>
+            <button type="button" data-copy-value="Use $bootstrap-project-contract to select and establish the lowest sufficient Agent contract for this repository.">复制默认调用提示词</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="contract-final-cta">
+        <div class="contract-grid contract-final-cta-inner">
+          <div>
+            <p class="contract-eyebrow">Less ceremony. Better boundaries.</p>
+            <h2>最好的治理，不是文件最多，<br>而是每个边界都有理由。</h2>
+          </div>
+          <a class="contract-button contract-button-primary" href="https://github.com/strive-yang/bootstrap-project-contract-skill" target="_blank" rel="noopener noreferrer">获取这个 Skill <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer layout">
+      <div><strong>Yang Strive</strong><p>Projects connect ideas with working artifacts.</p></div>
+      <div class="footer-links"><a href="/">Home</a><a href="/tools/">Tools</a><a href="/about/">About</a></div>
+    </footer>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+</html>

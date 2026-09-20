@@ -199,6 +199,69 @@
       });
   }
 
+  var updateLists = document.querySelectorAll("[data-site-update-list]");
+
+  function renderSiteUpdates(list, updates) {
+    var limit = Number(list.getAttribute("data-update-limit")) || 0;
+    var sorted = updates.slice().sort(function (a, b) {
+      return String(b.date || "").localeCompare(String(a.date || ""));
+    });
+    var visible = limit > 0 ? sorted.slice(0, limit) : sorted;
+
+    if (!visible.length) return;
+    list.innerHTML = "";
+
+    visible.forEach(function (update) {
+      var item = document.createElement("a");
+      var meta = document.createElement("div");
+      var time = document.createElement("time");
+      var type = document.createElement("span");
+      var copy = document.createElement("div");
+      var title = document.createElement("h3");
+      var summary = document.createElement("p");
+      var arrow = document.createElement("i");
+
+      item.className = "home-update-item";
+      item.href = update.url || "/";
+      item.setAttribute("data-update-type", update.type || "Update");
+      meta.className = "home-update-meta";
+      copy.className = "home-update-copy";
+      time.dateTime = update.date || "";
+      time.textContent = formatPostDate(update.date);
+      type.textContent = update.type || "Update";
+      title.textContent = update.title || "Untitled update";
+      summary.textContent = update.summary || "";
+      arrow.setAttribute("aria-hidden", "true");
+      arrow.textContent = "↗";
+
+      meta.appendChild(time);
+      meta.appendChild(type);
+      copy.appendChild(title);
+      copy.appendChild(summary);
+      item.appendChild(meta);
+      item.appendChild(copy);
+      item.appendChild(arrow);
+      list.appendChild(item);
+    });
+  }
+
+  if (updateLists.length && window.fetch) {
+    fetch("/updates.json", { cache: "no-cache" })
+      .then(function (response) {
+        if (!response.ok) throw new Error("Unable to load site updates");
+        return response.json();
+      })
+      .then(function (updates) {
+        if (!Array.isArray(updates)) return;
+        updateLists.forEach(function (list) {
+          renderSiteUpdates(list, updates);
+        });
+      })
+      .catch(function () {
+        // Keep the static fallback content when updates.json is unavailable.
+      });
+  }
+
   var commissionInput = document.querySelector("[data-commission-input]");
   var commissionCalc = document.querySelector("[data-commission-calc]");
   var commissionTotal = document.querySelector("[data-commission-total]");

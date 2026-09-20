@@ -46,7 +46,18 @@ All blog articles live under `blog/`, and every listing page reads metadata from
 ## Local Preview
 
 ```bash
-python -m http.server 8000
+python -m http.server 8000 --bind 127.0.0.1
 ```
 
 Then open `http://127.0.0.1:8000/`.
+
+## EPUB Reader Cloud Sync
+
+The reader always saves progress and bookmarks to `localStorage`. It can also sync the same data across browsers with Supabase while remaining a static GitHub Pages site.
+
+1. Create a Supabase project and run [`supabase/reader_state.sql`](supabase/reader_state.sql) in its SQL editor. The script enables Row Level Security so each signed-in user can only access their own rows.
+2. In Supabase Authentication URL Configuration, set the site URL to the deployed GitHub Pages origin and add both the deployed reader URL and `http://127.0.0.1:8000/tools/epub-reader/` as redirect URLs when local testing is needed.
+3. Copy the project URL and publishable key (the legacy anon key also works) into [`js/epub-reader-config.js`](js/epub-reader-config.js). Never put a service-role or secret key in this repository.
+4. Deploy normally. The reader will show an email magic-link login and merge the newest progress into the browser cache after sign-in.
+
+Leave both config values empty to keep local-only mode.

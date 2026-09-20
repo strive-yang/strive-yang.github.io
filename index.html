@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Yang Strive | Personal Tech Lab</title>
   <meta name="description" content="Yang Strive 的个人技术网站，记录机器学习、工程工具、研究笔记与项目实践。">
-  <meta name="theme-color" content="#080a0f">
+  <meta name="theme-color" content="#f7fafc">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Yang Strive | Personal Tech Lab">
   <meta property="og:description" content="Research, engineering, tools and notes.">
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
+<body class="home-page">
   <div class="site-shell">
     <header class="site-header" data-header>
       <a class="brand" href="/" aria-label="Yang Strive home">
@@ -46,14 +46,14 @@
         <div class="hero-grid"></div>
         <div class="hero-content layout">
           <div class="hero-copy">
-            <p class="eyebrow">Research · Engineering · Tools</p>
+            <p class="eyebrow">Personal Index · Live Changelog</p>
             <h1>把日常研究、代码和工具整理成可持续生长的个人技术中枢。</h1>
             <p class="hero-lead">
-              沉淀科研学习、MATLAB/Python 工程实践、前言技术blog、论文笔记和自用工具。
+              沉淀科研学习、MATLAB/Python 工程实践、前沿技术 Blog、论文笔记和自用工具；每一次可见更新都留下一条记录。
             </p>
             <div class="hero-actions" aria-label="Primary actions">
-              <a class="button button-primary" href="/tools/">进入工具箱</a>
-              <a class="button button-ghost" href="/blog/">阅读文章</a>
+              <a class="button button-primary" href="/projects/">查看项目</a>
+              <a class="button button-ghost" href="/tools/">进入工具箱</a>
             </div>
           </div>
           <aside class="status-panel" aria-label="Site status">
@@ -76,14 +76,14 @@
               </div>
               <div>
                 <dt>Updated</dt>
-                <dd>2026.07</dd>
+                <dd>2026.09</dd>
               </div>
             </dl>
             <div class="terminal">
               <p><span>$</span> site.map --modules</p>
               <p>blog tools projects research archive</p>
-              <p><span>$</span> lab.status</p>
-              <p>ready for iteration</p>
+              <p><span>$</span> last.shipped</p>
+              <p>bootstrap-project-contract</p>
             </div>
           </aside>
         </div>
@@ -98,7 +98,7 @@
         <div class="module-grid">
           <a class="module-card" href="/tools/">
             <span class="module-icon">⌘</span>
-            <span class="module-status">Active</span>
+            <span class="module-status">2 live</span>
             <h3>Tools</h3>
             <p>沉淀常用脚本、数据处理、论文写作和实验辅助工具。</p>
           </a>
@@ -110,7 +110,7 @@
           </a>
           <a class="module-card" href="/projects/">
             <span class="module-icon">◇</span>
-            <span class="module-status">Building</span>
+            <span class="module-status">Featured</span>
             <h3>Projects</h3>
             <p>展示开源项目、实验代码、Web 小应用和可复现 Demo。</p>
           </a>
@@ -135,41 +135,54 @@
         </div>
       </section>
 
-      <section class="section section-split layout">
-        <div class="content-panel">
-          <div class="section-heading compact">
-            <p class="eyebrow">Recent</p>
-            <h2>最新内容</h2>
+      <section class="section home-updates-section">
+        <div class="layout">
+          <div class="home-updates-heading">
+            <div>
+              <p class="eyebrow">Latest · What changed</p>
+              <h2>最新内容</h2>
+              <p>工具上线、项目发布和重要功能更新，都会在这里留下可追踪的入口。</p>
+            </div>
+            <a class="home-updates-source" href="/updates.json">updates.json <span aria-hidden="true">↗</span></a>
           </div>
-          <div class="timeline-list" data-post-list="timeline" data-post-limit="3">
-            <a class="timeline-item" href="/blog/2026/07/01/hello-world/">
-              <time datetime="2026-07-01">2026.07.01</time>
-              <span>Hello World</span>
-              <small>站点初始化与后续内容规划。</small>
-            </a>
-            <a class="timeline-item" href="/research/">
-              <time datetime="2026-07-01">2026.07.01</time>
-              <span>Research Lab</span>
-              <small>预留论文笔记、算法实验和复现记录入口。</small>
-            </a>
-            <a class="timeline-item" href="/tools/">
-              <time datetime="2026-07-01">2026.07.01</time>
-              <span>Tools Directory</span>
-              <small>搭建工具模块，准备接入常用工程助手。</small>
-            </a>
+
+          <div class="home-updates-grid">
+            <div class="home-update-list" data-site-update-list data-update-limit="4" aria-live="polite">
+              <a class="home-update-item" href="/projects/bootstrap-project-contract-skill/">
+                <div class="home-update-meta"><time datetime="2026-09-19">2026.09.19</time><span>Project</span></div>
+                <div class="home-update-copy"><h3>发布 bootstrap-project-contract 项目</h3><p>上线项目索引与独立详情页，完整介绍最低充分 Agent 治理契约及其应用方式。</p></div>
+                <i aria-hidden="true">↗</i>
+              </a>
+              <a class="home-update-item" href="/tools/epub-reader/">
+                <div class="home-update-meta"><time datetime="2026-07-03">2026.07.03</time><span>Tool</span></div>
+                <div class="home-update-copy"><h3>上线 EPUB 手机阅读器</h3><p>支持移动端分页、精确进度、书签管理，并逐步加入登录后的跨设备同步。</p></div>
+                <i aria-hidden="true">↗</i>
+              </a>
+              <a class="home-update-item" href="/tools/commission/">
+                <div class="home-update-meta"><time datetime="2026-07-01">2026.07.01</time><span>Tool</span></div>
+                <div class="home-update-copy"><h3>上线阶梯提成计算器</h3><p>按销售额区间逐段计算提成，实时展示各档金额、比例和最终有效费率。</p></div>
+                <i aria-hidden="true">↗</i>
+              </a>
+              <a class="home-update-item" href="/">
+                <div class="home-update-meta"><time datetime="2026-07-01">2026.07.01</time><span>Site</span></div>
+                <div class="home-update-copy"><h3>重构 Personal Tech Lab</h3><p>建立 Blog、Tools、Projects、Research 与 Archive 等独立模块，形成个人技术中枢。</p></div>
+                <i aria-hidden="true">↗</i>
+              </a>
+            </div>
+
+            <aside class="home-release-panel" aria-label="当前发布概览">
+              <div class="home-release-label"><span>release.snapshot</span><i>2026.09</i></div>
+              <div class="home-release-count"><strong>03</strong><span>usable<br>artifacts</span></div>
+              <div class="home-release-bars" aria-hidden="true"><span></span><span></span><span></span></div>
+              <dl>
+                <div><dt>Project</dt><dd>01</dd></div>
+                <div><dt>Tools</dt><dd>02</dd></div>
+                <div><dt>Update log</dt><dd>Live</dd></div>
+              </dl>
+              <p>每次完成访问者能够感知的变化，就更新首页记录。</p>
+              <a href="/projects/">浏览项目索引 <span aria-hidden="true">→</span></a>
+            </aside>
           </div>
-        </div>
-        <div class="content-panel accent-panel">
-          <div class="section-heading compact">
-            <p class="eyebrow">Roadmap</p>
-            <h2>下一步</h2>
-          </div>
-          <ul class="check-list">
-            <li>补充真实个人资料、头像和外部链接。</li>
-            <li>把研究方向拆成论文、实验和数据集三个子栏目。</li>
-            <li>为工具页加入可运行的小组件或独立静态应用。</li>
-            <li>迁移 Hexo 模板源文件，避免重新生成时覆盖发布页。</li>
-          </ul>
         </div>
       </section>
     </main>

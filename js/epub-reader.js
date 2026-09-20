@@ -7,6 +7,8 @@
   var BOOK_DIR = "tools/booklist";
   var STORAGE_PREFIX = "ys:epub-reader:";
   var GITHUB_CONTENTS_URL = "https://api.github.com/repos/" + OWNER + "/" + REPO + "/contents/" + BOOK_DIR;
+  var SUPABASE_CDN_URL = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+  var cloudLibraryPromise = null;
 
   var elements = {
     list: root.querySelector("[data-book-list]"),
@@ -36,7 +38,16 @@
     clearBookmarks: root.querySelector("[data-reader-clear-bookmarks]"),
     resume: root.querySelector("[data-reader-resume]"),
     tabs: root.querySelectorAll("[data-reader-tab]"),
-    panels: root.querySelectorAll("[data-reader-panel]")
+    panels: root.querySelectorAll("[data-reader-panel]"),
+    cloud: root.querySelector("[data-reader-cloud]"),
+    cloudStatus: root.querySelector("[data-reader-cloud-status]"),
+    cloudForm: root.querySelector("[data-reader-cloud-form]"),
+    cloudEmail: root.querySelector("[data-reader-cloud-email]"),
+    cloudSubmit: root.querySelector("[data-reader-cloud-submit]"),
+    cloudAccount: root.querySelector("[data-reader-cloud-account]"),
+    cloudUser: root.querySelector("[data-reader-cloud-user]"),
+    cloudSignOut: root.querySelector("[data-reader-cloud-sign-out]"),
+    cloudMessage: root.querySelector("[data-reader-cloud-message]")
   };
 
   var state = {
@@ -53,6 +64,15 @@
     toc: [],
     currentChapter: "",
     selection: null,
+    positionRevision: 0,
+    isRestoring: false,
+    cloud: {
+      enabled: false,
+      client: null,
+      session: null,
+      saveTimers: {},
+      subscription: null
+    },
     swipe: {
       active: false,
       animating: false,
@@ -258,22 +278,99 @@
     }
   }
 
-  function getSavedPosition(bookName) {
-    return localStorage.getItem(storageKey(bookName, "position")) || "";
+  function normalizePosition(position) {
+    if (typeof position === "string") position = { cfi: position };
+    if (!position || typeof position !== "object" || !position.cfi) return null;
+    var percent = Number(position.percent);
+    return {
+      cfi: String(position.cfi),
+      endCfi: position.endCfi ? String(position.endCfi) : "",
+      href: position.href ? String(position.href) : "",
+      percent: Number.isFinite(percent) ? percent : 0,
+      chapter: compactLabel(position.chapter, "阅读进度"),
+      text: normalizeSearchText(position.text),
+      prefix: normalizeSearchText(position.prefix),
+      suffix: normalizeSearchText(position.suffix),
+      updatedAt: position.updatedAt ? String(position.updatedAt) : ""
+    };
   }
 
-  function savePosition(bookName, cfi) {
-    if (!bookName || !cfi) return;
+  function getSavedProgress(bookName) {
+    if (!bookName) return null;
     try {
-      localStorage.setItem(storageKey(bookName, "position"), cfi);
+      var raw = localStorage.getItem(storageKey(bookName, "position"));
+      if (!raw) return null;
+      try {
+        return normalizePosition(JSON.parse(raw));
+      } catch (parseError) {
+        return normalizePosition(raw);
+      }
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function writeSavedProgress(bookName, position) {
+    var normalized = normalizePosition(position);
+    if (!bookName || !normalized) return;
+    try {
+      localStorage.setItem(storageKey(bookName, "position"), JSON.stringify(normalized));
     } catch (error) {
       setStatus("浏览器无法保存本地记录");
     }
   }
 
+  function savePosition(bookName, cfi, location) {
+    if (!bookName || !cfi) return;
+    var previous = getSavedProgress(bookName);
+    var position = {
+      cfi: cfi,
+      endCfi: currentLocationEndCfi(location),
+      href: currentLocationHref(location),
+      percent: currentPercent(location),
+      chapter: state.currentChapter || "阅读进度",
+      text: previous && previous.cfi === cfi ? previous.text : "",
+      prefix: previous && previous.cfi === cfi ? previous.prefix : "",
+      suffix: previous && previous.cfi === cfi ? previous.suffix : "",
+      updatedAt: new Date().toISOString()
+    };
+    writeSavedProgress(bookName, position);
+    scheduleCloudSave(bookName);
+
+    var revision = ++state.positionRevision;
+    getBookmarkContext(cfi, "").then(function (context) {
+      if (revision !== state.positionRevision || !state.currentBook || state.currentBook.name !== bookName) return;
+      var latest = getSavedProgress(bookName);
+      if (!latest || latest.cfi !== cfi) return;
+      latest.text = context.text;
+      latest.prefix = context.prefix;
+      latest.suffix = context.suffix;
+      writeSavedProgress(bookName, latest);
+      scheduleCloudSave(bookName);
+    });
+  }
+
   function getBookmarks(bookName) {
     if (!bookName) return [];
     return dedupeBookmarks(readJson(storageKey(bookName, "bookmarks"), []));
+  }
+
+  function getBookmarksUpdatedAt(bookName) {
+    if (!bookName) return "";
+    try {
+      return localStorage.getItem(storageKey(bookName, "bookmarks-updated-at")) || "";
+    } catch (error) {
+      return "";
+    }
+  }
+
+  function setBookmarksUpdatedAt(bookName, value) {
+    if (!bookName) return;
+    try {
+      localStorage.setItem(storageKey(bookName, "bookmarks-updated-at"), value || new Date().toISOString());
+    } catch (error) {
+      setStatus("浏览器无法保存本地记录");
+    }
   }
 
   function normalizeBookmark(bookmark) {
@@ -320,12 +417,16 @@
     var cached = getBookmarks(bookName);
     var merged = dedupeBookmarks((additions || []).concat(cached));
     writeJson(storageKey(bookName, "bookmarks"), merged);
+    setBookmarksUpdatedAt(bookName);
+    scheduleCloudSave(bookName);
     return merged;
   }
 
   function replaceBookmarks(bookName, bookmarks) {
     if (!bookName) return;
     writeJson(storageKey(bookName, "bookmarks"), dedupeBookmarks(bookmarks));
+    setBookmarksUpdatedAt(bookName);
+    scheduleCloudSave(bookName);
   }
 
   function removeBookmark(bookName, bookmark) {
@@ -333,6 +434,268 @@
     replaceBookmarks(bookName, cached.filter(function (savedBookmark) {
       return !sameBookmark(savedBookmark, bookmark);
     }));
+  }
+
+  function timestampValue(value) {
+    var parsed = value ? Date.parse(value) : NaN;
+    return Number.isFinite(parsed) ? parsed : 0;
+  }
+
+  function setCloudUi(mode, message) {
+    if (!elements.cloud) return;
+    var isSignedIn = !!(state.cloud.session && state.cloud.session.user);
+    elements.cloud.setAttribute("data-cloud-state", mode || "local");
+    elements.cloudForm.hidden = !state.cloud.enabled || isSignedIn;
+    elements.cloudAccount.hidden = !isSignedIn;
+
+    if (!state.cloud.enabled) {
+      elements.cloudStatus.textContent = "本机保存";
+    } else if (mode === "busy") {
+      elements.cloudStatus.textContent = "正在同步";
+    } else if (mode === "error") {
+      elements.cloudStatus.textContent = "云端离线";
+    } else if (isSignedIn) {
+      elements.cloudStatus.textContent = "已开启同步";
+    } else {
+      elements.cloudStatus.textContent = "等待登录";
+    }
+
+    if (isSignedIn) {
+      elements.cloudUser.textContent = state.cloud.session.user.email || "已登录账户";
+    }
+    if (message) {
+      elements.cloudMessage.textContent = message;
+    } else if (!state.cloud.enabled) {
+      elements.cloudMessage.textContent = "当前进度保存在此浏览器。";
+    } else if (isSignedIn) {
+      elements.cloudMessage.textContent = "进度与书签会自动同步到云端。";
+    } else {
+      elements.cloudMessage.textContent = "登录后可在不同设备继续阅读。";
+    }
+  }
+
+  function cloudPayload(bookName) {
+    if (!state.cloud.session || !state.cloud.session.user) return null;
+    var bookmarks = getBookmarks(bookName);
+    var bookmarksUpdatedAt = getBookmarksUpdatedAt(bookName);
+    if (!bookmarksUpdatedAt && bookmarks.length) {
+      bookmarksUpdatedAt = new Date().toISOString();
+      setBookmarksUpdatedAt(bookName, bookmarksUpdatedAt);
+    }
+    return {
+      user_id: state.cloud.session.user.id,
+      book_id: bookName,
+      position: getSavedProgress(bookName) || {},
+      bookmarks: bookmarks,
+      bookmarks_updated_at: bookmarksUpdatedAt || null,
+      updated_at: new Date().toISOString()
+    };
+  }
+
+  function pushBookState(bookName) {
+    if (!state.cloud.enabled || !state.cloud.client || !state.cloud.session || !bookName) {
+      return Promise.resolve(false);
+    }
+    var payload = cloudPayload(bookName);
+    if (!payload) return Promise.resolve(false);
+    setCloudUi("busy");
+    return state.cloud.client
+      .from("reader_state")
+      .upsert(payload, { onConflict: "user_id,book_id" })
+      .then(function (result) {
+        if (result.error) throw result.error;
+        setCloudUi("ready", "刚刚已同步，离线时仍会保存在本机。");
+        return true;
+      }).catch(function () {
+        setCloudUi("error", "云同步失败，本机记录不受影响。请检查配置或网络。");
+        return false;
+      });
+  }
+
+  function scheduleCloudSave(bookName) {
+    if (!state.cloud.enabled || !state.cloud.session || !bookName) return;
+    if (state.cloud.saveTimers[bookName]) window.clearTimeout(state.cloud.saveTimers[bookName]);
+    state.cloud.saveTimers[bookName] = window.setTimeout(function () {
+      delete state.cloud.saveTimers[bookName];
+      pushBookState(bookName);
+    }, 1200);
+  }
+
+  function flushScheduledCloudSave(bookName) {
+    if (!bookName || !state.cloud.saveTimers[bookName]) return;
+    window.clearTimeout(state.cloud.saveTimers[bookName]);
+    delete state.cloud.saveTimers[bookName];
+    pushBookState(bookName);
+  }
+
+  function chooseCloudBookmarks(bookName, remoteBookmarks, remoteUpdatedAt) {
+    var localBookmarks = getBookmarks(bookName);
+    var localUpdatedAt = getBookmarksUpdatedAt(bookName);
+    var localTime = timestampValue(localUpdatedAt);
+    var remoteTime = timestampValue(remoteUpdatedAt);
+    var chosen = localBookmarks;
+    var chosenUpdatedAt = localUpdatedAt;
+    var shouldPush = false;
+
+    if (!localTime && localBookmarks.length && remoteBookmarks.length) {
+      chosen = dedupeBookmarks(localBookmarks.concat(remoteBookmarks));
+      chosenUpdatedAt = new Date().toISOString();
+      shouldPush = true;
+    } else if (!localTime && !localBookmarks.length && remoteBookmarks.length) {
+      chosen = remoteBookmarks;
+      chosenUpdatedAt = remoteUpdatedAt || new Date().toISOString();
+    } else if ((!remoteTime && localBookmarks.length) || localTime > remoteTime) {
+      chosen = localBookmarks;
+      chosenUpdatedAt = localUpdatedAt || new Date().toISOString();
+      shouldPush = true;
+    } else if (remoteTime >= localTime) {
+      chosen = remoteBookmarks;
+      chosenUpdatedAt = remoteUpdatedAt || new Date().toISOString();
+    }
+
+    writeJson(storageKey(bookName, "bookmarks"), dedupeBookmarks(chosen));
+    setBookmarksUpdatedAt(bookName, chosenUpdatedAt);
+    return shouldPush;
+  }
+
+  function syncBookFromCloud(bookName) {
+    if (!state.cloud.enabled || !state.cloud.client || !state.cloud.session || !bookName) {
+      return Promise.resolve({ positionChanged: false });
+    }
+    setCloudUi("busy", "正在合并本机与云端记录…");
+    var userId = state.cloud.session.user.id;
+    return state.cloud.client
+      .from("reader_state")
+      .select("position,bookmarks,bookmarks_updated_at,updated_at")
+      .eq("user_id", userId)
+      .eq("book_id", bookName)
+      .maybeSingle()
+      .then(function (result) {
+        if (result.error) throw result.error;
+        if (!result.data) {
+          return pushBookState(bookName).then(function () {
+            return { positionChanged: false };
+          });
+        }
+
+        var localPosition = getSavedProgress(bookName);
+        var remotePosition = normalizePosition(result.data.position);
+        var positionChanged = false;
+        var shouldPush = false;
+        if (remotePosition && (!localPosition || timestampValue(remotePosition.updatedAt) > timestampValue(localPosition.updatedAt))) {
+          positionChanged = !localPosition || localPosition.cfi !== remotePosition.cfi;
+          writeSavedProgress(bookName, remotePosition);
+        } else if (localPosition && (!remotePosition || timestampValue(localPosition.updatedAt) > timestampValue(remotePosition.updatedAt))) {
+          shouldPush = true;
+        }
+
+        var remoteBookmarks = dedupeBookmarks(result.data.bookmarks || []);
+        shouldPush = chooseCloudBookmarks(bookName, remoteBookmarks, result.data.bookmarks_updated_at) || shouldPush;
+        renderBookmarks();
+
+        if (shouldPush) {
+          return pushBookState(bookName).then(function () {
+            return { positionChanged: positionChanged };
+          });
+        }
+        setCloudUi("ready");
+        return { positionChanged: positionChanged };
+      }).catch(function () {
+        setCloudUi("error", "云端记录读取失败，已继续使用本机进度。");
+        return { positionChanged: false };
+      });
+  }
+
+  function syncCurrentBookFromCloud() {
+    if (!state.currentBook) return;
+    var bookName = state.currentBook.name;
+    syncBookFromCloud(bookName).then(function (result) {
+      if (!result.positionChanged || !state.currentBook || state.currentBook.name !== bookName) return;
+      displaySavedProgress(getSavedProgress(bookName), "已恢复云端进度");
+    });
+  }
+
+  function loadCloudLibrary() {
+    if (window.supabase && window.supabase.createClient) return Promise.resolve();
+    if (cloudLibraryPromise) return cloudLibraryPromise;
+    cloudLibraryPromise = new Promise(function (resolve, reject) {
+      var script = document.createElement("script");
+      script.src = SUPABASE_CDN_URL;
+      script.async = true;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+    return cloudLibraryPromise;
+  }
+
+  function initializeCloud() {
+    var config = window.EPUB_READER_CLOUD || {};
+    if (!config.supabaseUrl || !config.supabasePublishableKey) {
+      setCloudUi("local");
+      return Promise.resolve();
+    }
+
+    if (!window.supabase || !window.supabase.createClient) {
+      setCloudUi("busy", "正在载入云同步组件…");
+      return loadCloudLibrary().then(function () {
+        if (!window.supabase || !window.supabase.createClient) throw new Error("Supabase client unavailable");
+        return initializeCloud();
+      }).catch(function () {
+        setCloudUi("error", "云同步组件载入失败，已使用本机保存。");
+      });
+    }
+
+    try {
+      state.cloud.client = window.supabase.createClient(config.supabaseUrl, config.supabasePublishableKey, {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true
+        }
+      });
+      state.cloud.enabled = true;
+    } catch (error) {
+      setCloudUi("error", "云同步配置无效，已使用本机保存。");
+      return Promise.resolve();
+    }
+
+    var authListener = state.cloud.client.auth.onAuthStateChange(function (event, session) {
+      state.cloud.session = session;
+      setCloudUi(session ? "ready" : "local");
+      if (session && event !== "INITIAL_SESSION") {
+        window.setTimeout(syncCurrentBookFromCloud, 0);
+      }
+    });
+    state.cloud.subscription = authListener.data.subscription;
+
+    return state.cloud.client.auth.getSession().then(function (result) {
+      if (result.error) throw result.error;
+      state.cloud.session = result.data.session;
+      setCloudUi(state.cloud.session ? "ready" : "local");
+    }).catch(function () {
+      setCloudUi("error", "无法读取登录状态，已使用本机保存。");
+    });
+  }
+
+  function sendMagicLink(email) {
+    if (!state.cloud.client || !email) return Promise.resolve();
+    elements.cloudSubmit.disabled = true;
+    setCloudUi("busy", "正在发送登录链接…");
+    return state.cloud.client.auth.signInWithOtp({
+      email: email,
+      options: {
+        emailRedirectTo: window.location.origin + "/tools/epub-reader/",
+        shouldCreateUser: true
+      }
+    }).then(function (result) {
+      if (result.error) throw result.error;
+      setCloudUi("local", "登录链接已发送，请前往邮箱确认。");
+    }).catch(function () {
+      setCloudUi("error", "登录链接发送失败，请检查邮箱与 Supabase 设置。");
+    }).finally(function () {
+      elements.cloudSubmit.disabled = false;
+    });
   }
 
   function renderBookList() {
@@ -505,9 +868,9 @@
     state.currentChapter = chapterForLocation(location) || state.currentChapter;
     state.selection = null;
 
-    if (cfi) savePosition(state.currentBook.name, cfi);
+    if (cfi && !state.isRestoring) savePosition(state.currentBook.name, cfi, location);
     setProgress(percent);
-    setStatus(percent ? "已保存进度" : "正在阅读");
+    setStatus(percent ? (state.isRestoring ? "正在恢复进度" : "已保存进度") : "正在阅读");
   }
 
   function display(target, silent) {
@@ -572,8 +935,10 @@
     });
   }
 
-  function findTextCfi(contents, text) {
-    var query = normalizeSearchText(text).toLowerCase();
+  function findTextCfi(contents, anchor) {
+    var query = normalizeSearchText(anchor && anchor.text).toLowerCase();
+    var prefix = normalizeSearchText(anchor && anchor.prefix).toLowerCase();
+    var suffix = normalizeSearchText(anchor && anchor.suffix).toLowerCase();
     if (!contents || !contents.document || !contents.cfiFromRange || !query) return "";
 
     var doc = contents.document;
@@ -602,7 +967,21 @@
       }
     }
 
-    var index = normalized.indexOf(query);
+    var index = -1;
+    var bestScore = -1;
+    var searchFrom = 0;
+    var candidate;
+    while ((candidate = normalized.indexOf(query, searchFrom)) >= 0) {
+      var before = normalized.slice(Math.max(0, candidate - prefix.length), candidate);
+      var after = normalized.slice(candidate + query.length, candidate + query.length + suffix.length);
+      var score = (prefix && before === prefix ? 1 : 0) + (suffix && after === suffix ? 1 : 0);
+      if (score > bestScore) {
+        index = candidate;
+        bestScore = score;
+      }
+      if (score === 2) break;
+      searchFrom = candidate + 1;
+    }
     if (index < 0 || !positions[index] || !positions[index + query.length - 1]) return "";
     var start = positions[index];
     var end = positions[index + query.length - 1];
@@ -619,7 +998,7 @@
         if (!displayed || !state.rendition) return "";
         var contents = state.rendition.getContents ? state.rendition.getContents() : [];
         for (var i = 0; i < contents.length; i += 1) {
-          var recoveredCfi = findTextCfi(contents[i], bookmark.text);
+          var recoveredCfi = findTextCfi(contents[i], bookmark);
           if (recoveredCfi) return recoveredCfi;
         }
         return "";
@@ -646,6 +1025,35 @@
     });
     replaceBookmarks(state.currentBook.name, bookmarks);
     renderBookmarks();
+  }
+
+  function displaySavedProgress(position, successMessage) {
+    var normalized = normalizePosition(position);
+    if (!normalized) return display();
+    return display(normalized.cfi, true).then(function (displayed) {
+      if (displayed) {
+        if (successMessage) setStatus(successMessage);
+        return null;
+      }
+      setStatus("正在恢复精确阅读位置");
+      return recoverBookmarkCfi(normalized);
+    }).then(function (recoveredCfi) {
+      if (recoveredCfi === null) return true;
+      if (!recoveredCfi) {
+        setStatus("原位置已变化，已打开最近章节");
+        return false;
+      }
+      normalized.cfi = recoveredCfi;
+      normalized.updatedAt = new Date().toISOString();
+      if (state.currentBook) {
+        writeSavedProgress(state.currentBook.name, normalized);
+        scheduleCloudSave(state.currentBook.name);
+      }
+      return display(recoveredCfi).then(function (displayed) {
+        if (displayed) setStatus(successMessage || "已通过文本锚点恢复进度");
+        return displayed;
+      });
+    });
   }
 
   function displayBookmark(bookmark) {
@@ -832,11 +1240,33 @@
     return event.detail > 0 && Date.now() < state.swipe.suppressClickUntil;
   }
 
+  function getLiveSelection() {
+    if (!state.rendition || !state.rendition.getContents) return null;
+    var contents = state.rendition.getContents();
+    for (var i = 0; i < contents.length; i += 1) {
+      var content = contents[i];
+      var selection = content.window && content.window.getSelection ? content.window.getSelection() : null;
+      if (!selection || selection.rangeCount < 1 || selection.isCollapsed) continue;
+      var text = normalizeSearchText(selection.toString());
+      if (!text || !content.cfiFromRange) continue;
+      try {
+        return {
+          cfi: content.cfiFromRange(selection.getRangeAt(0)),
+          text: text
+        };
+      } catch (error) {
+        return null;
+      }
+    }
+    return null;
+  }
+
   function addBookmark() {
     if (!state.currentBook || !state.rendition) return;
 
     var location = state.rendition.currentLocation();
-    var selection = state.selection;
+    var selection = getLiveSelection();
+    state.selection = selection;
     var cfi = selection && selection.cfi ? selection.cfi : currentLocationCfi(location);
     if (!cfi) return;
 
@@ -895,6 +1325,8 @@
     state.toc = [];
     state.currentChapter = "";
     state.selection = null;
+    state.positionRevision += 1;
+    state.isRestoring = false;
   }
 
   function loadBook(bookInfo) {
@@ -922,8 +1354,8 @@
     markActiveBook();
     renderBookmarks();
 
-    var savedPosition = getSavedPosition(bookInfo.name);
-    state.pendingCfi = savedPosition;
+    var savedProgress = getSavedProgress(bookInfo.name);
+    state.pendingCfi = savedProgress ? savedProgress.cfi : "";
     state.book = window.ePub(bookInfo.url);
     state.rendition = state.book.renderTo(elements.viewport, {
       width: "100%",
@@ -971,7 +1403,15 @@
       setStatus("目录位置生成失败，仍可阅读");
     });
 
-    display(savedPosition);
+    state.isRestoring = true;
+    displaySavedProgress(savedProgress, savedProgress ? "已恢复本机进度" : "正在阅读").finally(function () {
+      if (!state.currentBook || state.currentBook.name !== bookInfo.name) return;
+      state.isRestoring = false;
+      syncBookFromCloud(bookInfo.name).then(function (result) {
+        if (!result.positionChanged || !state.currentBook || state.currentBook.name !== bookInfo.name) return;
+        displaySavedProgress(getSavedProgress(bookInfo.name), "已恢复云端进度");
+      });
+    });
   }
 
   function normalizeBooks(items) {
@@ -1130,7 +1570,7 @@
     button.addEventListener("click", addBookmark);
   });
   elements.resume.addEventListener("click", function () {
-    if (state.currentBook) display(getSavedPosition(state.currentBook.name));
+    if (state.currentBook) displaySavedProgress(getSavedProgress(state.currentBook.name), "已回到保存进度");
   });
   elements.refresh.addEventListener("click", loadLibrary);
   elements.clearBookmarks.addEventListener("click", function () {
@@ -1140,12 +1580,39 @@
     setStatus("已清空书签");
   });
 
+  if (elements.cloudForm) {
+    elements.cloudForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      sendMagicLink(elements.cloudEmail.value.trim());
+    });
+  }
+
+  if (elements.cloudSignOut) {
+    elements.cloudSignOut.addEventListener("click", function () {
+      if (!state.cloud.client) return;
+      setCloudUi("busy", "正在退出云同步账户…");
+      state.cloud.client.auth.signOut().then(function (result) {
+        if (result.error) throw result.error;
+        state.cloud.session = null;
+        setCloudUi("local", "已退出，后续记录只保存在本机。");
+      }).catch(function () {
+        setCloudUi("error", "退出失败，请稍后重试。");
+      });
+    });
+  }
+
   document.addEventListener("keydown", function (event) {
     var tagName = event.target && event.target.tagName ? event.target.tagName : "";
     if (!state.rendition || /input|textarea|select/i.test(tagName)) return;
     if (event.key === "Escape") setMenuOpen(false);
     if (event.key === "ArrowLeft") goPrevious();
     if (event.key === "ArrowRight") goNext();
+  });
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden" && state.currentBook) {
+      flushScheduledCloudSave(state.currentBook.name);
+    }
   });
 
   window.addEventListener("beforeunload", function () {
@@ -1165,5 +1632,5 @@
 
   setFontSize(localStorage.getItem(STORAGE_PREFIX + "font-size") || 105);
   setTheme(localStorage.getItem(STORAGE_PREFIX + "theme") || "day");
-  loadLibrary();
+  initializeCloud().finally(loadLibrary);
 })();

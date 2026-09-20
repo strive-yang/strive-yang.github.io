@@ -21,8 +21,17 @@
 
 - Blog 文章放在 `blog/YYYY/MM/DD/slug/index.html`。
 - Blog 元数据放在 `blog/posts.json`。
-- 首页最新内容、Blog 列表和 Archive 页面都从 `blog/posts.json` 渲染。
+- Blog 列表和 Archive 页面从 `blog/posts.json` 渲染。
 - 新增文章时，需要同时更新文章目录和 `blog/posts.json`。
+
+## 网站更新记录
+
+- 首页“最新内容”是整个网站的更新日志，从根目录下的 `updates.json` 渲染，不只展示 Blog 文章。
+- 每次新增或显著更新用户可见的页面、工具、项目、研究成果或站点功能时，必须同时在 `updates.json` 顶部新增一条记录，说明日期、类型、标题、摘要和目标 URL。
+- `updates.json` 中每条记录必须包含 `title`、`date`、`type`、`summary` 和 `url` 字段；日期使用 `YYYY-MM-DD`，URL 使用适配 GitHub Pages 的站点绝对路径。
+- 更新记录按日期倒序排列；同一天有多条记录时，最新完成的记录放在前面。
+- 新增 Blog 文章仍需更新 `blog/posts.json`；如果该文章也是一次需要在首页告知的站点发布，再同时添加到 `updates.json`。
+- 不要为纯内部重构、格式化或用户不可见的维护工作添加首页更新；只记录访问者能够感知或使用的变化。
 
 ## 编辑注意事项
 
