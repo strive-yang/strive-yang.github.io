@@ -1,5 +1,26 @@
 [
   {
+    "title": "研究索引展示算法图与论文结果表",
+    "date": "2026-09-26",
+    "type": "Research",
+    "summary": "在 Research 索引直接展示 SRC 方法图、SRC–SREC 算法框架和论文 NMI 结果表，并在演示首页与实验页加入原始图表。",
+    "url": "/research/"
+  },
+  {
+    "title": "研究图解加入论文原始图表",
+    "date": "2026-09-26",
+    "type": "Research",
+    "summary": "SREC 研究演示新增开题答辩中的方法流程图、分布式示意图和实验图表。",
+    "url": "/research/srec/"
+  },
+  {
+    "title": "上线 SREC 大规模集成聚类研究图解",
+    "date": "2026-09-25",
+    "type": "Research",
+    "summary": "以演示稿式图解介绍论文的代表点采样、稀疏图、加权共识与分布式实验结果。",
+    "url": "/research/srec/"
+  },
+  {
     "title": "发布 bootstrap-project-contract 项目",
     "date": "2026-09-19",
     "type": "Project",

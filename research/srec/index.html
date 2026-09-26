@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SREC 研究图解 | Research</title>
+  <meta name="description" content="用演示稿式图解介绍 SREC 大规模数据集成聚类研究：问题、代表点采样、稀疏图、加权谱共识、分布式实现与实验结果。">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/research.css">
+</head>
+<body class="research-detail-page">
+  <div class="site-shell">
+    <header class="site-header" data-header>
+      <a class="brand" href="/" aria-label="Yang Strive home"><span class="brand-text"><strong>Yang Strive</strong><small>Personal Tech Lab</small></span></a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span></button>
+      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
+        <a href="/">Home</a><a href="/blog/">Blog</a><a href="/tools/">Tools</a><a href="/projects/">Projects</a><a href="/research/" class="is-active">Research</a><a href="/about/">About</a><a href="/archives/">Archive</a>
+      </nav>
+    </header>
+
+    <div class="research-deck-toolbar layout" aria-label="演示控制">
+      <a href="/research/" class="research-back-link">← 研究索引</a>
+      <div class="research-deck-status"><span>SREC / 研究图解</span><span data-slide-count>01 / 10</span></div>
+      <div class="research-deck-buttons"><button type="button" data-slide-prev aria-label="上一页">←</button><button type="button" data-slide-next aria-label="下一页">→</button><button type="button" data-present-toggle>全屏演示</button></div>
+    </div>
+
+    <main class="research-deck" id="research-deck">
+      <section class="research-slide research-cover" id="slide-1" data-slide aria-labelledby="slide-1-title">
+        <div class="research-slide-inner layout">
+          <div class="research-cover-copy"><p class="research-slide-kicker">01 / Research presentation · 2026</p><h1 id="slide-1-title">让大规模聚类<br><em>更准，也更快。</em></h1><p>稀疏表示驱动的大规模数据集成聚类算法 <strong>SREC</strong>。从代表点采样到稀疏共识，在分布式环境中建立可扩展的聚类流程。</p><div class="research-cover-actions"><a class="button button-primary" href="#slide-2">开始阅读 <span aria-hidden="true">↓</span></a><a class="research-inline-link" href="https://doi.org/10.11992/tis.202509003" target="_blank" rel="noopener noreferrer">查看论文 ↗</a></div></div>
+          <a class="research-cover-figure" href="/assets/research/src-flow.png" target="_blank" rel="noopener noreferrer" aria-label="打开 SRC 算法流程原图"><span>方法图 / SRC BASE CLUSTERING</span><img src="/assets/research/src-flow.png" width="777" height="621" alt="SRC 方法流程：RSP 代表点选择、稀疏图构建和二部图聚类" decoding="async"><small>点击查看方法图大图 ↗</small></a>
+          <div class="research-cover-bottom"><span>《智能系统学报》 · 21(4): 888–907</span><span>DOI: 10.11992/tis.202509003</span></div>
+        </div>
+      </section>
+
+      <section class="research-slide" id="slide-2" data-slide aria-labelledby="slide-2-title">
+        <div class="research-slide-inner layout">
+          <div class="research-slide-head"><p class="research-slide-kicker">02 / The problem</p><h2 id="slide-2-title">规模扩大后，<br>两道瓶颈同时出现。</h2><p>抽样决定能否看见全局结构；共识计算决定算法能否真正跑在大数据上。</p></div>
+          <div class="research-problem-grid">
+            <article class="research-idea-card"><span class="research-card-no">01 / REPRESENTATIVENESS</span><h3>代表点覆盖不足</h3><p>纯随机采样可能遗漏规模较小或形状复杂的簇，基础聚类结果随采样波动。</p><div class="research-problem-mini" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><b></b><b></b></div></article>
+            <article class="research-idea-card"><span class="research-card-no">02 / COMPUTATION</span><h3>全局共识代价高</h3><p>稠密相似矩阵和反复迭代会增加存储、节点间交换与同步成本。</p><div class="research-matrix" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></article>
+          </div>
+          <p class="research-slide-note">研究目标：在聚类质量、结果稳定性与分布式效率之间取得平衡。</p>
+        </div>
+      </section>
+
+      <section class="research-slide research-slide-tint" id="slide-3" data-slide aria-labelledby="slide-3-title">
+        <div class="research-slide-inner layout">
+          <div class="research-slide-head"><p class="research-slide-kicker">03 / Architecture</p><h2 id="slide-3-title">先做好每一次聚类，<br>再让结果形成共识。</h2><p>框架分为 SRC 基聚类与 SREC 集成共识两层。</p></div>
+          <figure class="research-paper-figure research-framework-figure">
+            <a href="/assets/research/srec-framework.png" target="_blank" rel="noopener noreferrer" aria-label="查看两阶段研究框架大图"><img src="/assets/research/srec-framework.png" width="1953" height="568" alt="论文研究框架：先生成高稳定的 SRC 基础聚类，再进入分布式 SREC 集成阶段" decoding="async"></a>
+            <figcaption>两阶段研究框架 · 开题答辩材料，点击查看大图</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="research-slide" id="slide-4" data-slide aria-labelledby="slide-4-title">
+        <div class="research-slide-inner layout">
+          <div class="research-slide-head"><p class="research-slide-kicker">04 / Base clustering · SRC</p><h2 id="slide-4-title">少量代表点，<br>保留尽可能多的结构。</h2><p>RSP 与 K-means 结合选择代表点；FAISS 连接数据点与近邻代表点，形成稀疏二部图。</p></div>
+          <div class="research-explain-grid">
+            <figure class="research-graph-panel">
+              <a href="/assets/research/src-flow.png" target="_blank" rel="noopener noreferrer" aria-label="查看 SRC 基聚类流程大图"><img src="/assets/research/src-flow.png" width="777" height="621" alt="SRC 流程图：RSP 子集经 K-means 产生代表点，构建稀疏相似矩阵和二部图，并通过 Tcut 形成基础划分" loading="lazy" decoding="async"></a>
+              <figcaption>SRC 基聚类流程 · 开题答辩材料，点击查看大图</figcaption>
+            </figure>
+            <div class="research-explain-points"><div><span>01</span><div><h3>覆盖全局</h3><p>通过 RSP 子集上的 K-means 寻找代表点，降低单次随机采样遗漏局部结构的风险。</p></div></div><div><span>02</span><div><h3>保持稀疏</h3><p>借助 FAISS 近邻检索构图，避免直接处理所有样本对之间的稠密关系。</p></div></div><div><span>03</span><div><h3>形成基础划分</h3><p>SRC 在图结构上完成聚类，为后续集成提供质量更稳定的基础结果。</p></div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="research-slide research-slide-dark" id="slide-5" data-slide aria-labelledby="slide-5-title">
+        <div class="research-slide-inner layout">
+          <div class="research-slide-head"><p class="research-slide-kicker">05 / Ensemble · SREC</p><h2 id="slide-5-title">让多个基础划分<br>汇成一个最终答案。</h2><p>SREC 将 SRC 生成的多个划分进行加权谱共识，并用 Tcut 在稀疏图上得到最终簇划分。</p></div>
+          <figure class="research-paper-figure research-consensus-figure">
+            <a href="/assets/research/srec-consensus.png" target="_blank" rel="noopener noreferrer" aria-label="查看 SREC 共识方法大图"><img src="/assets/research/srec-consensus.png" width="1171" height="519" alt="SREC 共识方法图：加权对象-簇二部图经过 Tcut 得到最终聚类结果" loading="lazy" decoding="async"></a>
+            <figcaption>加权对象—簇二部图与 Tcut 共识 · 开题答辩材料，点击查看大图</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="research-slide research-slide-tint" id="slide-6" data-slide aria-labelledby="slide-6-title">
+        <div class="research-slide-inner layout">
+          <div class="research-slide-head"><p class="research-slide-kicker">06 / Distributed execution</p><h2 id="slide-6-title">让算法的结构，<br>适合并行执行。</h2><p>论文基于 Spark 实现 SREC：RSP 将数据组织为可处理的子集，多个基础聚类任务在集群中展开，再汇入稀疏共识阶段。</p></div>
+          <figure class="research-paper-figure research-distributed-figure">
+            <a href="/assets/research/src-distributed.png" target="_blank" rel="noopener noreferrer" aria-label="查看分布式计算示意大图"><img src="/assets/research/src-distributed.png" width="1078" height="332" alt="多个计算节点并行运行 SRC，分别产生基础聚类划分" loading="lazy" decoding="async"></a>
+            <figcaption>并行生成基础聚类 · 开题答辩材料，点击查看大图</figcaption>
+          </figure>
+          <div class="research-spark-grid" aria-label="分布式执行流程">
+            <div class="research-spark-stage"><span>01 / Partition</span><strong>RSP 数据划分</strong><div class="research-spark-blocks" aria-hidden="true"><i></i><i></i><i></i><i></i></div><small>把大规模数据组织成多个样本子集</small></div>
+            <div class="research-spark-stage"><span>02 / Parallel</span><strong>Spark 并行计算</strong><div class="research-spark-workers" aria-hidden="true"><i>SRC</i><i>SRC</i><i>SRC</i></div><small>并行生成多组基础聚类划分</small></div>
+            <div class="research-spark-stage is-last"><span>03 / Consensus</span><strong>SREC 稀疏共识</strong><div class="research-spark-output" aria-hidden="true"><i></i><i></i><i></i></div><small>整合基础结果并输出最终簇</small></div>
+          </div>
+          <p class="research-figure-caption">下方步骤概括分区、并行和共识；计算节点数量与任务调度位置不按实验部署复刻。</p>
+        </div>
+      </section>
+
+      <section class="research-slide" id="slide-7" data-slide aria-labelledby="slide-7-title">
+        <div class="research-slide-inner layout">
+          <div class="research-slide-head"><p class="research-slide-kicker">07 / Evidence</p><h2 id="slide-7-title">实验结果，<br>同时回答质量与规模。</h2><p>论文对比 10 种主流算法，并在百万级数据集上验证 SREC。</p></div>
+          <div class="research-evidence-grid">
+            <figure class="research-metric-chart"><div class="research-chart-heading"><strong>聚类质量提升</strong><span>相较次优算法 · 论文摘要</span></div><div class="research-bar-row"><span>NMI</span><div><i style="width:100%"></i></div><strong>+4.15%</strong></div><div class="research-bar-row"><span>ARI</span><div><i style="width:80.2%"></i></div><strong>+3.33%</strong></div><div class="research-bar-row"><span>ACC</span><div><i style="width:23.6%"></i></div><strong>+0.98%</strong></div><figcaption>条形长度按三项提升幅度的相对大小绘制；数值来自论文摘要。</figcaption></figure>
+            <div class="research-evidence-stats"><div><span>规模验证</span><strong>500<span>万</span></strong><p>样本数据上的聚类实验</p></div><div><span>计算效率</span><strong>+51.8<span>%</span></strong><p>相较次优算法的提升</p></div><div><span>稳定性</span><strong>0.21<span>%</span></strong><p>基聚类个数变化时 NMI 标准差</p></div></div>
+          </div>
+          <p class="research-slide-note">NMI、ARI、ACC 分别衡量聚类结果与真实标签的一致性；页面展示论文摘要披露的汇总结果。</p>
+        </div>
+      </section>
+
+      <section class="research-slide research-slide-tint" id="slide-8" data-slide aria-labelledby="slide-8-title">
+        <div class="research-slide-inner layout">
+          <div class="research-slide-head"><p class="research-slide-kicker">08 / Results table</p><h2 id="slide-8-title">把核心对比，<br>放回原始结果表。</h2><p>论文表 3 给出八个标准数据集上的 NMI 对比；表中分别列出 SRC 基聚类和 SREC 集成聚类的结果。</p></div>
+          <figure class="research-paper-figure research-table-figure"><div class="research-table-viewport"><a href="/assets/research/srec-nmi-results-table.png" target="_blank" rel="noopener noreferrer" aria-label="打开论文表 3 NMI 结果大图"><img src="/assets/research/srec-nmi-results-table.png" width="898" height="422" alt="标准数据集 NMI 性能评价表：K-means、Nystrom、SRC、SREC 等算法在 USPS、Letters、Mnist 等八个数据集上的结果" loading="lazy" decoding="async"></a></div><figcaption>论文表 3 · 各类聚类算法在标准数据集上的 NMI 性能评价（%）；手机端可横向滑动</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="research-slide" id="slide-9" data-slide aria-labelledby="slide-9-title">
+        <div class="research-slide-inner layout">
+          <div class="research-slide-head"><p class="research-slide-kicker">09 / Sensitivity &amp; significance</p><h2 id="slide-9-title">继续看参数变化，<br>以及统计比较。</h2><p>答辩材料中的实验图展示基础聚类个数对质量与耗时的影响，并比较 SREC 与其他算法的平均秩。</p></div>
+          <div class="research-results-figures">
+            <figure class="research-paper-figure"><a href="/assets/research/srec-parameter-results.png" target="_blank" rel="noopener noreferrer" aria-label="查看参数实验结果大图"><img src="/assets/research/srec-parameter-results.png" width="839" height="483" alt="不同基础聚类个数下，USPS 与 MNIST 数据集的 NMI、ACC 和运行时间变化曲线" loading="lazy" decoding="async"></a><figcaption>基础聚类个数对质量与时间的影响 · 开题答辩实验图，点击查看大图</figcaption></figure>
+            <figure class="research-paper-figure"><a href="/assets/research/srec-statistical-comparison.png" target="_blank" rel="noopener noreferrer" aria-label="查看统计比较图大图"><img src="/assets/research/srec-statistical-comparison.png" width="1129" height="606" alt="SREC 与对比算法的统计差异图，展示算法之间的平均秩与显著性连接" loading="lazy" decoding="async"></a><figcaption>SREC 与对比算法的统计比较 · 开题答辩实验图，点击查看大图</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="research-slide research-slide-final" id="slide-10" data-slide aria-labelledby="slide-10-title">
+        <div class="research-slide-inner layout">
+          <div class="research-slide-head"><p class="research-slide-kicker">10 / Takeaway</p><h2 id="slide-10-title">从代表点到共识，<br>把大规模聚类串成一条可执行的链路。</h2><p>SREC 通过更有代表性的采样、稀疏图与非迭代共识，兼顾聚类质量、稳定性和分布式计算效率。</p></div>
+          <div class="research-final-grid"><div><span>方法贡献</span><strong>RSP + K-means</strong><p>混合代表点选择</p></div><div><span>图计算</span><strong>FAISS + 稀疏图</strong><p>高效建立样本关联</p></div><div><span>共识策略</span><strong>Weighted spectrum + Tcut</strong><p>整合多个基础划分</p></div></div>
+          <div class="research-source"><div><span>原始论文</span><p>《一种新的稀疏表示驱动的大规模数据集成聚类算法》 · 《智能系统学报》2026, 21(4): 888–907 · DOI: 10.11992/tis.202509003</p></div><a class="button button-primary" href="https://doi.org/10.11992/tis.202509003" target="_blank" rel="noopener noreferrer">阅读期刊原文 ↗</a></div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer layout"><div><strong>Yang Strive</strong><p>Research, made visible.</p></div><div class="footer-links"><a href="/research/">Research</a><a href="/projects/">Projects</a><a href="/">Home</a></div></footer>
+  </div>
+  <script src="/js/script.js"></script>
+  <script src="/js/research.js"></script>
+</body>
+</html>
