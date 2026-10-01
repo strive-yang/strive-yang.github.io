@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="以 iOS 用户流失排查为贯穿案例，理解 Hybrid、GraphRAG、RAPTOR、Self-RAG、CRAG、Adaptive、Agentic 与多模态 RAG 的作用与选型。">
+  <title>从传统 RAG 到 Agentic RAG：一次流失排查中的新形态检索 | Yang Strive</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/rag-article.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header" data-header>
+      <a class="brand" href="/"><span class="brand-text"><strong>Yang Strive</strong><small>Personal Tech Lab</small></span></a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span></button>
+      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
+        <a href="/">Home</a><a href="/blog/" class="is-active">Blog</a><a href="/tools/">Tools</a><a href="/projects/">Projects</a><a href="/research/">Research</a><a href="/about/">About</a><a href="/archives/">Archive</a>
+      </nav>
+    </header>
+    <main>
+      <section class="rag-hero"><div class="layout rag-hero-grid">
+        <div><p class="eyebrow">Field notes / Retrieval systems / 2026.09.29</p><h1>从传统 RAG 到<br><span>Agentic RAG</span></h1><p class="rag-lead">一次 iOS 用户流失排查，如何把“找相似文本”升级为“规划、核验并串联证据”？</p><div class="rag-hero-links"><a href="#case">从案例开始 ↓</a><a href="#map">查看技术地图 ↗</a></div></div>
+        <div class="rag-hero-diagram" role="img" aria-label="检索能力从相似文本、混合召回、质量校验，演进到多来源调查的四个层次"><p class="diagram-kicker">RETRIEVAL EVOLUTION</p><div class="evolution-row"><span>01</span><strong>Retrieve</strong><small>相似文本块</small></div><div class="evolution-row"><span>02</span><strong>Combine</strong><small>关键词 · 向量 · 重排</small></div><div class="evolution-row"><span>03</span><strong>Check</strong><small>相关性 · 时效 · 引用</small></div><div class="evolution-row is-current"><span>04</span><strong>Investigate</strong><small>多来源 · 多步骤 · 可追溯</small></div><p class="diagram-foot">问题越复杂，检索越像一次调查。</p></div>
+      </div></section>
+      <div class="layout rag-content-grid">
+        <nav class="rag-toc" aria-label="本文目录"><p>ON THIS PAGE</p><a href="#case">01 / 一个排查问题</a><a href="#baseline">02 / 传统 RAG 的边界</a><a href="#map">03 / 新形态技术地图</a><a href="#investigation">04 / 把案例跑通</a><a href="#choices">05 / 选型与评估</a><a href="#references">参考资料</a></nav>
+        <article class="rag-article">
+          <p class="rag-intro">大语言模型擅长组织语言，却不会天然掌握企业私有数据，也无法保证参数知识始终及时。<a href="https://arxiv.org/abs/2005.11401">RAG 的原始思路</a>是把生成模型与可检索的外部记忆结合：回答前先找证据。今天的工程系统又在索引、召回、校验和流程控制上继续扩展了它。</p>
+          <aside class="rag-callout"><strong>先记住一件事</strong><p>Hybrid、GraphRAG、RAPTOR、Self-RAG、CRAG、Adaptive、Agentic 和多模态 RAG 不是互斥的产品型号。它们解决检索链路上不同位置的问题，可以按实际失败案例组合使用。</p></aside>
+
+          <section id="case" class="rag-section"><p class="rag-section-no">01 / THE CASE</p><h2>先看一个问题：iOS 用户为什么流失？</h2><p>设想一家产品团队问内部助手：“最近一个月 iOS 用户流失率为什么上升？请给出最可能的原因和证据。”这只是一个<strong>示意案例</strong>，下文的版本号、工单和结论均为虚构，用来展示系统应如何工作。</p><div class="question-card"><span>USER QUESTION</span><blockquote>“最近一个月 iOS 用户流失率为什么上升？是新版本、登录故障，还是活动结束造成的？”</blockquote></div><p>答案可能分散在指标表、发布记录、客服工单、缺陷系统和一张漏斗截图中。单次 Top-K 文本检索即便找到了“用户流失”的相关段落，也未必找到异常开始时间、影响人群或因果链。系统需要先定位异常，再沿时间线查证，最后区分<strong>观察事实、合理推断和待验证假设</strong>。</p></section>
+
+          <section id="baseline" class="rag-section"><p class="rag-section-no">02 / BASELINE</p><h2>传统 RAG：一条链，两个阶段</h2><p>离线阶段把文档解析、清洗、分块，补充标题、时间和权限，再建立向量或关键词索引。在线阶段对问题改写、召回候选、重排、组装上下文，最后让模型生成带引用的回答。</p><figure class="pipeline-figure"><figcaption>传统文本 RAG 的在线路径</figcaption><div class="pipeline" role="img" aria-label="用户问题到向量检索、Top-K 文本块、上下文组装，最后生成答案的流程"><span>用户问题</span><i>→</i><span>向量检索</span><i>→</i><span>Top-K 块</span><i>→</i><span>上下文</span><i>→</i><span>生成</span></div></figure><p>这条路径适合“报销截止日是哪天”一类局部事实题。故障却不一定出在 LLM：表格解析丢掉行列关系；Chunk 把标题与正文切开；向量召回漏掉 <code>ERR_CONN_RESET</code>、版本号或人名；Top-K 覆盖不到跨文档证据；过期和冲突内容没有过滤。升级之前应先定位失败发生在<strong>解析、召回、排序、上下文，还是生成</strong>。</p></section>
+
+          <section id="map" class="rag-section"><p class="rag-section-no">03 / THE MAP</p><h2>八种路线，分别改哪一层？</h2><div class="rag-table-wrap"><table class="rag-table"><thead><tr><th>路线</th><th>改变的位置</th><th>在案例里能做什么</th><th>主要代价</th></tr></thead><tbody>
+            <tr><th>Hybrid / Advanced</th><td>召回与排序</td><td>关键词找版本号，语义搜索找相近投诉</td><td>链路与调参</td></tr>
+            <tr><th>RAPTOR</th><td>分层索引</td><td>跨章节阅读一份很长的事故复盘</td><td>建索引与摘要误差</td></tr>
+            <tr><th>GraphRAG</th><td>实体、关系和社区</td><td>连接版本、故障、团队和项目依赖</td><td>抽取成本与图质量</td></tr>
+            <tr><th>Self-RAG</th><td>模型的检索与反思</td><td>学习何时检索、证据是否支撑说法</td><td>专门训练或适配</td></tr>
+            <tr><th>CRAG</th><td>检索质量纠错</td><td>召回无关后改写查询或回退</td><td>额外评估与检索</td></tr>
+            <tr><th>Adaptive RAG</th><td>问题路由</td><td>简单事实走短路，复杂归因走多轮</td><td>误路由风险</td></tr>
+            <tr><th>Agentic RAG</th><td>任务规划与工具调用</td><td>依次查指标、发布、工单和缺陷</td><td>延迟、预算与权限</td></tr>
+            <tr><th>Multimodal RAG</th><td>非文本证据</td><td>读取漏斗图、表格和页面布局</td><td>索引与推理开销</td></tr>
+          </tbody></table></div><p class="rag-small">这些能力通常叠加使用。对大多数知识库，先修好解析、Hybrid Search、Rerank、引用和拒答，比一次性加入全部路线更容易验证收益。</p></section>
+
+          <section id="investigation" class="rag-section"><p class="rag-section-no">04 / WALKTHROUGH</p><h2>让一次调查真正有据可依</h2><p>假设系统先查询指标库，发现流失率在 9 月 12 日开始上升，且主要集中在 iOS 18 的新版本用户。这个结果只定位了<strong>何时、哪些人</strong>，不能直接证明原因。接下来才轮到检索系统分工。</p>
+            <div class="rag-step"><b>1</b><div><h3>Hybrid：先把候选证据找全</h3><p>并行执行 BM25 关键词召回与 Embedding 语义召回：前者查 <code>v4.8.2</code>、<code>AUTH-271</code> 等精确标识，后者查“登录后被退出”“会话失效”等近义描述。用 RRF 融合，再经 Reranker 精排；同时按时间、租户和权限过滤，并扩展相邻段落。<a href="https://learn.microsoft.com/azure/search/hybrid-search-overview">Azure AI Search 文档</a>给出了全文检索、向量检索和 RRF 融合的工程示例。</p></div></div>
+            <div class="rag-step"><b>2</b><div><h3>CRAG：证据不合格，就纠正</h3><p>假设首次召回主要是两年前的 Android 登录故障。检索评估器应把它判为低相关，触发查询改写、补充检索或拒答，而不是让模型硬写结论。<a href="https://arxiv.org/abs/2401.15884">CRAG 原论文</a>引入轻量级评估器、纠正动作和文档分解重组；其中 Web Search 是论文中的扩展来源，企业系统仍应遵守数据权限与来源策略。</p></div></div>
+            <div class="rag-step"><b>3</b><div><h3>GraphRAG 与 RAPTOR：处理不同跨度</h3><p>回答“哪些团队和依赖造成修复延后”，GraphRAG 可把版本、登录服务、投诉、修复任务和负责人连成关系：Local Search 查实体邻居，Global Search 归纳大量记录的共同主题，DRIFT 用社区信息拓宽局部搜索。若关键证据是一份很长的事故复盘，RAPTOR 的递归聚类与摘要树可先定位章节，再回到底层原文。前者偏关系，后者偏语义层级；摘要都不能替代原始证据。参见 <a href="https://microsoft.github.io/graphrag/query/overview/">GraphRAG 查询文档</a>与 <a href="https://proceedings.iclr.cc/paper_files/paper/2024/hash/8a2acd174940dbca361a6398a4f9df91-Abstract-Conference.html">RAPTOR 论文</a>。</p></div></div>
+            <div class="rag-step"><b>4</b><div><h3>Multimodal：别丢掉图表里的事实</h3><p>如果异常只出现在漏斗截图或 PDF 表格中，纯 OCR 后切块可能打散图例、列标题和数值。可分别索引正文、表格和图片描述，或像 <a href="https://proceedings.iclr.cc/paper_files/paper/2025/hash/99e9e141aafc314f76b0ca3dd66898b3-Abstract-Conference.html">ColPali</a> 那样对页面图像建立视觉检索表示；召回后仍需核对原始页面。</p></div></div>
+            <div class="rag-step"><b>5</b><div><h3>Adaptive 与 Agentic：决定走多远</h3><p>Adaptive RAG 可把“v4.8.2 何时发布”路由到一次检索，把“流失原因是什么”路由到多步调查。<a href="https://aclanthology.org/2024.naacl-long.389/">Adaptive-RAG 论文</a>用分类器在不检索、单步与迭代检索之间选择。Agentic RAG 则让一个 Agent 规划工具调用、根据中间证据追问并控制停止条件；它不要求必须有多个 Agent。参见 <a href="https://arxiv.org/abs/2501.09136">Agentic RAG 综述</a>。</p></div></div>
+            <figure class="evidence-figure"><figcaption>示意案例：从数据点到可审查结论</figcaption><div class="evidence-grid"><div><span>指标库</span><strong>9/12 开始异常</strong><small>确定时间与受影响群体</small></div><div><span>Release Notes</span><strong>9/11 发布 v4.8.2</strong><small>建立时间关联，尚非因果</small></div><div><span>客服工单</span><strong>登录失败投诉增多</strong><small>检查样本与投诉分类</small></div><div><span>缺陷系统</span><strong>AUTH-271 待修复</strong><small>核对复现条件与影响范围</small></div></div><div class="evidence-output"><span>审慎输出</span><p>“登录故障是值得优先验证的原因；目前证据支持时间关联与受影响人群重合，尚需对照实验或修复后的指标变化确认因果。”</p></div></figure>
+            <p><strong>Self-RAG 不等于普通的“请模型检查答案”。</strong><a href="https://research.ibm.com/publications/self-rag-learning-to-retrieve-generate-and-critique-through-self-reflection">原论文</a>通过训练模型生成 Reflection Tokens，让模型学习按需检索、判断段落相关性与证据支持程度。工程上可以另做答案核验步骤，但应准确称为工作流校验。</p>
+            <p>微软曾在 AP News 数据集的 50 个全局问题上报告，<a href="https://www.microsoft.com/en-us/research/blog/graphrag-improving-global-search-via-dynamic-community-selection/">GraphRAG 动态社区选择</a>在限定相同搜索深度时，平均 Token 成本相对静态 Global Search 低约 77%，回答质量相近。更深层级的搜索成本也可能上升。这是特定实验条件下的结果，不是项目预算承诺。</p>
+          </section>
+
+          <section id="choices" class="rag-section"><p class="rag-section-no">05 / DECISION</p><h2>选型顺序：先看失败，再加能力</h2><div class="choice-list"><div><strong>编号、人名、错误码漏召回</strong><span>BM25 + 向量混合检索；检查分块和元数据</span></div><div><strong>长报告跨章节理解困难</strong><span>RAPTOR / 分层索引，答案回溯原文</span></div><div><strong>大量文档的主题与依赖关系</strong><span>GraphRAG，评估图质量与索引成本</span></div><div><strong>召回质量波动大</strong><span>CRAG 或确定性的评估与回退分支</span></div><div><strong>问题难度差异大</strong><span>Adaptive 路由，低置信度回退到检索</span></div><div><strong>跨知识库、数据库、Web 与 API</strong><span>Agentic 调度，限制权限、次数和预算</span></div><div><strong>证据在表格、图片与版面里</strong><span>多模态解析或视觉检索</span></div></div><p>可落地的顺序是：<strong>可靠解析 → 混合召回 → 重排 → 引用与拒答 → 离线评测集 → 针对失败案例加入图、纠错、路由或 Agent</strong>。检索层看 Recall@K、MRR、nDCG 和关键证据是否入选；生成层核对正确性、忠实度与引用；系统层记录 P95 延迟、Token、索引成本和新鲜度；业务层追踪任务完成率、人工接管率与高风险错误。<a href="https://aclanthology.org/2024.eacl-demo.16/">RAGAS</a>可辅助自动评估，关键场景仍需人工审核的真实问题集。</p><aside class="rag-callout rag-callout-dark"><strong>上线时的边界</strong><p>对 Agent 设置只读工具权限、最大迭代次数与预算，记录每一步查询、召回、工具调用及引用。外部网页和文档可能包含提示注入；医疗、金融、法律等高风险结论还需要来源核验与人工复核。</p></aside><p>成熟的 RAG，是能用可评估、可追溯的证据链稳定回答目标问题的系统。</p></section>
+
+          <section id="references" class="rag-section rag-references"><p class="rag-section-no">READ FURTHER</p><h2>参考资料</h2><ol><li>Lewis et al., <a href="https://arxiv.org/abs/2005.11401">Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</a>, NeurIPS 2020.</li><li>Gao et al., <a href="https://arxiv.org/abs/2312.10997">Retrieval-Augmented Generation for Large Language Models: A Survey</a>.</li><li>Microsoft, <a href="https://microsoft.github.io/graphrag/">GraphRAG Documentation</a>.</li><li>Sarthi et al., <a href="https://proceedings.iclr.cc/paper_files/paper/2024/hash/8a2acd174940dbca361a6398a4f9df91-Abstract-Conference.html">RAPTOR</a>, ICLR 2024.</li><li>Asai et al., <a href="https://research.ibm.com/publications/self-rag-learning-to-retrieve-generate-and-critique-through-self-reflection">Self-RAG</a>, ICLR 2024; Yan et al., <a href="https://arxiv.org/abs/2401.15884">CRAG</a>, 2024.</li><li>Jeong et al., <a href="https://aclanthology.org/2024.naacl-long.389/">Adaptive-RAG</a>, NAACL 2024.</li><li>Faysse et al., <a href="https://proceedings.iclr.cc/paper_files/paper/2025/hash/99e9e141aafc314f76b0ca3dd66898b3-Abstract-Conference.html">ColPali</a>, ICLR 2025.</li><li>Singh et al., <a href="https://arxiv.org/abs/2501.09136">Agentic RAG: A Survey</a>, 2025.</li><li>Es et al., <a href="https://aclanthology.org/2024.eacl-demo.16/">RAGAS</a>, EACL 2024.</li></ol></section>
+          <p class="rag-back"><a href="/blog/">← 返回博客列表</a></p>
+        </article>
+      </div>
+    </main>
+    <footer class="site-footer layout"><div><strong>Yang Strive</strong><p>Notes should be searchable, durable and useful.</p></div><div class="footer-links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/archives/">Archive</a></div></footer>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+</html>

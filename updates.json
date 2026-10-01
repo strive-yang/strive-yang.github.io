@@ -1,5 +1,12 @@
 [
   {
+    "title": "发布新形态 RAG 案例文章",
+    "date": "2026-09-29",
+    "type": "Blog",
+    "summary": "以 iOS 用户流失排查为线索，图解传统 RAG 到 Agentic RAG 的检索、校验与多来源调查路径。",
+    "url": "/blog/2026/09/29/modern-rag/"
+  },
+  {
     "title": "研究索引展示算法图与论文结果表",
     "date": "2026-09-26",
     "type": "Research",
