@@ -1,5 +1,12 @@
 [
   {
+    "title": "阅读书库新增 HowToLiveBetter",
+    "date": "2026-10-05",
+    "type": "Tool",
+    "summary": "将 HowToLiveBetter.epub 登记到书目清单，确保阅读器在 GitHub API 不可用时仍可显示这本书。",
+    "url": "/tools/epub-reader/"
+  },
+  {
     "title": "发布新形态 RAG 案例文章",
     "date": "2026-09-29",
     "type": "Blog",
