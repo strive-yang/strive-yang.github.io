@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">QuotaRail taskbar usage monitor illustration</title>
+  <desc id="desc">A Windows-inspired desktop with a small QuotaRail usage panel and a persistent taskbar quota display. Synthetic data shows 58 percent remaining in the five-hour window and 32 percent remaining in the seven-day window. This is a static UI illustration, not a screenshot of a real account.</desc>
+  <defs>
+    <linearGradient id="desktop" x1="96" y1="0" x2="844" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4F8FA"/>
+      <stop offset="1" stop-color="#DCE8ED"/>
+    </linearGradient>
+    <linearGradient id="fold" x1="475" y1="116" x2="853" y2="525" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B8CDD7" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#D6E4EB" stop-opacity=".08"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="515" y1="172" x2="863" y2="502" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B3145"/>
+      <stop offset="1" stop-color="#12283A"/>
+    </linearGradient>
+    <linearGradient id="five-hour" x1="543" y1="309" x2="716" y2="309" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#68C7EF"/>
+      <stop offset="1" stop-color="#7DD9E9"/>
+    </linearGradient>
+    <filter id="window-shadow" x="34" y="59" width="713" height="482" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="19" flood-color="#3D5D72" flood-opacity=".10"/>
+    </filter>
+    <filter id="panel-shadow" x="467" y="137" width="444" height="430" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="19" stdDeviation="23" flood-color="#173D57" flood-opacity=".22"/>
+    </filter>
+    <filter id="bar-shadow" x="5" y="519" width="950" height="115" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="9" stdDeviation="10" flood-color="#243C4A" flood-opacity=".14"/>
+    </filter>
+    <clipPath id="window-clip"><rect x="74" y="89" width="617" height="393" rx="13"/></clipPath>
+  </defs>
+
+  <rect width="960" height="640" rx="24" fill="url(#desktop)"/>
+  <path d="M539 65C647 23 807 60 920 185V520C792 522 653 480 601 379C548 277 642 190 539 65Z" fill="url(#fold)"/>
+  <path d="M650 96C755 146 762 228 748 319C735 405 798 456 923 474" stroke="#FFFFFF" stroke-opacity=".36" stroke-width="1.5"/>
+  <path d="M646 98C613 237 872 255 893 403" stroke="#B3CBD6" stroke-opacity=".3" stroke-width="1.5"/>
+
+  <g font-family="'Segoe UI', Aptos, sans-serif">
+    <text x="44" y="41" fill="#476578" font-size="12" font-weight="600" letter-spacing="1.9">QUOTARAIL / DESKTOP COMPANION</text>
+    <text x="916" y="41" fill="#6C8493" font-size="10" font-weight="600" text-anchor="end" letter-spacing="1.2">UI ILLUSTRATION · SYNTHETIC DATA</text>
+
+    <g filter="url(#window-shadow)" opacity=".7">
+      <rect x="74" y="89" width="617" height="393" rx="13" fill="#F8FBFD" stroke="#CBD9E2"/>
+      <g clip-path="url(#window-clip)">
+        <path d="M74 102C74 94.82 79.82 89 87 89H678C685.18 89 691 94.82 691 102V129H74V102Z" fill="#E8F0F5"/>
+        <path d="M74 129H691" stroke="#D0DEE7"/>
+        <rect x="74" y="129" width="142" height="353" fill="#EFF5F8"/>
+        <path d="M216 129V482" stroke="#D7E3EB"/>
+        <path d="M93 105L87 110L93 115M101 105L107 110L101 115" stroke="#698596" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="123" y="114" fill="#647D8E" font-size="12">workspace</text>
+        <path d="M615 109H625M644 105H652V113H644V105ZM671 105L679 113M679 105L671 113" stroke="#8DA4B3" stroke-width="1.1" stroke-linecap="round"/>
+        <text x="93" y="158" fill="#708B9D" font-size="10" font-weight="600" letter-spacing="1.3">EXPLORER</text>
+        <path d="M92 183L97 188L102 183" stroke="#9BB1BF" stroke-width="1.3" stroke-linecap="round"/>
+        <text x="111" y="191" fill="#6F8B9D" font-size="12">my-project</text>
+        <path d="M107 215H115M107 241H115M107 267H115M107 293H115" stroke="#A6BBC7" stroke-width="2" stroke-linecap="round"/>
+        <text x="124" y="219" fill="#829BAA" font-size="11">src</text>
+        <text x="124" y="245" fill="#829BAA" font-size="11">README.md</text>
+        <text x="124" y="271" fill="#829BAA" font-size="11">config</text>
+        <text x="124" y="297" fill="#829BAA" font-size="11">assets</text>
+        <rect x="217" y="129" width="130" height="36" fill="#F8FBFD"/>
+        <text x="239" y="152" fill="#6F899B" font-size="11">index.ts</text>
+        <path d="M217 165H691" stroke="#E3ECF1"/>
+        <g stroke-linecap="round" stroke-width="5">
+          <path d="M261 198H297M310 198H393" stroke="#B8CAD6"/>
+          <path d="M275 224H333M347 224H441" stroke="#A5C8D5"/>
+          <path d="M275 250H315M328 250H388" stroke="#B8CAD6"/>
+          <path d="M289 276H361M375 276H455" stroke="#B3CBD6"/>
+          <path d="M289 302H330M343 302H408" stroke="#BDD2CB"/>
+          <path d="M275 328H321" stroke="#B8CAD6"/>
+          <path d="M261 354H294M307 354H370" stroke="#A5C8D5"/>
+          <path d="M261 406H340M354 406H427" stroke="#C7D6DF"/>
+          <path d="M275 432H311M326 432H399" stroke="#C7D6DF"/>
+        </g>
+        <g fill="#B0C3CF" font-size="10" font-family="Consolas, monospace" text-anchor="end">
+          <text x="240" y="201">1</text><text x="240" y="227">2</text><text x="240" y="253">3</text><text x="240" y="279">4</text><text x="240" y="305">5</text><text x="240" y="331">6</text><text x="240" y="357">7</text><text x="240" y="383">8</text><text x="240" y="409">9</text><text x="240" y="435">10</text>
+        </g>
+      </g>
+    </g>
+
+    <g filter="url(#panel-shadow)">
+      <rect x="515" y="172" width="348" height="330" rx="17" fill="url(#panel)"/>
+      <rect x="515.5" y="172.5" width="347" height="329" rx="16.5" stroke="#C4DFEF" stroke-opacity=".2"/>
+      <rect x="542" y="198" width="29" height="29" rx="8" fill="#2B475B"/>
+      <path d="M551 206V219M556 209V219M561 213V219" stroke="#87D6E9" stroke-width="2.6" stroke-linecap="round"/>
+      <text x="583" y="218" fill="#ECF5FA" font-size="18" font-weight="600" letter-spacing="-.3">QuotaRail</text>
+      <circle cx="811" cy="213" r="3" fill="#84CFB6"/>
+      <path d="M542 245H836" stroke="#DAEDFA" stroke-opacity=".1"/>
+
+      <text x="542" y="274" fill="#A5BDC9" font-size="10" font-weight="600" letter-spacing="1.5">5-HOUR WINDOW</text>
+      <text x="542" y="308" fill="#F2F8FC" font-size="31" font-weight="600" letter-spacing="-1.4">58<tspan font-size="20" letter-spacing="-.6">%</tspan><tspan dx="10" fill="#9BB5C5" font-size="12" font-weight="400" letter-spacing="0">remaining</tspan></text>
+      <text x="836" y="302" fill="#6DCDEA" font-size="12" text-anchor="end" font-weight="600">5H</text>
+      <rect x="542" y="324" width="294" height="7" rx="3.5" fill="#2A4355"/>
+      <rect x="542" y="324" width="170.5" height="7" rx="3.5" fill="url(#five-hour)"/>
+
+      <text x="542" y="371" fill="#A5BDC9" font-size="10" font-weight="600" letter-spacing="1.5">7-DAY WINDOW</text>
+      <text x="542" y="405" fill="#F2F8FC" font-size="31" font-weight="600" letter-spacing="-1.4">32<tspan font-size="20" letter-spacing="-.6">%</tspan><tspan dx="10" fill="#9BB5C5" font-size="12" font-weight="400" letter-spacing="0">remaining</tspan></text>
+      <text x="836" y="399" fill="#83D5BA" font-size="12" text-anchor="end" font-weight="600">7D</text>
+      <rect x="542" y="421" width="294" height="7" rx="3.5" fill="#2A4355"/>
+      <rect x="542" y="421" width="94.1" height="7" rx="3.5" fill="#83D5BA"/>
+
+      <path d="M542 453H836" stroke="#DAEDFA" stroke-opacity=".1"/>
+      <circle cx="546" cy="476" r="3" stroke="#A0B8C6" stroke-width="1.1"/>
+      <text x="557" y="480" fill="#A0B8C6" font-size="10.5">Codex usage, a glance away.</text>
+      <path d="M791 502L801 512L811 502" fill="#142B3D"/>
+      <path d="M791 502L801 512L811 502" stroke="#617F93" stroke-opacity=".3"/>
+    </g>
+
+    <g filter="url(#bar-shadow)">
+      <rect x="26" y="542" width="908" height="68" rx="15" fill="#172D3E"/>
+      <rect x="26.5" y="542.5" width="907" height="67" rx="14.5" stroke="#B2CCD9" stroke-opacity=".25"/>
+      <path d="M308 563H319V574H308V563ZM322 563H333V574H322V563ZM308 577H319V588H308V577ZM322 577H333V588H322V577Z" fill="#71C9ED"/>
+      <circle cx="366" cy="574" r="8" stroke="#AEBDC9" stroke-width="2"/>
+      <path d="M372 580L378 586" stroke="#AEBDC9" stroke-width="2" stroke-linecap="round"/>
+      <path d="M404 566C404 564.34 405.34 563 407 563H416L420 567H431V587H404V566Z" fill="#E2C77F"/>
+      <path d="M404 571H431" stroke="#F4E2AD" stroke-opacity=".8"/>
+      <rect x="456" y="562" width="27" height="27" rx="6" fill="#294758"/>
+      <path d="M464 570L460 575L464 580M475 570L479 575L475 580M471 569L467 582" stroke="#93D5E8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M456 598H483" stroke="#80C4DF" stroke-width="2" stroke-linecap="round"/>
+      <path d="M504 558V594" stroke="#A5BFCE" stroke-opacity=".17"/>
+
+      <rect x="523" y="552" width="247" height="48" rx="9" fill="#223E51" stroke="#456175" stroke-opacity=".65"/>
+      <g font-family="Consolas, 'Cascadia Code', monospace" font-size="11" font-weight="600">
+        <text x="538" y="572" fill="#A7C0D0">5H</text>
+        <text x="622" y="572" fill="#E5F4FC" text-anchor="end">58%</text>
+        <text x="659" y="572" fill="#A7C0D0">7D</text>
+        <text x="755" y="572" fill="#E5F4FC" text-anchor="end">32%</text>
+      </g>
+      <rect x="538" y="581" width="84" height="4" rx="2" fill="#3A5568"/>
+      <rect x="538" y="581" width="48.7" height="4" rx="2" fill="#7ED8EB"/>
+      <rect x="659" y="581" width="96" height="4" rx="2" fill="#3A5568"/>
+      <rect x="659" y="581" width="30.7" height="4" rx="2" fill="#85D6B9"/>
+      <path d="M640 562V589" stroke="#A5BFCE" stroke-opacity=".14"/>
+
+      <path d="M797 575L801 571L805 575" stroke="#A8BDCB" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M822 575C826 571 832 571 836 575M825 579C827 577 831 577 833 579" stroke="#B8CBD6" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="829" cy="583" r="1.2" fill="#B8CBD6"/>
+      <text x="910" y="574" fill="#E0EAF0" font-size="11" text-anchor="end">10:24</text>
+      <text x="910" y="589" fill="#93ACBD" font-size="9" text-anchor="end">10/21</text>
+    </g>
+    <text x="44" y="628" fill="#7F96A4" font-size="9" letter-spacing="1">STATIC CONCEPT · SAMPLE QUOTA VALUES</text>
+  </g>
+</svg>

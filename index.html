@@ -1,205 +1,94 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Yang Strive | Personal Tech Lab</title>
-  <meta name="description" content="Yang Strive 的个人技术网站，记录机器学习、工程工具、研究笔记与项目实践。">
-  <meta name="theme-color" content="#f7fafc">
+  <title>Yang Strive · 研究与工程实践</title>
+  <meta name="description" content="Yang Strive 的个人网站。了解机器学习与聚类研究，浏览 QuotaRail、feishu-worker 等开源作品，阅读技术文章，使用在线工具。">
+  <meta name="theme-color" content="#f8fafb">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Yang Strive | Personal Tech Lab">
-  <meta property="og:description" content="Research, engineering, tools and notes.">
-  <meta property="og:image" content="/css/images/banner.jpg">
+  <meta property="og:title" content="Yang Strive · 研究与工程实践">
+  <meta property="og:description" content="以研究理解问题，用工程做出工具。机器学习研究、开源项目、技术写作与日常工具。">
+  <meta property="og:url" content="https://strive-yang.github.io/">
+  <meta property="og:image" content="https://strive-yang.github.io/assets/projects/quotarail/quota-rail.png">
+  <link rel="canonical" href="https://strive-yang.github.io/">
+  <link rel="alternate" type="application/atom+xml" title="Yang Strive 的文章" href="/atom.xml">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/site-polish.css">
 </head>
-
-<body class="home-page">
+<body class="visitor-page portfolio-home">
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
   <div class="site-shell">
     <header class="site-header" data-header>
-      <a class="brand" href="/" aria-label="Yang Strive home">
-        <span class="brand-text">
-          <strong>Yang Strive</strong>
-          <small>Personal Tech Lab</small>
-        </span>
-      </a>
-      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false">
-        <span></span>
-        <span></span>
-      </button>
-      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
-        <a href="/" class="is-active">Home</a>
-        <a href="/blog/">Blog</a>
-        <a href="/tools/">Tools</a>
-        <a href="/projects/">Projects</a>
-        <a href="/research/">Research</a>
-        <a href="/about/">About</a>
-        <a href="/archives/">Archive</a>
+      <a class="brand" href="/" aria-label="Yang Strive 首页"><span class="brand-text"><strong>Yang Strive</strong><small>研究与工程实践</small></span></a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="展开导航" aria-controls="site-nav" aria-expanded="false"><span></span><span></span></button>
+      <nav class="site-nav" id="site-nav" data-site-nav aria-label="主导航">
+        <a href="/" class="is-active" aria-current="page">首页</a><a href="/blog/">文章</a><a href="/tools/">工具</a><a href="/projects/">项目</a><a href="/research/">研究</a><a href="/about/">关于</a><a href="/archives/">归档</a>
       </nav>
     </header>
-
-    <main>
-      <section class="hero">
-        <canvas class="hero-canvas" data-network-canvas aria-hidden="true"></canvas>
-        <div class="hero-media" aria-hidden="true"></div>
-        <div class="hero-grid"></div>
-        <div class="hero-content layout">
-          <div class="hero-copy">
-            <p class="eyebrow">Personal Index · Live Changelog</p>
-            <h1>把日常研究、代码和工具整理成可持续生长的个人技术中枢。</h1>
-            <p class="hero-lead">
-              沉淀科研学习、MATLAB/Python 工程实践、前沿技术 Blog、论文笔记和自用工具；每一次可见更新都留下一条记录。
-            </p>
-            <div class="hero-actions" aria-label="Primary actions">
-              <a class="button button-primary" href="/projects/">查看项目</a>
-              <a class="button button-ghost" href="/tools/">进入工具箱</a>
-            </div>
-          </div>
-          <aside class="status-panel" aria-label="Site status">
-            <div class="panel-header">
-              <span>system.status</span>
-              <strong>online</strong>
-            </div>
-            <dl class="metric-grid">
-              <div>
-                <dt>Focus</dt>
-                <dd>ML</dd>
-              </div>
-              <div>
-                <dt>Stack</dt>
-                <dd>Agent · Python</dd>
-              </div>
-              <div>
-                <dt>Mode</dt>
-                <dd>Build in public</dd>
-              </div>
-              <div>
-                <dt>Updated</dt>
-                <dd>2026.09</dd>
-              </div>
-            </dl>
-            <div class="terminal">
-              <p><span>$</span> site.map --modules</p>
-              <p>blog tools projects research archive</p>
-              <p><span>$</span> last.shipped</p>
-              <p>bootstrap-project-contract</p>
-            </div>
-          </aside>
+    <main id="main-content">
+      <section class="portfolio-hero layout">
+        <div class="portfolio-intro">
+          <p class="portfolio-kicker">Yang Strive <span aria-hidden="true">/</span> Research &amp; Engineering</p>
+          <h1>以研究理解问题，<br>用工程做出工具。</h1>
+          <p class="portfolio-lead">我是 Yang Strive。围绕机器学习与聚类开展研究，也把日常工作中的具体问题做成开源项目、Agent 工作流和实用工具。</p>
+          <div class="portfolio-actions"><a class="button button-primary" href="#selected-work">浏览代表作品 <span aria-hidden="true">↓</span></a><a class="button button-ghost" href="/about/">了解我与联系方式 <span aria-hidden="true">→</span></a></div>
+          <div class="portfolio-social"><a href="https://github.com/strive-yang" target="_blank" rel="noopener noreferrer">GitHub ↗</a><span aria-hidden="true">·</span><a href="mailto:yangzy927@qq.com">yangzy927@qq.com</a></div>
+        </div>
+        <aside class="portfolio-start" aria-label="初次访问的阅读建议">
+          <p class="portfolio-kicker">初次来到这里</p><h2>从一份具体作品开始。</h2>
+          <a href="/research/srec/"><span>01 / 研究</span><strong>大规模集成聚类 SREC</strong><small>从方法图解到论文与实验结果</small><i aria-hidden="true">↗</i></a>
+          <a href="/projects/quotarail/"><span>02 / 工程</span><strong>Windows 任务栏里的 Codex 额度</strong><small>查看 QuotaRail 的设计与下载方式</small><i aria-hidden="true">↗</i></a>
+          <a href="/blog/2026/09/29/modern-rag/"><span>03 / 写作</span><strong>从传统 RAG 到 Agentic RAG</strong><small>用一个示意案例梳理检索路线</small><i aria-hidden="true">↗</i></a>
+        </aside>
+      </section>
+      <section class="portfolio-section layout" id="selected-work" aria-labelledby="selected-title">
+        <div class="portfolio-section-head"><div><p class="portfolio-kicker">Selected projects</p><h2 id="selected-title">把具体问题，做成可用的作品。</h2></div><a class="portfolio-more" href="/projects/">全部项目 <span aria-hidden="true">→</span></a></div>
+        <div class="portfolio-project-grid">
+          <article class="portfolio-project">
+            <a class="portfolio-project-image portfolio-image-quota" href="/projects/quotarail/" aria-label="查看 QuotaRail 项目"><img src="/assets/projects/quotarail/desktop-preview.svg" width="960" height="640" alt="QuotaRail 任务栏额度监控场景示意，使用合成数据。" loading="lazy"></a>
+            <div class="portfolio-project-copy"><p class="portfolio-label">Windows 工具 · Rust</p><h3><a href="/projects/quotarail/">QuotaRail</a></h3><p>让 Codex 剩余额度常驻任务栏，支持浮窗、托盘与重置时间详情。</p><a class="portfolio-more" href="/projects/quotarail/">查看项目与下载 <span aria-hidden="true">→</span></a></div>
+          </article>
+          <article class="portfolio-project">
+            <a class="portfolio-project-image" href="/projects/feishu-worker/" aria-label="查看 feishu-worker 项目"><img src="/assets/projects/feishu-worker-b2-card.webp" width="768" height="512" alt="feishu-worker 知识归档工作流概念图：公众号文章、Agent 核读与飞书知识资料卡。" loading="lazy"></a>
+            <div class="portfolio-project-copy"><p class="portfolio-label">Agent Skill · 知识工作流</p><h3><a href="/projects/feishu-worker/">feishu-worker</a></h3><p>把公众号技术文章整理成带有来源与核验依据的知识资料卡，归档到飞书。</p><a class="portfolio-more" href="/projects/feishu-worker/">了解工作流 <span aria-hidden="true">→</span></a></div>
+          </article>
+          <article class="portfolio-project">
+            <a class="portfolio-project-image portfolio-image-contract" href="/projects/bootstrap-project-contract-skill/" aria-label="查看 bootstrap-project-contract 项目"><img src="/assets/projects/bootstrap-contract-overview.svg" width="1080" height="760" alt="治理流程示意：读取仓库证据，选择最低充分等级，再决定最小契约动作。" loading="lazy"></a>
+            <div class="portfolio-project-copy"><p class="portfolio-label">Agent Skill · 项目治理</p><h3><a href="/projects/bootstrap-project-contract-skill/">bootstrap-project-contract</a></h3><p>先读仓库证据，再选择最低充分的 Agent 治理契约，让规范与项目需要相匹配。</p><a class="portfolio-more" href="/projects/bootstrap-project-contract-skill/">阅读设计与用法 <span aria-hidden="true">→</span></a></div>
+          </article>
         </div>
       </section>
-
-      <section class="section layout">
-        <div class="section-heading">
-          <p class="eyebrow">Directory</p>
-          <h2>模块入口</h2>
-          <p>首页只保留高价值导航，具体内容分散到独立模块，方便后续扩展和维护。</p>
-        </div>
-        <div class="module-grid">
-          <a class="module-card" href="/tools/">
-            <span class="module-icon">⌘</span>
-            <span class="module-status">2 live</span>
-            <h3>Tools</h3>
-            <p>沉淀常用脚本、数据处理、论文写作和实验辅助工具。</p>
-          </a>
-          <a class="module-card" href="/blog/">
-            <span class="module-icon">✎</span>
-            <span class="module-status">Writing</span>
-            <h3>Blog</h3>
-            <p>技术文章、工程记录、踩坑复盘和长期学习笔记。</p>
-          </a>
-          <a class="module-card" href="/projects/">
-            <span class="module-icon">◇</span>
-            <span class="module-status">Featured</span>
-            <h3>Projects</h3>
-            <p>展示开源项目、实验代码、Web 小应用和可复现 Demo。</p>
-          </a>
-          <a class="module-card" href="/research/">
-            <span class="module-icon">∑</span>
-            <span class="module-status">Lab</span>
-            <h3>Research</h3>
-            <p>论文阅读、算法整理、实验设计和研究时间线。</p>
-          </a>
-          <a class="module-card" href="/about/">
-            <span class="module-icon">◎</span>
-            <span class="module-status">Profile</span>
-            <h3>About</h3>
-            <p>个人介绍、研究方向、联系方式和站点维护说明。</p>
-          </a>
-          <a class="module-card" href="/archives/">
-            <span class="module-icon">▣</span>
-            <span class="module-status">Index</span>
-            <h3>Archive</h3>
-            <p>按时间线浏览所有文章与站点更新记录。</p>
-          </a>
+      <section class="portfolio-research-band" aria-labelledby="home-research-title">
+        <div class="layout portfolio-research-grid">
+          <div><p class="portfolio-kicker">Research / 机器学习</p><h2 id="home-research-title">在大规模数据中，<br>寻找稳定的聚类结构。</h2><p>稀疏表示驱动的大规模数据集成聚类研究（SREC），连接代表点采样、稀疏图构建与加权谱共识。图解展示从研究问题到分布式实现及实验验证的过程。</p><div class="portfolio-research-links"><a class="button button-primary" href="/research/srec/">阅读研究图解 <span aria-hidden="true">→</span></a><a class="portfolio-more" href="https://doi.org/10.11992/tis.202509003" target="_blank" rel="noopener noreferrer">论文原文 ↗</a></div><small>《智能系统学报》 · 2026 · 算法与结果详见原文</small></div>
+          <figure><a href="/research/srec/#slide-4" aria-label="查看 SRC 算法图解"><img src="/assets/research/src-flow.png" width="777" height="621" alt="SRC 算法流程：代表点选择、稀疏图构建与二部图聚类。" loading="lazy"></a><figcaption>SRC 基聚类方法 · 查看完整研究路径 ↗</figcaption></figure>
         </div>
       </section>
-
-      <section class="section home-updates-section">
-        <div class="layout">
-          <div class="home-updates-heading">
-            <div>
-              <p class="eyebrow">Latest · What changed</p>
-              <h2>最新内容</h2>
-              <p>工具上线、项目发布和重要功能更新，都会在这里留下可追踪的入口。</p>
+      <section class="portfolio-section layout" aria-labelledby="explore-title">
+        <div class="portfolio-section-head"><div><p class="portfolio-kicker">Writing &amp; tools</p><h2 id="explore-title">阅读一些思考，或直接用一个工具。</h2></div></div>
+        <div class="portfolio-explore-grid">
+          <a class="portfolio-reading" href="/blog/2026/09/29/modern-rag/"><span class="portfolio-label">技术文章 · 2026.09.29</span><h3>从传统 RAG 到 Agentic RAG</h3><p>以一次虚构的用户流失排查为线索，比较不同检索路线的用途、成本与证据边界。</p><strong>阅读全文 <span aria-hidden="true">→</span></strong></a>
+          <div class="portfolio-tools"><a href="/tools/epub-reader/"><span class="portfolio-label">在线阅读</span><h3>EPUB 手机阅读器 <span aria-hidden="true">→</span></h3><p>继续阅读，管理进度与书签。</p></a><a href="/tools/commission/"><span class="portfolio-label">在线计算</span><h3>阶梯提成计算器 <span aria-hidden="true">→</span></h3><p>按销售额区间计算各档提成。</p></a></div>
+        </div>
+      </section>
+      <section class="portfolio-updates-section" aria-labelledby="updates-title">
+        <div class="layout portfolio-updates-grid">
+          <div>
+            <div class="portfolio-section-head"><div><p class="portfolio-kicker">Recently</p><h2 id="updates-title">最新内容</h2></div><a class="portfolio-more" href="/archives/#site-updates">全部更新 <span aria-hidden="true">→</span></a></div>
+            <div class="home-update-list" data-site-update-list data-update-limit="3" aria-live="polite">
+              <a class="home-update-item" href="/projects/bootstrap-project-contract-skill/"><div class="home-update-meta"><time datetime="2026-10-21">2026.10.21</time><span>项目</span></div><div class="home-update-copy"><h3>重设计 Bootstrap Project Contract 项目页</h3><p>以浅色项目版式和清晰治理流程示意重整介绍，同步更新首页与项目索引配图，保留治理等级、使用提示词及安装说明。</p></div><i aria-hidden="true">→</i></a>
+              <a class="home-update-item" href="/"><div class="home-update-meta"><time datetime="2026-10-21">2026.10.21</time><span>站点</span></div><div class="home-update-copy"><h3>更新网站导览与内容呈现</h3><p>重整首页、个人介绍、工具、文章与归档的阅读路线，完善研究和项目入口、移动端布局与站点细节。</p></div><i aria-hidden="true">→</i></a>
+              <a class="home-update-item" href="/projects/quotarail/"><div class="home-update-meta"><time datetime="2026-10-21">2026.10.21</time><span>项目</span></div><div class="home-update-copy"><h3>上线 QuotaRail Windows 任务栏额度监控项目页</h3><p>介绍在 Windows 11 任务栏查看 Codex 5H / 7D 剩余额度的原生小工具，提供界面示例、三种显示模式、兼容性说明与开源下载入口。</p></div><i aria-hidden="true">→</i></a>
             </div>
-            <a class="home-updates-source" href="/updates.json">updates.json <span aria-hidden="true">↗</span></a>
           </div>
-
-          <div class="home-updates-grid">
-            <div class="home-update-list" data-site-update-list data-update-limit="4" aria-live="polite">
-              <a class="home-update-item" href="/blog/2026/09/29/modern-rag/">
-                <div class="home-update-meta"><time datetime="2026-09-29">2026.09.29</time><span>Blog</span></div>
-                <div class="home-update-copy"><h3>发布新形态 RAG 案例文章</h3><p>以 iOS 用户流失排查为线索，图解传统 RAG 到 Agentic RAG 的检索、校验与多来源调查路径。</p></div>
-                <i aria-hidden="true">↗</i>
-              </a>
-              <a class="home-update-item" href="/research/">
-                <div class="home-update-meta"><time datetime="2026-09-26">2026.09.26</time><span>Research</span></div>
-                <div class="home-update-copy"><h3>研究索引展示算法图与论文结果表</h3><p>在 Research 索引直接展示 SRC 方法图、SRC–SREC 算法框架和论文 NMI 结果表，并在演示首页与实验页加入原始图表。</p></div>
-                <i aria-hidden="true">↗</i>
-              </a>
-              <a class="home-update-item" href="/research/srec/">
-                <div class="home-update-meta"><time datetime="2026-09-26">2026.09.26</time><span>Research</span></div>
-                <div class="home-update-copy"><h3>研究图解加入论文原始图表</h3><p>SREC 研究演示新增开题答辩中的方法流程图、分布式示意图和实验图表。</p></div>
-                <i aria-hidden="true">↗</i>
-              </a>
-              <a class="home-update-item" href="/research/srec/">
-                <div class="home-update-meta"><time datetime="2026-09-25">2026.09.25</time><span>Research</span></div>
-                <div class="home-update-copy"><h3>上线 SREC 大规模集成聚类研究图解</h3><p>以演示稿式图解介绍论文的代表点采样、稀疏图、加权共识与分布式实验结果。</p></div>
-                <i aria-hidden="true">↗</i>
-              </a>
-            </div>
-
-            <aside class="home-release-panel" aria-label="当前发布概览">
-              <div class="home-release-label"><span>release.snapshot</span><i>2026.09</i></div>
-              <div class="home-release-count"><strong>03</strong><span>usable<br>artifacts</span></div>
-              <div class="home-release-bars" aria-hidden="true"><span></span><span></span><span></span></div>
-              <dl>
-                <div><dt>Project</dt><dd>01</dd></div>
-                <div><dt>Tools</dt><dd>02</dd></div>
-                <div><dt>Update log</dt><dd>Live</dd></div>
-              </dl>
-              <p>每次完成访问者能够感知的变化，就更新首页记录。</p>
-              <a href="/projects/">浏览项目索引 <span aria-hidden="true">→</span></a>
-            </aside>
-          </div>
+          <aside class="portfolio-contact"><p class="portfolio-kicker">Get in touch</p><h2>关于研究、项目，<br>或一次新的交流。</h2><p>欢迎讨论聚类研究、Agent 工作流与工具实践。项目问题也可以直接通过对应 GitHub 仓库反馈。</p><a href="mailto:yangzy927@qq.com">邮件联系 <span aria-hidden="true">↗</span></a><a href="/about/">更多个人介绍 <span aria-hidden="true">→</span></a></aside>
         </div>
       </section>
     </main>
-
-    <footer class="site-footer layout">
-      <div>
-        <strong>Yang Strive</strong>
-        <p>Personal Tech Lab for research notes, engineering tools and project logs.</p>
-      </div>
-      <div class="footer-links">
-        <a href="/about/">About</a>
-        <a href="/archives/">Archive</a>
-        <a href="/atom.xml">RSS</a>
-      </div>
-    </footer>
+    <footer class="site-footer layout"><div><strong>Yang Strive</strong><p>© 2026 · 研究、开源与工程实践</p></div><div class="footer-links"><a href="https://github.com/strive-yang" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="mailto:yangzy927@qq.com">邮件</a><a href="/atom.xml">订阅文章</a><a href="/archives/">归档</a></div></footer>
   </div>
   <script src="/js/script.js"></script>
 </body>
-
 </html>

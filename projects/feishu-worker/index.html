@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>feishu-worker · 从文章到知识 | Yang Strive</title>
+  <meta name="description" content="feishu-worker 是一个 Agent Skill 与 Windows 项目模板：核读公众号技术文章，整理汇报式知识资料卡，通过官方飞书 MCP 归档并回读核验。">
+  <meta name="theme-color" content="#f5f2ea">
+  <link rel="canonical" href="https://strive-yang.github.io/projects/feishu-worker/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="feishu-worker · 读过的文章，用得上的知识。">
+  <meta property="og:description" content="从原文核读、证据分层，到飞书归档与回读核验。一个复用现有 Agent 的开源知识工作流。">
+  <meta property="og:url" content="https://strive-yang.github.io/projects/feishu-worker/">
+  <meta property="og:image" content="https://strive-yang.github.io/assets/projects/feishu-worker-b2-hero.webp">
+  <meta property="og:image:alt" content="微信公众号文章与按需核验的论文、代码、官方文档，经 Agent 和 MCP 汇入可追溯来源的飞书知识资料卡">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/feishu-worker.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": "feishu-worker",
+      "description": "将公众号技术文章整理为汇报式知识资料卡，并通过官方飞书 MCP 归档的 Agent Skill 与 Windows 项目模板。",
+      "codeRepository": "https://github.com/strive-yang/feishu-worker",
+      "url": "https://strive-yang.github.io/projects/feishu-worker/",
+      "image": "https://strive-yang.github.io/assets/projects/feishu-worker-b2-hero.webp",
+      "license": "https://spdx.org/licenses/MIT.html",
+      "programmingLanguage": ["PowerShell", "Python", "JavaScript"],
+      "runtimePlatform": "Windows"
+    }
+  </script>
+  <link rel="stylesheet" href="/css/site-polish.css">
+</head>
+<body class="feishu-page">
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <a class="fw-skip" href="#main-content">跳到正文</a>
+  <div class="site-shell">
+    <header class="site-header" data-header>
+      <a class="brand" href="/" aria-label="Yang Strive 首页"><span class="brand-text"><strong>Yang Strive</strong><small>研究与工程实践</small></span></a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-controls="site-navigation" aria-label="展开导航" aria-expanded="false"><span></span><span></span></button>
+      <nav class="site-nav" id="site-navigation" data-site-nav aria-label="主导航">
+        <a href="/">首页</a><a href="/blog/">文章</a><a href="/tools/">工具</a><a href="/projects/" class="is-active" aria-current="page">项目</a><a href="/research/">研究</a><a href="/about/">关于</a><a href="/archives/">归档</a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="fw-hero fw-wrap" aria-labelledby="project-title">
+        <div class="fw-breadcrumb"><a href="/projects/">Projects <span aria-hidden="true">↗</span></a><span>/</span><span>feishu-worker</span><span class="fw-preview"><i aria-hidden="true"></i> Open source · Preview</span></div>
+        <div class="fw-hero-grid">
+          <div class="fw-hero-copy">
+            <p class="fw-kicker">A personal knowledge workflow</p>
+            <h1 id="project-title">读过的文章，<br><em>用得上的知识。</em></h1>
+            <p class="fw-lead"><strong>feishu-worker</strong> 用你已有的 Agent，把公众号技术文章整理成易懂、可汇报、可迁移使用的知识资料卡，归档到自己的飞书知识库。</p>
+            <div class="fw-actions">
+              <a class="fw-button" href="https://github.com/strive-yang/feishu-worker" target="_blank" rel="noopener noreferrer">在 GitHub 查看 <span aria-hidden="true">↗</span></a>
+              <a class="fw-text-link" href="#workflow">看它如何工作 <span aria-hidden="true">↓</span></a>
+            </div>
+            <p class="fw-hero-note">核读原文 / 组织证据 / 归档回读</p>
+          </div>
+          <figure class="fw-hero-art">
+            <div class="fw-art-top"><span>FEISHU WORKER</span><span>READ → UNDERSTAND → KEEP</span></div>
+            <img src="/assets/projects/feishu-worker-b2-hero.webp" srcset="/assets/projects/feishu-worker-b2-card.webp 768w, /assets/projects/feishu-worker-b2-hero.webp 1536w" sizes="(max-width: 900px) calc(100vw - 40px), 650px" width="1536" height="1024" alt="概念示意：微信公众号文章是主输入，论文、代码和官方文档按需核验；经 Agent 与 MCP 整理为飞书资料卡，并保留原文链接和核验来源" fetchpriority="high">
+            <figcaption><span>01 / 从公众号原文到可追溯的知识卡片</span><span>AI 生成概念图</span></figcaption>
+          </figure>
+        </div>
+        <dl class="fw-facts">
+          <div><dt>交付形态</dt><dd>Agent Skill + 项目模板</dd></div>
+          <div><dt>运行环境</dt><dd>Windows · 已有 Agent</dd></div>
+          <div><dt>归档连接</dt><dd>官方飞书 MCP</dd></div>
+          <div><dt>开源协议</dt><dd><a href="https://github.com/strive-yang/feishu-worker/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License <span aria-hidden="true">↗</span></a></dd></div>
+        </dl>
+      </section>
+
+      <nav class="fw-section-nav" aria-label="项目页目录"><div class="fw-wrap"><span>FIELD NOTES / 2026</span><a href="#idea">01 项目出发点</a><a href="#workflow">02 工作流</a><a href="#knowledge-card">03 资料卡</a><a href="#start">04 开始使用</a></div></nav>
+
+      <section class="fw-section fw-wrap fw-idea" id="idea" aria-labelledby="idea-title">
+        <div>
+          <p class="fw-kicker">01 / The idea</p>
+          <h2 id="idea-title">收藏只是起点。<br>理解，才值得留下。</h2>
+          <p class="fw-section-intro">读到一篇好文章之后，真正需要留下的是：它解决了什么问题，证据是什么，以及下次什么时候能用上。</p>
+        </div>
+        <div class="fw-principles">
+          <article><span>01</span><div><h3>围绕问题组织内容</h3><p>先找出文章的核心问题，再展开背景、方法和实践建议。论文、工程案例与产品评测，各有合适的表达结构。</p></div></article>
+          <article><span>02</span><div><h3>让结论带着来源</h3><p>按需核对论文与代码等一手材料，区分实际核验、公众号转述和整理者建议，让数字与条件出现在一起。</p></div></article>
+          <article><span>03</span><div><h3>让归档形成闭环</h3><p>文章进入已核验的飞书总索引，写入后回读正文、来源和目录关系；已有文章先读取，再修订原件。</p></div></article>
+        </div>
+      </section>
+
+      <section class="fw-workflow" id="workflow" aria-labelledby="workflow-title">
+        <div class="fw-wrap">
+          <div class="fw-section-heading"><div><p class="fw-kicker">02 / From link to library</p><h2 id="workflow-title">一条链接，五步沉淀。</h2></div><p>由现有 Agent 执行，官方飞书 MCP 连接知识库。<br>展开每一步，查看输入、动作与检查。</p></div>
+          <div class="fw-flow-label" aria-hidden="true"><span>INPUT / 公众号原文</span><span>OUTPUT / 个人知识库</span></div>
+          <div class="fw-flow-list">
+            <details open><summary><span class="fw-step-number">01</span><span class="fw-step-title">核读原文<small>Read the source</small></span><span class="fw-step-hint">先确认，读到的是完整文章</span><span class="fw-expand" aria-hidden="true">+</span></summary><div class="fw-step-body"><p>读取标题、来源、正文与图片地址，识别验证页和内容缺失。遇到访问限制时明确说明，保留需要补充的资料。</p><span>检查点：原文完整性与可访问性</span></div></details>
+            <details><summary><span class="fw-step-number">02</span><span class="fw-step-title">核对证据<small>Check the evidence</small></span><span class="fw-step-hint">关键结论，可以追溯到哪里</span><span class="fw-expand" aria-hidden="true">+</span></summary><div class="fw-step-body"><p>按文章需要核对论文、代码与官方资料，标明已核验内容和原文转述。重要数字同时说明实验条件与来源；无法核对的部分保留不确定性。</p><span>检查点：来源、条件与证据层级</span></div></details>
+            <details><summary><span class="fw-step-number">03</span><span class="fw-step-title">整理资料卡<small>Make it understandable</small></span><span class="fw-step-hint">围绕核心问题，讲清方法与边界</span><span class="fw-expand" aria-hidden="true">+</span></summary><div class="fw-step-body"><p>围绕一个核心问题组织背景、方法、证据、适用边界与实践建议，形成适合技术分享的汇报式资料卡。章节由内容决定，篇幅随解释需要展开。</p><span>检查点：能否讲明白，以及何时能用</span></div></details>
+            <details><summary><span class="fw-step-number">04</span><span class="fw-step-title">归档到飞书<small>Archive with context</small></span><span class="fw-step-hint">总索引 → 文章子页面</span><span class="fw-expand" aria-hidden="true">+</span></summary><div class="fw-step-body"><p>核验用户指定的总索引与编辑权限，通过官方飞书 MCP 写入或修订文章子页面，并维护索引链接。已有文章先读后修订，按来源链接复用原件。</p><span>检查点：目标位置、权限与已有记录</span></div></details>
+            <details><summary><span class="fw-step-number">05</span><span class="fw-step-title">回读与记录<small>Verify and remember</small></span><span class="fw-step-hint">写入之后，再确认一次</span><span class="fw-expand" aria-hidden="true">+</span></summary><div class="fw-step-body"><p>回读正文、来源、父子目录关系和总索引。本地 article-status.json 记录处理阶段、结果与地址，帮助后续修订和同链接复用；文章正文与原图归档在飞书。</p><span>检查点：最终内容、目录关系与处理状态</span></div></details>
+          </div>
+          <p class="fw-flow-note">流程定义集中在 <a href="https://github.com/strive-yang/feishu-worker/blob/main/.agents/skills/feishu-wechat-knowledge/SKILL.md" target="_blank" rel="noopener noreferrer">feishu-wechat-knowledge / SKILL.md <span aria-hidden="true">↗</span></a></p>
+        </div>
+      </section>
+
+      <section class="fw-section fw-wrap fw-card-section" id="knowledge-card" aria-labelledby="card-title">
+        <figure class="fw-paper-preview">
+          <div class="fw-paper-meta"><span>KNOWLEDGE NOTE</span><span>结构示意</span></div>
+          <p class="fw-paper-label">THE CENTRAL QUESTION</p>
+          <h3>这项方法，<br>解决了什么问题？</h3>
+          <p class="fw-paper-abstract">从问题出发，串起方法、证据与实践。让下一次阅读，可以从这里继续。</p>
+          <div class="fw-paper-lines"><div><span>CONTEXT</span><p>背景与关键概念</p></div><div><span>METHOD</span><p>方法、流程与作用机制</p></div><div><span>EVIDENCE</span><p>结果、条件与来源</p></div><div><span>APPLICATION</span><p>适用边界与实践建议</p></div></div>
+          <div class="fw-evidence-tags"><span>已核验来源</span><span>原文转述</span><span>整理建议</span></div>
+          <figcaption>资料卡结构示意；实际章节随文章内容调整。</figcaption>
+        </figure>
+        <div class="fw-card-copy"><p class="fw-kicker">03 / A note you can reuse</p><h2 id="card-title">留下的，<br>是能再次使用的理解。</h2><p class="fw-section-intro">知识资料卡的价值，在于把一篇文章变成可以讲给别人、也能带回实践的解释。</p><ul class="fw-benefits"><li><strong>易懂</strong><span>交代必要背景，把术语放回问题与方法中解释。</span></li><li><strong>可汇报</strong><span>保留清晰的叙事主线，为技术分享提供材料。</span></li><li><strong>可迁移</strong><span>说明适用条件、实践建议，以及哪些结论仍需核验。</span></li></ul><p class="fw-small-note">正文、原图、分类与总索引归档在飞书；本地状态文件只保留来源、阶段、结果和地址。</p></div>
+      </section>
+
+      <section class="fw-architecture" aria-labelledby="architecture-title">
+        <div class="fw-wrap"><div class="fw-section-heading"><div><p class="fw-kicker">Built around what you use</p><h2 id="architecture-title">把现有工具，接成工作流。</h2></div><p>Agent Skill + Windows 项目模板。<br>模型与会话由你已有的 Agent 提供。</p></div><div class="fw-stack"><article><span>THINK</span><h3>你的 Agent + Skill</h3><p>核读、理解与组织资料，遵循统一的工作流规则。</p><small>Codex 等支持 Skill / MCP 的工具</small></article><span class="fw-stack-arrow" aria-hidden="true">↔</span><article><span>CONNECT</span><h3>官方飞书 MCP</h3><p>由项目启动器校验配置，启动固定版本的文档工具。</p><small>@larksuiteoapi/lark-mcp · 0.5.1</small></article><span class="fw-stack-arrow" aria-hidden="true">↔</span><article><span>KEEP</span><h3>你的飞书知识库</h3><p>在核验过的总索引下，维护文章子页面与索引关系。</p><small>用户指定的 Wiki 总索引</small></article></div></div>
+      </section>
+
+      <section class="fw-section fw-wrap fw-status" aria-labelledby="status-title">
+        <div><p class="fw-kicker">Current state / Preview</p><h2 id="status-title">进展，有据可查。</h2><p class="fw-section-intro">当前是面向 Windows 的预览项目，验证记录与待办公开保留在仓库中。</p><a class="fw-text-link" href="https://github.com/strive-yang/feishu-worker/blob/main/TODO.md" target="_blank" rel="noopener noreferrer">查看进度与待办 <span aria-hidden="true">↗</span></a></div>
+        <div class="fw-status-list"><article><span class="fw-status-mark">LOCAL</span><h3>38 项本地测试通过</h3><p>覆盖配置、公众号解析、日志适配、FTP / 代理、模拟 stdio 与导入文件名边界。本地测试不调用真实飞书 API。</p></article><article><span class="fw-status-mark">LIVE</span><h3>已记录真实飞书验收</h3><p>官方 SDK 样例及 Codex 新文章收录、迁入、同链接去重复用已有通过记录；图片结构与部分新卡排版完成核验。</p></article><article><span class="fw-status-mark fw-status-pending">OPEN</span><h3>支持范围仍在扩展</h3><p>其他 Agent 客户端与非 Windows 平台尚未验证；自动续期、真实故障恢复和旧卡逐页视觉回归仍有待完成。</p></article></div>
+        <p class="fw-status-source">以上为截至 2026-10-16 的仓库文档记录，未在本站环境复跑项目测试。最新状态以 <a href="https://github.com/strive-yang/feishu-worker#当前状态与支持边界" target="_blank" rel="noopener noreferrer">README <span aria-hidden="true">↗</span></a> 为准。</p>
+      </section>
+
+      <section class="fw-start" id="start" aria-labelledby="start-title">
+        <div class="fw-wrap fw-start-grid">
+          <div><p class="fw-kicker">04 / Start your library</p><h2 id="start-title">带上两条链接，<br>开始你的知识积累。</h2><p class="fw-section-intro">准备好自己的飞书总索引和公众号原文链接，再让 Agent 按 Skill 开始工作。</p><ol class="fw-setup"><li><span>01</span><div><strong>准备本地环境</strong><p>Windows、Node.js 20+、Python 3.10+，以及支持 Skill 和 MCP stdio 的 Agent；下载仓库后安装锁定依赖。</p></div></li><li><span>02</span><div><strong>接入自己的飞书</strong><p>填写本地应用配置，按文档开通权限与完成 OAuth，配置项目级 MCP 连接，核验目标总索引的编辑权限。</p></div></li><li><span>03</span><div><strong>提交文章与归档入口</strong><p>复制提示词，填入自己的两条链接。后续继续复用已核验的入口与文章状态。</p></div></li></ol><a class="fw-text-link" href="https://github.com/strive-yang/feishu-worker/blob/main/docs/windows-setup.md" target="_blank" rel="noopener noreferrer">阅读完整 Windows 接入说明 <span aria-hidden="true">↗</span></a></div>
+          <div class="fw-prompt-card"><div class="fw-prompt-head"><span>YOUR FIRST KNOWLEDGE CARD</span><button type="button" data-copy-value="使用 $feishu-wechat-knowledge 整理以下公众号技术文章，生成适合技术分享的汇报式资料卡。&#10;我的总索引地址是：&lt;填写自己的飞书 Wiki 页面地址&gt;&#10;文章链接是：&lt;填写完整公众号原链接&gt;&#10;请先核验总索引，归档为文章子页面，并回读正文、来源和目录关系。" aria-live="polite">复制提示词 <span aria-hidden="true">↗</span></button></div><pre><code>使用 <b>$feishu-wechat-knowledge</b>
+整理以下公众号技术文章，生成适合技术分享的汇报式资料卡。
+
+我的总索引地址是：
+<span>&lt;填写自己的飞书 Wiki 页面地址&gt;</span>
+
+文章链接是：
+<span>&lt;填写完整公众号原链接&gt;</span>
+
+请先核验总索引，归档为文章子页面，并回读正文、来源和目录关系。</code></pre><p>首次使用先完成环境配置。总索引需要属于你，且已具备编辑权限。</p></div>
+        </div>
+      </section>
+
+      <section class="fw-final fw-wrap"><div><p class="fw-kicker">Read. Understand. Keep.</p><h2>让下一次使用，<br>接得上这一次阅读。</h2></div><div><a class="fw-button" href="https://github.com/strive-yang/feishu-worker" target="_blank" rel="noopener noreferrer">探索 feishu-worker <span aria-hidden="true">↗</span></a><a class="fw-text-link" href="/projects/">返回全部项目 <span aria-hidden="true">→</span></a></div></section>
+    </main>
+
+    <footer class="site-footer fw-wrap"><div><strong>Yang Strive</strong><p>研究与工程实践 · 把理解留下来。</p></div><div class="footer-links"><a href="/projects/bootstrap-project-contract-skill/">另一个 Agent Skill ↗</a><a href="/about/">关于</a></div></footer>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+</html>

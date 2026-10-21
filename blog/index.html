@@ -3,70 +3,84 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blog | Yang Strive</title>
-  <meta name="description" content="Yang Strive 的技术博客，记录研究、工程、算法和工具实践。">
+  <title>文章 | Yang Strive</title>
+  <meta name="description" content="Yang Strive 的技术文章与站点记录：从 RAG 检索系统的取舍，到研究与工程实践中的思考。">
+  <meta name="theme-color" content="#f6f8fa">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="文章 | Yang Strive">
+  <meta property="og:description" content="记录技术选择背后的问题、依据与边界。">
+  <meta property="og:url" content="https://strive-yang.github.io/blog/">
+  <meta property="og:locale" content="zh_CN">
+  <link rel="canonical" href="https://strive-yang.github.io/blog/">
+  <link rel="alternate" type="application/atom+xml" title="Yang Strive 文章订阅" href="/atom.xml">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/site-polish.css">
+  <link rel="stylesheet" href="/css/writing.css">
 </head>
-<body>
+<body class="visitor-page writing-page">
+  <a class="skip-link" href="#main-content">跳转到正文</a>
   <div class="site-shell">
     <header class="site-header" data-header>
-      <a class="brand" href="/">
-        <span class="brand-text"><strong>Yang Strive</strong><small>Personal Tech Lab</small></span>
-      </a>
-      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span></button>
-      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/blog/" class="is-active">Blog</a>
-        <a href="/tools/">Tools</a>
-        <a href="/projects/">Projects</a>
-        <a href="/research/">Research</a>
-        <a href="/about/">About</a>
-        <a href="/archives/">Archive</a>
+      <a class="brand" href="/" aria-label="Yang Strive 首页"><span class="brand-text"><strong>Yang Strive</strong><small>研究与工程实践</small></span></a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="展开导航" aria-expanded="false"><span></span><span></span></button>
+      <nav class="site-nav" data-site-nav aria-label="主导航">
+        <a href="/">首页</a><a href="/blog/" class="is-active" aria-current="page">文章</a><a href="/tools/">工具</a><a href="/projects/">项目</a><a href="/research/">研究</a><a href="/about/">关于</a><a href="/archives/">归档</a>
       </nav>
     </header>
 
-    <main>
-      <section class="page-hero">
+    <main id="main-content">
+      <section class="page-hero writing-hero">
         <div class="page-hero-inner layout">
           <div>
-            <p class="eyebrow">Writing</p>
-            <h1>技术文章、研究笔记和工程复盘。</h1>
-            <p>博客模块用于承载长期内容，首页只展示摘要，完整时间线仍由归档页维护。</p>
+            <p class="eyebrow">Writing / 技术与思考</p>
+            <h1>把问题想清楚，<br>再把过程写下来。</h1>
+            <p>围绕检索系统、机器学习与工程工具，记录技术选择的依据、适用场景和边界。</p>
           </div>
-          <div class="hero-note">
-            <strong>content.flow</strong>
-            idea -> note -> article -> archive
-          </div>
+          <aside class="writing-hero-note" aria-label="阅读导览">
+            <span>从这里开始</span>
+            <strong>先看一个具体问题，<br>再沿着证据展开。</strong>
+            <p>RAG 文章从案例进入方法选型；研究页用算法图解补充论文细节。</p>
+            <a href="/research/">前往研究图解 <span aria-hidden="true">↗</span></a>
+          </aside>
         </div>
       </section>
 
-      <section class="section layout">
-        <div class="section-heading">
-          <p class="eyebrow">Latest</p>
-          <h2>文章列表</h2>
-          <p>文章统一放在 <code>blog/YYYY/MM/DD/slug/</code> 路径下，并由文章清单驱动列表与归档。</p>
+      <section class="writing-section layout" aria-labelledby="articles-title">
+        <div class="writing-section-heading">
+          <div><p class="eyebrow">Articles</p><h2 id="articles-title">文章与笔记</h2></div>
+          <a class="writing-text-link" href="/atom.xml">RSS / Atom 订阅 <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="article-grid" data-post-list="cards">
+        <div class="article-grid writing-articles" data-post-list="cards">
           <article class="article-card">
             <p class="article-meta-line">2026.09.29 · AI / RAG</p>
             <h3>从传统 RAG 到 Agentic RAG：一次流失排查中的新形态检索</h3>
             <p>以 iOS 用户流失排查为案例，比较混合检索、GraphRAG、RAPTOR、CRAG、Adaptive、Agentic 与多模态 RAG 的用途和代价。</p>
-            <a class="card-link" href="/blog/2026/09/29/modern-rag/">Read article</a>
+            <a class="card-link" href="/blog/2026/09/29/modern-rag/">阅读全文</a>
           </article>
           <article class="article-card">
-            <p class="article-meta-line">2026.07.01 · Site</p>
-            <h3>Hello World</h3>
-            <p>站点初始化文章，后续可以替换为正式开篇、建站记录或研究路线说明。</p>
-            <a class="card-link" href="/blog/2026/07/01/hello-world/">Read article</a>
+            <p class="article-meta-line">2026.07.01 · 站点记录</p>
+            <h3>从研究到工具：这个站点记录什么</h3>
+            <p>从集成聚类研究、检索系统笔记到开源工具，介绍这个站点的内容线索，以及可以继续阅读和体验的入口。</p>
+            <a class="card-link" href="/blog/2026/07/01/hello-world/">阅读全文</a>
           </article>
         </div>
+      </section>
+
+      <section class="writing-route-section layout" aria-labelledby="reading-route-title">
+        <div class="writing-section-heading"><div><p class="eyebrow">Reading paths</p><h2 id="reading-route-title">按兴趣继续阅读</h2></div><p>文章之外，也有可以直接查看与使用的成果。</p></div>
+        <div class="writing-route-grid">
+          <a class="writing-route" href="/blog/2026/09/29/modern-rag/"><span>01 / 检索与 AI</span><h3>从案例理解 RAG</h3><p>沿着“召回、核验、调查”理解不同方法如何解决问题。</p><strong>阅读案例 <span aria-hidden="true">→</span></strong></a>
+          <a class="writing-route" href="/research/srec/"><span>02 / 机器学习研究</span><h3>从图解理解集成聚类</h3><p>查看 SREC 的代表点采样、稀疏图、共识机制和实验。</p><strong>查看研究 <span aria-hidden="true">→</span></strong></a>
+          <a class="writing-route" href="/projects/"><span>03 / 工程实践</span><h3>从作品查看实现</h3><p>认识 QuotaRail、知识归档工作流与开源 Agent Skill。</p><strong>浏览项目 <span aria-hidden="true">→</span></strong></a>
+        </div>
+        <div class="writing-index-link"><p>需要按时间查找？归档收录文章和站点更新。</p><a href="/archives/">打开完整归档 <span aria-hidden="true">→</span></a></div>
       </section>
     </main>
 
     <footer class="site-footer layout">
-      <div><strong>Yang Strive</strong><p>Notes should be searchable, durable and useful.</p></div>
-      <div class="footer-links"><a href="/">Home</a><a href="/research/">Research</a><a href="/archives/">Archive</a></div>
+      <div><strong>Yang Strive</strong><p>把研究讲清楚，把工具做实用。</p></div>
+      <div class="footer-links"><a href="https://github.com/strive-yang" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href="mailto:yangzy927@qq.com">邮件联系</a><a href="/atom.xml">文章订阅</a><a href="/about/">关于我</a></div>
     </footer>
   </div>
   <script src="/js/script.js"></script>

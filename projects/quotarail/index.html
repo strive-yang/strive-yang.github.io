@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QuotaRail · Windows 任务栏 Codex 额度监控 | Yang Strive</title>
+  <meta name="description" content="QuotaRail 是轻量、原生的 Windows 11 Codex 额度监控工具。在任务栏、浮窗或托盘查看 5 小时与 7 天窗口的剩余额度和重置时间。">
+  <meta name="theme-color" content="#edf2f6">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="QuotaRail · Codex 额度，抬眼就知道。">
+  <meta property="og:description" content="把 Codex 剩余额度放进 Windows 11 任务栏。支持 5H / 7D 窗口、重置时间、浮窗与系统托盘。">
+  <meta property="og:image" content="https://strive-yang.github.io/assets/projects/quotarail/quota-rail.png">
+  <link rel="canonical" href="https://strive-yang.github.io/projects/quotarail/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/quotarail.css">
+  <link rel="stylesheet" href="/css/site-polish.css">
+  <meta property="og:url" content="https://strive-yang.github.io/projects/quotarail/">
+</head>
+<body class="quotarail-page">
+  <a class="qr-skip-link" href="#main-content">跳到主要内容</a>
+  <div class="site-shell">
+    <header class="site-header" data-header>
+      <a class="brand" href="/" aria-label="Yang Strive 首页">
+        <span class="brand-text"><strong>Yang Strive</strong><small>研究与工程实践</small></span>
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-controls="site-navigation" aria-label="展开导航" aria-expanded="false"><span></span><span></span></button>
+      <nav class="site-nav" id="site-navigation" data-site-nav aria-label="主导航">
+        <a href="/">首页</a>
+        <a href="/blog/">文章</a>
+        <a href="/tools/">工具</a>
+        <a href="/projects/" class="is-active" aria-current="page">项目</a>
+        <a href="/research/">研究</a>
+        <a href="/about/">关于</a>
+        <a href="/archives/">归档</a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="qr-hero">
+        <div class="layout">
+          <div class="qr-breadcrumb"><a href="/projects/">项目</a><span aria-hidden="true">/</span><span>QuotaRail</span></div>
+          <div class="qr-hero-grid">
+            <div class="qr-hero-copy">
+              <div class="qr-product-label"><img src="/assets/projects/quotarail/icon.png" width="44" height="44" alt=""><span>QuotaRail<small>Native Windows utility</small></span></div>
+              <h1>Codex 额度，<br><em>抬眼就知道。</em></h1>
+              <p class="qr-lead">把 5 小时与 7 天窗口的<strong>剩余额度</strong>放进 Windows 11 任务栏。写代码时看一眼，就知道还有多少可用空间、何时重置。</p>
+              <div class="qr-actions">
+                <a class="button button-primary" href="https://github.com/strive-yang/QuotaRail/releases" target="_blank" rel="noopener noreferrer">下载 Windows 版 <span aria-hidden="true">↗</span></a>
+                <a class="qr-source-link" href="https://github.com/strive-yang/QuotaRail" target="_blank" rel="noopener noreferrer">GitHub 源码 <span aria-hidden="true">↗</span></a>
+              </div>
+              <p class="qr-release-note">v0.1.0-beta.1 · 早期预发布 · Windows x64 便携包</p>
+            </div>
+            <figure class="qr-hero-visual">
+              <img src="/assets/projects/quotarail/desktop-preview.svg" width="960" height="640" alt="界面示意：Codex 剩余额度常驻 Windows 任务栏，5H 剩余 58%，7D 剩余 32%，详情面板展示额度与重置提示。">
+              <figcaption><span class="qr-indicator" aria-hidden="true"></span>任务栏界面示意 · 使用合成数据，非实时账户读数</figcaption>
+            </figure>
+          </div>
+          <div class="qr-spec-strip" aria-label="项目概览">
+            <div><span>Platform</span><strong>Windows 11 / x64</strong></div>
+            <div><span>Built with</span><strong>Rust · 原生 Windows UI</strong></div>
+            <div><span>Display</span><strong>任务栏 / 浮窗 / 托盘</strong></div>
+            <div><span>Open source</span><strong>MIT License</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="qr-section layout" aria-labelledby="quota-title">
+        <div class="qr-section-heading">
+          <div><p class="qr-eyebrow">01 / Know your quota</p><h2 id="quota-title">少一次切换，<br>多一份心里有数。</h2></div>
+          <p>由本机 Codex CLI App Server 读取账户额度，按窗口时长识别 5H / 7D。数字和进度条都表示剩余百分比。</p>
+        </div>
+        <div class="qr-reading-grid">
+          <figure class="qr-screenshot">
+            <img src="/assets/projects/quotarail/quota-rail.png" width="760" height="330" alt="QuotaRail 仓库中的明暗主题示例：5H 剩余 58%，7D 剩余 32%，展示默认与悬停状态以及托盘图标。" loading="lazy">
+            <figcaption>项目仓库展示图 · 明 / 暗主题与悬停状态 · 合成数据 58% / 32%</figcaption>
+          </figure>
+          <div class="qr-reading-notes">
+            <article><span>5H / 7D</span><h3>两个窗口，分别掌握</h3><p>58% 表示该窗口还剩 58%。点击额度条可查看剩余与已用比例、重置时间、倒计时和更新时间；更多额度桶进入“全部详情”。</p></article>
+            <article><span>Refresh &amp; cache</span><h3>读数有来源，也有时效</h3><p>默认约 5 分钟刷新，可设为 5–60 分钟。上次成功读数会缓存在本地；历史缓存、过期、读取失败和缺失窗口都有相应标记。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="qr-modes-section" aria-labelledby="modes-title">
+        <div class="layout">
+          <div class="qr-section-heading">
+            <div><p class="qr-eyebrow">02 / Find your place</p><h2 id="modes-title">选一个顺手的位置。</h2></div>
+            <p>在设置中切换显示方式，调整明暗主题、位置锁定与刷新间隔。</p>
+          </div>
+          <div class="qr-modes-grid">
+            <article class="qr-mode"><span class="qr-mode-number">01 <small>Default</small></span><div class="qr-mode-sketch qr-sketch-taskbar" aria-hidden="true"><i></i><b></b><b></b><b></b></div><h3>任务栏常驻</h3><p>在桌面任务栏内部显示额度条。默认面向主屏、居中、底部布局，并为天气区域预留空间。</p></article>
+            <article class="qr-mode"><span class="qr-mode-number">02 <small>Flexible</small></span><div class="qr-mode-sketch qr-sketch-floating" aria-hidden="true"><i></i><b></b></div><h3>独立浮窗</h3><p>将额度条拖到顺手的位置，支持锁定与恢复默认位置。任务栏空间不足时，也可以切到浮窗。</p></article>
+            <article class="qr-mode"><span class="qr-mode-number">03 <small>Minimal</small></span><div class="qr-mode-sketch qr-sketch-tray" aria-hidden="true"><i></i><b></b><b></b></div><h3>仅系统托盘</h3><p>把入口收在托盘，点击查看详情，右键打开设置。图标也可能收在“显示隐藏图标”中。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="qr-section layout" id="get-started" aria-labelledby="start-title">
+        <div class="qr-section-heading">
+          <div><p class="qr-eyebrow">03 / Get started</p><h2 id="start-title">登录、解压、运行。</h2></div>
+          <p>首版提供 Windows x64 便携包，无需管理员权限。开始前，需要在本机安装并登录 Codex CLI。</p>
+        </div>
+        <ol class="qr-steps">
+          <li><span>01</span><div><h3>准备本机 Codex CLI</h3><p>在 Windows 原生 CMD 或 PowerShell 中安装并完成登录，确认 <code>codex --version</code> 可用。</p></div></li>
+          <li><span>02</span><div><h3>下载并解压便携包</h3><p>从 <a href="https://github.com/strive-yang/QuotaRail/releases" target="_blank" rel="noopener noreferrer">GitHub Releases ↗</a> 获取 Windows x64 ZIP，解压到固定目录。可对照同一 Release 的 <code>SHA256SUMS.txt</code> 校验文件一致性。</p></div></li>
+          <li><span>03</span><div><h3>启动 QuotaRail</h3><p>双击解压后的 <code>quotarail.exe</code>。点击额度条查看详情，右键额度条或托盘图标进入设置。</p></div></li>
+        </ol>
+        <div class="qr-compat-note"><strong>使用前了解兼容性</strong><p>当前为早期 Beta；首版没有安装器、自动更新或代码签名。默认任务栏模式支持主屏、居中、底部布局；绑定失败时会保留托盘并提示原因，可在设置中切换浮窗或仅托盘。其他布局请先查看<a href="https://github.com/strive-yang/QuotaRail/blob/main/docs/compatibility.md" target="_blank" rel="noopener noreferrer">兼容性与已知限制 ↗</a>。</p></div>
+      </section>
+
+      <section class="qr-about-section">
+        <div class="layout qr-about-grid">
+          <div><p class="qr-eyebrow">Local by design</p><h2>额度在眼前，<br>数据留在本机。</h2><p>QuotaRail 不自行读取或保存认证令牌，不创建模型任务，不收集提示词或代码。认证与额度请求交由本机 Codex CLI 处理，设置与历史额度缓存在本地。</p><a class="qr-source-link" href="https://github.com/strive-yang/QuotaRail/blob/main/PRIVACY.md" target="_blank" rel="noopener noreferrer">阅读隐私说明 <span aria-hidden="true">↗</span></a></div>
+          <div class="qr-repo-card"><img src="/assets/projects/quotarail/icon.png" width="64" height="64" alt="" loading="lazy"><h3>QuotaRail</h3><p>轻量、原生、开源的 Windows Codex 额度监控。</p><div class="qr-repo-links"><a href="https://github.com/strive-yang/QuotaRail" target="_blank" rel="noopener noreferrer">浏览源码 ↗</a><a href="https://github.com/strive-yang/QuotaRail/issues" target="_blank" rel="noopener noreferrer">反馈问题 ↗</a><a href="https://github.com/strive-yang/QuotaRail/releases" target="_blank" rel="noopener noreferrer">版本与下载 ↗</a></div><small>本项目与 OpenAI 无隶属关系。项目图标与展示图来自 MIT 许可的 QuotaRail 仓库。</small></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer layout">
+      <div><strong>Yang Strive</strong><p>从研究问题到可用作品。</p></div>
+      <div class="footer-links"><a href="/projects/">全部项目</a><a href="/tools/">工具</a><a href="/about/">关于</a></div>
+    </footer>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+</html>

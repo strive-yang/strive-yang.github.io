@@ -4,95 +4,103 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About | Yang Strive</title>
-  <meta name="description" content="Yang Strive 的个人介绍、研究方向和联系方式。">
+  <title>关于 | Yang Strive</title>
+  <meta name="description" content="认识 Yang Strive：围绕机器学习、聚类研究与工程工具的公开实践，查看已发表研究、开源项目和联系方式。">
+  <meta name="theme-color" content="#f6f7f9">
+  <link rel="canonical" href="https://strive-yang.github.io/about/">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="关于 | Yang Strive">
+  <meta property="og:description" content="机器学习研究、开源项目与实用工具。了解我的公开工作，并找到直接联系的方式。">
+  <meta property="og:url" content="https://strive-yang.github.io/about/">
+  <meta property="og:locale" content="zh_CN">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/site-polish.css">
+  <link rel="stylesheet" href="/css/about-tools.css">
 </head>
 
-<body>
+<body class="visitor-page about-page">
+  <a class="skip-link" href="#main-content">跳到正文</a>
   <div class="site-shell">
     <header class="site-header" data-header>
-      <a class="brand" href="/">
-        <span class="brand-text"><strong>Yang Strive</strong><small>Personal Tech Lab</small></span>
+      <a class="brand" href="/" aria-label="Yang Strive 首页">
+        <span class="brand-text"><strong>Yang Strive</strong><small>研究与工程实践</small></span>
       </a>
-      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation"
-        aria-expanded="false"><span></span><span></span></button>
-      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/blog/">Blog</a>
-        <a href="/tools/">Tools</a>
-        <a href="/projects/">Projects</a>
-        <a href="/research/">Research</a>
-        <a href="/about/" class="is-active">About</a>
-        <a href="/archives/">Archive</a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="展开导航" aria-controls="site-navigation" aria-expanded="false"><span></span><span></span></button>
+      <nav id="site-navigation" class="site-nav" data-site-nav aria-label="主导航">
+        <a href="/">首页</a><a href="/blog/">文章</a><a href="/tools/">工具</a><a href="/projects/">项目</a><a href="/research/">研究</a><a href="/about/" class="is-active" aria-current="page">关于</a><a href="/archives/">归档</a>
       </nav>
     </header>
 
-    <main>
-      <section class="page-hero">
-        <div class="page-hero-inner layout">
-          <div>
-            <p class="eyebrow">Profile</p>
-            <h1>关于这个站点和它背后的长期记录。</h1>
-            <p>这里可以放置你的真实介绍、研究方向、教育经历、项目链接和联系方式。</p>
+    <main id="main-content" tabindex="-1">
+      <section class="page-hero" aria-labelledby="about-title">
+        <div class="layout about-intro">
+          <div class="about-intro-copy">
+            <p class="eyebrow">关于我</p>
+            <h1 id="about-title">你好，我是<br><span>Yang Strive。</span></h1>
+            <p class="about-lead">从机器学习研究出发，把想法写成代码，<br class="desktop-break">把实践整理成可以阅读、验证和使用的作品。</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="mailto:yangzy927@qq.com">邮件联系 <span aria-hidden="true">↗</span></a>
+              <a class="about-text-link" href="https://github.com/strive-yang" target="_blank" rel="noopener noreferrer">查看 GitHub <span aria-hidden="true">↗</span></a>
+            </div>
           </div>
-          <div class="hero-note">
-            <strong>profile.todo</strong>
-            replace placeholders with real bio and links
-          </div>
+          <aside class="about-identity" aria-label="个人方向">
+            <div class="about-monogram" aria-hidden="true">YS<span>研究 · 实践 · 记录</span></div>
+            <dl>
+              <div><dt>研究</dt><dd>机器学习 · 聚类</dd></div>
+              <div><dt>实验</dt><dd>MATLAB · Python</dd></div>
+              <div><dt>工程</dt><dd>Agent 工作流 · 实用工具</dd></div>
+            </dl>
+          </aside>
         </div>
       </section>
 
-      <section class="section layout">
-        <div class="profile-grid">
-          <article class="profile-card">
-            <p class="eyebrow">Identity</p>
-            <h3>Yang Strive</h3>
-            <p>专注于机器学习、科研实验和工程工具建设。当前页面使用占位描述，后续可替换为正式个人简介。</p>
+      <section class="about-work layout" aria-labelledby="about-work-title">
+        <div class="about-section-heading">
+          <div><p class="eyebrow">公开工作</p><h2 id="about-work-title">从这些作品开始了解我。</h2></div>
+          <p>研究有原文，项目有源码，工具有入口。</p>
+        </div>
+        <div class="about-evidence-grid">
+          <article class="about-evidence about-evidence-research">
+            <div class="about-evidence-top"><span>01 / 研究</span><span class="about-status">已发表</span></div>
+            <a class="about-research-image" href="/research/srec/" aria-label="查看 SREC 研究图解"><img src="/assets/research/srec-framework.png" width="1953" height="568" alt="SRC 基聚类与 SREC 分布式集成的两阶段算法框架" loading="lazy" decoding="async"></a>
+            <h3>SREC：大规模数据集成聚类</h3>
+            <p>研究稀疏表示与集成聚类如何处理大规模数据，论文已发表于《智能系统学报》。站内提供算法图解、实验结果与论文原文入口。</p>
+            <a class="about-text-link" href="/research/srec/">阅读研究与实验 <span aria-hidden="true">→</span></a>
           </article>
-          <article class="profile-card">
-            <p class="eyebrow">Interests</p>
-            <h3>研究与技术方向</h3>
-            <p>多视图学习、聚类、表示学习、MATLAB/Python 实验工程、静态站点和自动化工具。</p>
-          </article>
-          <article class="profile-card">
-            <p class="eyebrow">Contact</p>
-            <h3>联系方式</h3>
-            <p>公开联系方式保持可读、可点击、可复制，方便直接访问或保存。</p>
-            <div class="contact-list" aria-label="Contact links">
-              <div class="contact-row">
-                <div>
-                  <strong>GitHub</strong>
-                  <a href="https://github.com/strive-yang" target="_blank"
-                    rel="noopener noreferrer">github.com/strive-yang</a>
-                </div>
-              </div>
-              <div class="contact-row">
-                <div>
-                  <strong>Email</strong>
-                  <a href="mailto:yangzy927@qq.com">yangzy927@qq.com</a>
-                </div>
-              </div>
-            </div>
-            <div class="tag-row">
-              <span class="tag">Public Code</span>
-              <span class="tag">Mail</span>
-            </div>
+          <article class="about-evidence">
+            <div class="about-evidence-top"><span>02 / 开源</span><span class="about-status">可查看源码</span></div>
+            <h3>围绕真实工作流做工具</h3>
+            <p>从桌面用量提醒到 Agent 工作流，把实际使用中的问题做成可复用项目。</p>
+            <ul class="about-project-list">
+              <li><a href="/projects/quotarail/"><strong>QuotaRail</strong><span>Windows 任务栏中的 Codex 用量监控</span><i aria-hidden="true">↗</i></a></li>
+              <li><a href="/projects/feishu-worker/"><strong>feishu-worker</strong><span>飞书与 Agent 工作流的连接实践</span><i aria-hidden="true">↗</i></a></li>
+              <li><a href="/projects/bootstrap-project-contract-skill/"><strong>Bootstrap Project Contract</strong><span>为仓库建立最低充分 Agent 治理契约</span><i aria-hidden="true">↗</i></a></li>
+            </ul>
+            <a class="about-text-link" href="/projects/">浏览项目介绍 <span aria-hidden="true">→</span></a>
           </article>
         </div>
+      </section>
+
+      <section class="about-notes layout" aria-labelledby="about-notes-title">
+        <div><p class="eyebrow">这个网站</p><h2 id="about-notes-title">让工作留下可回看的记录。</h2></div>
+        <div class="about-notes-copy">
+          <p>这里集中展示我的研究、开源项目和日常工具。研究页面保留方法与实验依据，项目页面说明功能与使用方式，文章记录实践中的思考。</p>
+          <div class="about-note-links"><a href="/blog/">阅读文章 <span aria-hidden="true">→</span></a><a href="/tools/">使用在线工具 <span aria-hidden="true">→</span></a><a href="/archives/">按时间浏览 <span aria-hidden="true">→</span></a></div>
+        </div>
+      </section>
+
+      <section class="about-contact layout" aria-labelledby="contact-title">
+        <div><p class="eyebrow">保持联系</p><h2 id="contact-title">交流研究、项目，或一个具体问题。</h2><p>邮件适合深入交流；项目问题也可以前往对应 GitHub 仓库反馈。</p></div>
+        <div class="about-contact-links"><a class="about-email" href="mailto:yangzy927@qq.com">yangzy927@qq.com <span aria-hidden="true">↗</span></a><a class="about-text-link" href="https://github.com/strive-yang" target="_blank" rel="noopener noreferrer">github.com/strive-yang <span aria-hidden="true">↗</span></a></div>
       </section>
     </main>
 
     <footer class="site-footer layout">
-      <div><strong>Yang Strive</strong>
-        <p>A durable homepage for public work and private progress.</p>
-      </div>
-      <div class="footer-links"><a href="/">Home</a><a href="/research/">Research</a><a href="/archives/">Archive</a>
-      </div>
+      <div><strong>Yang Strive</strong><p>记录研究、分享项目，让想法成为可用的作品。</p></div>
+      <div class="footer-links"><a href="mailto:yangzy927@qq.com">邮件联系</a><a href="https://github.com/strive-yang" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href="/archives/">内容归档</a></div>
     </footer>
   </div>
   <script src="/js/script.js"></script>
 </body>
-
 </html>

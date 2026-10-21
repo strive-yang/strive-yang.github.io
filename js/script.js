@@ -9,15 +9,33 @@
   }
 
   if (navToggle && nav) {
-    navToggle.addEventListener("click", function () {
-      var isOpen = nav.classList.toggle("is-open");
+    function setNavOpen(isOpen) {
+      nav.classList.toggle("is-open", isOpen);
       navToggle.setAttribute("aria-expanded", String(isOpen));
+      navToggle.setAttribute("aria-label", isOpen ? "收起导航" : "展开导航");
+    }
+
+    navToggle.addEventListener("click", function () {
+      setNavOpen(!nav.classList.contains("is-open"));
     });
 
     nav.addEventListener("click", function (event) {
-      if (event.target.tagName !== "A") return;
-      nav.classList.remove("is-open");
-      navToggle.setAttribute("aria-expanded", "false");
+      if (!event.target.closest("a")) return;
+      setNavOpen(false);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key !== "Escape" || !nav.classList.contains("is-open")) return;
+      setNavOpen(false);
+      navToggle.focus();
+    });
+
+    document.addEventListener("click", function (event) {
+      if (!nav.contains(event.target) && !navToggle.contains(event.target)) setNavOpen(false);
+    });
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 760) setNavOpen(false);
     });
   }
 
@@ -64,14 +82,14 @@
       if (!value) return;
 
       copyText(value).then(function () {
-        button.textContent = "Copied";
+        button.textContent = "已复制";
         button.classList.add("is-copied");
         window.setTimeout(function () {
           button.textContent = originalText;
           button.classList.remove("is-copied");
         }, 1600);
       }).catch(function () {
-        button.textContent = "Failed";
+        button.textContent = "复制失败";
         window.setTimeout(function () {
           button.textContent = originalText;
         }, 1800);
@@ -127,7 +145,7 @@
       item.href = post.url || "/blog/";
       time.dateTime = post.date || "";
       time.textContent = formatPostDate(post.date);
-      title.textContent = post.title || "Untitled";
+      title.textContent = post.title || "未命名文章";
       summary.textContent = post.summary || "";
 
       item.appendChild(time);
@@ -157,12 +175,12 @@
 
       card.className = "article-card";
       meta.className = "article-meta-line";
-      meta.textContent = formatPostDate(post.date) + " · " + (post.category || "Blog");
-      title.textContent = post.title || "Untitled";
+      meta.textContent = formatPostDate(post.date) + " · " + (post.category || "文章");
+      title.textContent = post.title || "未命名文章";
       summary.textContent = post.summary || "";
       link.className = "card-link";
       link.href = post.url || "/blog/";
-      link.textContent = "Read article";
+      link.textContent = "阅读全文";
 
       card.appendChild(meta);
       card.appendChild(title);
@@ -201,6 +219,11 @@
 
   var updateLists = document.querySelectorAll("[data-site-update-list]");
 
+  function updateTypeLabel(type) {
+    var labels = { Project: "项目", Tool: "工具", Blog: "文章", Research: "研究", Site: "站点", Update: "更新" };
+    return labels[type] || type || "更新";
+  }
+
   function renderSiteUpdates(list, updates) {
     var limit = Number(list.getAttribute("data-update-limit")) || 0;
     var sorted = updates.slice().sort(function (a, b) {
@@ -209,6 +232,19 @@
     var visible = limit > 0 ? sorted.slice(0, limit) : sorted;
 
     if (!visible.length) return;
+
+    if (list.getAttribute("data-update-layout") === "timeline") {
+      renderTimeline(list, visible.map(function (update) {
+        return {
+          title: update.title,
+          date: update.date,
+          url: update.url,
+          summary: updateTypeLabel(update.type) + " · " + (update.summary || "")
+        };
+      }));
+      return;
+    }
+
     list.innerHTML = "";
 
     visible.forEach(function (update) {
@@ -228,11 +264,11 @@
       copy.className = "home-update-copy";
       time.dateTime = update.date || "";
       time.textContent = formatPostDate(update.date);
-      type.textContent = update.type || "Update";
-      title.textContent = update.title || "Untitled update";
+      type.textContent = updateTypeLabel(update.type);
+      title.textContent = update.title || "站点更新";
       summary.textContent = update.summary || "";
       arrow.setAttribute("aria-hidden", "true");
-      arrow.textContent = "↗";
+      arrow.textContent = "→";
 
       meta.appendChild(time);
       meta.appendChild(type);

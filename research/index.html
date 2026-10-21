@@ -3,65 +3,84 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Research | Yang Strive</title>
+  <title>研究成果 | Yang Strive</title>
   <meta name="description" content="研究成果索引：稀疏表示驱动的大规模数据集成聚类 SREC，提供图解演示与论文原文入口。">
+  <meta name="theme-color" content="#f7f8f6">
+  <link rel="canonical" href="https://strive-yang.github.io/research/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="研究成果 | Yang Strive">
+  <meta property="og:description" content="从核心问题到算法与实验，阅读大规模数据集成聚类研究 SREC。">
+  <meta property="og:url" content="https://strive-yang.github.io/research/">
+  <meta property="og:image" content="https://strive-yang.github.io/assets/research/srec-framework.png">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/research.css">
+  <link rel="stylesheet" href="/css/site-polish.css">
+  <link rel="stylesheet" href="/css/directories.css">
 </head>
-<body class="research-index-page">
+<body class="visitor-page research-index-page">
+  <a class="skip-link" href="#main-content">跳到正文</a>
   <div class="site-shell">
     <header class="site-header" data-header>
-      <a class="brand" href="/" aria-label="Yang Strive home"><span class="brand-text"><strong>Yang Strive</strong><small>Personal Tech Lab</small></span></a>
-      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span></button>
-      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
-        <a href="/">Home</a><a href="/blog/">Blog</a><a href="/tools/">Tools</a><a href="/projects/">Projects</a><a href="/research/" class="is-active">Research</a><a href="/about/">About</a><a href="/archives/">Archive</a>
+      <a class="brand" href="/" aria-label="Yang Strive 首页"><span class="brand-text"><strong>Yang Strive</strong><small>研究与工程实践</small></span></a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="打开导航菜单" aria-expanded="false"><span></span><span></span></button>
+      <nav class="site-nav" data-site-nav aria-label="主导航">
+        <a href="/">首页</a><a href="/blog/">文章</a><a href="/tools/">工具</a><a href="/projects/">项目</a><a href="/research/" class="is-active" aria-current="page">研究</a><a href="/about/">关于</a><a href="/archives/">归档</a>
       </nav>
     </header>
 
-    <main>
+    <main id="main-content">
       <section class="research-index-hero layout">
         <div>
-          <p class="eyebrow">Research / Published work</p>
-          <h1>把大规模数据，<br><span>聚成清晰的结构。</span></h1>
-          <p>这里展示已发表研究的核心问题、方法与实验结果。每个研究点都有独立图解，便于快速理解，也可继续查阅论文原文。</p>
+          <p class="eyebrow">研究成果 / Research</p>
+          <h1>在大规模数据中，<br><span>寻找清晰的结构。</span></h1>
+          <p>关注聚类方法如何兼顾质量、稳定性与计算开销。这里从问题出发介绍研究方法，保留实验图表，并连接到论文原文。</p>
+          <div class="directory-hero-links"><a href="#research-work-title">阅读研究简介 <span aria-hidden="true">↓</span></a><a href="/research/srec/">进入图解演示 <span aria-hidden="true">→</span></a></div>
         </div>
-        <a class="research-index-preview" href="/research/srec/#slide-4" aria-label="查看 SRC 算法流程图解"><span>01 / METHOD DIAGRAM</span><img src="/assets/research/src-flow.png" width="777" height="621" alt="SRC 算法流程：代表点选择、稀疏图构建与二部图聚类" decoding="async"><small>查看算法流程图解 ↗</small></a>
+        <a class="research-index-preview" href="/research/srec/#slide-4" aria-label="查看 SRC 算法流程图解"><span>SRC / 代表点与稀疏图</span><img src="/assets/research/src-flow.png" width="777" height="621" alt="SRC 算法流程：代表点选择、稀疏图构建与二部图聚类" decoding="async"><small>阅读算法流程 <span aria-hidden="true">↗</span></small></a>
       </section>
 
       <section class="research-index-section layout" aria-labelledby="research-work-title">
-        <div class="research-index-section-head"><div><p class="eyebrow">Featured research · 01</p><h2 id="research-work-title">研究成果</h2></div><p>一篇论文，一条从问题到验证的完整方法链。</p></div>
+        <div class="research-index-section-head"><div><p class="eyebrow">01 / 论文与方法</p><h2 id="research-work-title">大规模集成聚类</h2></div><p>从代表点采样，到分布式共识。</p></div>
         <article class="research-feature-card">
-          <div class="research-feature-top"><span>01 / 机器学习 · 集成聚类</span><span>《智能系统学报》 · 2026</span></div>
+          <div class="research-feature-top"><span>SREC · 机器学习 / 集成聚类</span><span>《智能系统学报》 · 2026</span></div>
           <div class="research-feature-main">
             <div class="research-feature-copy">
-              <span class="research-feature-label">SREC · Sparse Representation-driven Ensemble Clustering</span>
+              <p class="research-feature-label">Sparse Representation-driven Ensemble Clustering</p>
               <h3>一种新的稀疏表示驱动的<br>大规模数据集成聚类算法</h3>
               <p>面对高维海量数据中代表点覆盖不足、共识计算开销高的问题，研究提出混合代表点采样、稀疏图构建和非迭代加权谱共识相结合的分布式聚类框架。</p>
               <div class="research-feature-tags"><span>RSP + K-means</span><span>FAISS 稀疏图</span><span>Tcut 共识</span><span>Spark</span></div>
-              <div class="research-feature-actions"><a class="button button-primary" href="/research/srec/">查看图解演示 <span aria-hidden="true">↗</span></a><a class="research-inline-link" href="https://doi.org/10.11992/tis.202509003" target="_blank" rel="noopener noreferrer">论文原文 <span aria-hidden="true">↗</span></a></div>
+              <div class="research-feature-actions"><a class="button button-primary" href="/research/srec/">阅读完整图解 <span aria-hidden="true">→</span></a><a class="research-inline-link" href="https://doi.org/10.11992/tis.202509003" target="_blank" rel="noopener noreferrer">期刊论文原文 <span aria-hidden="true">↗</span></a></div>
             </div>
-            <div class="research-feature-stats" aria-label="论文摘要中的实验结果"><div><strong>5<span>百万</span></strong><small>验证样本规模</small></div><div><strong>10<span>种</span></strong><small>对比聚类算法</small></div><div><strong>51.8<span>%</span></strong><small>计算效率提升</small></div></div>
+            <aside class="directory-paper-meta" aria-label="论文出版信息">
+              <h4>论文信息</h4>
+              <dl><div><dt>期刊</dt><dd>智能系统学报</dd></div><div><dt>年份 / 卷期</dt><dd>2026 · 21(4)</dd></div><div><dt>页码</dt><dd>888–907</dd></div><div><dt>DOI</dt><dd><a href="https://doi.org/10.11992/tis.202509003" target="_blank" rel="noopener noreferrer">10.11992/tis.202509003 <span aria-hidden="true">↗</span></a></dd></div></dl>
+            </aside>
           </div>
-          <div class="research-feature-foot"><span>阅读路径</span><span>问题 → SRC 基聚类 → SREC 共识 → 分布式实现 → 实验</span><span aria-hidden="true">→</span></div>
+          <div class="research-feature-stats" aria-label="论文摘要披露的实验结果"><div><strong>500<span>万</span></strong><small>样本规模验证</small></div><div><strong>10<span>种</span></strong><small>主流算法对比</small></div><div><strong>51.8<span>%</span></strong><small>相较次优算法的计算效率提升</small></div></div>
+          <p class="directory-results-note">以上为论文摘要中的汇总结果；具体数据集、参数和比较条件请以论文原文为准。</p>
         </article>
+        <nav class="directory-reading-path" aria-label="研究图解阅读路径"><span>图解阅读路径</span><a href="/research/srec/#slide-2">研究问题</a><span aria-hidden="true">→</span><a href="/research/srec/#slide-4">SRC 基聚类</a><span aria-hidden="true">→</span><a href="/research/srec/#slide-5">SREC 共识</a><span aria-hidden="true">→</span><a href="/research/srec/#slide-7">实验结果</a></nav>
       </section>
 
       <section class="research-index-figures layout" aria-labelledby="research-figures-title">
-        <div class="research-index-section-head"><div><p class="eyebrow">Method &amp; evidence</p><h2 id="research-figures-title">算法框架与实验结果</h2></div><p>直接查看论文中的关键图表；点击图片可打开原尺寸。</p></div>
+        <div class="research-index-section-head"><div><p class="eyebrow">02 / 图表与实验</p><h2 id="research-figures-title">让方法和证据可见</h2></div><p>点击图表可查看原尺寸。</p></div>
         <figure class="research-paper-figure research-index-wide-figure">
           <a href="/assets/research/srec-framework.png" target="_blank" rel="noopener noreferrer" aria-label="打开 SRC 与 SREC 两阶段算法框架大图"><img src="/assets/research/srec-framework.png" width="1953" height="568" alt="两阶段算法框架：SRC 高稳定基础聚类器与分布式 SREC 集成框架" loading="lazy" decoding="async"></a>
-          <figcaption>01 / 算法框架 · SRC 基聚类 → SREC 分布式集成</figcaption>
+          <figcaption><strong>算法框架</strong>从 SRC 基聚类到 SREC 分布式集成，串联代表点选择、图构建与共识计算。</figcaption>
         </figure>
-        <figure class="research-paper-figure research-index-wide-figure">
-          <div class="research-table-viewport"><a href="/assets/research/srec-nmi-results-table.png" target="_blank" rel="noopener noreferrer" aria-label="打开标准数据集 NMI 结果表大图"><img src="/assets/research/srec-nmi-results-table.png" width="898" height="422" alt="论文表 3：不同聚类算法在八个标准数据集上的 NMI 性能对比，列出 SRC 与 SREC 的结果" loading="lazy" decoding="async"></a></div>
-          <figcaption>02 / 论文表 3 · 标准数据集 NMI 性能对比（%）；手机端可横向滑动</figcaption>
-        </figure>
-        <a class="research-inline-link research-index-more" href="/research/srec/">继续查看完整方法与实验图解 →</a>
+        <div class="directory-evidence-row">
+          <div class="directory-evidence-copy"><p class="eyebrow">实验结果 / NMI</p><h3>回到原始对比表。</h3><p>论文表 3 展示了八个标准数据集上的 NMI 性能，分别列出 SRC 基聚类与 SREC 集成聚类的结果。</p><p class="directory-small-note">NMI 衡量聚类结果与真实标签的一致性。表内结果以百分比表示，手机上可横向滑动查看。</p><a class="research-inline-link" href="/research/srec/#slide-8">阅读结果分析 <span aria-hidden="true">→</span></a></div>
+          <figure class="research-paper-figure">
+            <div class="research-table-viewport" tabindex="0" role="region" aria-label="NMI 性能对比表，窄屏可横向滚动"><a href="/assets/research/srec-nmi-results-table.png" target="_blank" rel="noopener noreferrer" aria-label="打开标准数据集 NMI 结果表大图"><img src="/assets/research/srec-nmi-results-table.png" width="898" height="422" alt="论文表 3：不同聚类算法在八个标准数据集上的 NMI 性能对比，列出 SRC 与 SREC 的结果" loading="lazy" decoding="async"></a></div>
+            <figcaption><strong>论文表 3</strong>标准数据集上的 NMI 性能评价（%）。</figcaption>
+          </figure>
+        </div>
+        <div class="directory-research-end"><p>希望进一步了解采样方法、共识计算和分布式实现？</p><a class="research-inline-link" href="/research/srec/">继续阅读完整研究图解 <span aria-hidden="true">→</span></a></div>
       </section>
     </main>
 
-    <footer class="site-footer layout"><div><strong>Yang Strive</strong><p>Research, made visible.</p></div><div class="footer-links"><a href="/">Home</a><a href="/projects/">Projects</a><a href="/blog/">Blog</a></div></footer>
+    <footer class="site-footer layout"><div><strong>Yang Strive</strong><p>记录研究、分享工具，也把想法付诸实践。</p></div><div class="footer-links"><a href="/about/">关于与联系</a><a href="https://github.com/strive-yang" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="mailto:yangzy927@qq.com">邮件联系</a></div></footer>
   </div>
   <script src="/js/script.js"></script>
 </body>

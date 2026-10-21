@@ -3,60 +3,58 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Projects | Yang Strive</title>
-  <meta name="description" content="Yang Strive 的项目索引，收录开源 Skill、静态 Web 应用、个人工具与持续迭代的实验作品。">
-  <meta name="theme-color" content="#f7fafc">
+  <title>项目与作品 | Yang Strive</title>
+  <meta name="description" content="Yang Strive 的项目索引，收录 QuotaRail Windows 额度监控、feishu-worker 知识归档工作流、开源 Agent Skill、静态 Web 应用与个人工具。">
+  <meta name="theme-color" content="#f7f8f6">
+  <link rel="canonical" href="https://strive-yang.github.io/projects/">
+  <meta property="og:url" content="https://strive-yang.github.io/projects/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Projects | Yang Strive">
+  <meta property="og:title" content="项目与作品 | Yang Strive">
   <meta property="og:description" content="把问题做成可访问、可复用、可继续迭代的作品。">
-  <meta property="og:image" content="/assets/projects/bootstrap-contract-hero.webp">
+  <meta property="og:image" content="https://strive-yang.github.io/assets/projects/feishu-worker-b2-hero.webp">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/projects.css">
+  <link rel="stylesheet" href="/css/site-polish.css">
+  <link rel="stylesheet" href="/css/directories.css">
 </head>
-<body class="projects-index-page">
+<body class="visitor-page projects-index-page">
+  <a class="skip-link" href="#main-content">跳到正文</a>
   <div class="site-shell">
     <header class="site-header" data-header>
-      <a class="brand" href="/" aria-label="Yang Strive home">
-        <span class="brand-text"><strong>Yang Strive</strong><small>Personal Tech Lab</small></span>
+      <a class="brand" href="/" aria-label="Yang Strive 首页">
+        <span class="brand-text"><strong>Yang Strive</strong><small>研究与工程实践</small></span>
       </a>
-      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span></button>
-      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/blog/">Blog</a>
-        <a href="/tools/">Tools</a>
-        <a href="/projects/" class="is-active">Projects</a>
-        <a href="/research/">Research</a>
-        <a href="/about/">About</a>
-        <a href="/archives/">Archive</a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="打开导航菜单" aria-expanded="false"><span></span><span></span></button>
+      <nav class="site-nav" data-site-nav aria-label="主导航">
+        <a href="/">首页</a>
+        <a href="/blog/">文章</a>
+        <a href="/tools/">工具</a>
+        <a href="/projects/" class="is-active" aria-current="page">项目</a>
+        <a href="/research/">研究</a>
+        <a href="/about/">关于</a>
+        <a href="/archives/">归档</a>
       </nav>
     </header>
 
-    <main>
+    <main id="main-content">
       <section class="projects-index-hero">
         <div class="layout projects-index-hero-grid">
           <div class="projects-index-copy">
-            <p class="eyebrow">Project Directory · Build in public</p>
-            <h1>把问题做成<br><span>可以被使用</span>的作品。</h1>
-            <p class="projects-index-lead">这里收录已经可以访问的开源项目、静态应用和个人工具。每个项目从一个具体问题开始，并保留继续迭代的入口。</p>
+            <p class="eyebrow">项目与作品 / Projects</p>
+            <h1>从具体问题出发，<br><span>把工具做出来。</span></h1>
+            <p class="projects-index-lead">Windows 额度监控、Agent 工作流与网页工具。这里介绍它们解决的问题、实际功能和实现方式，也提供源码与使用入口。</p>
             <div class="projects-index-jump">
-              <a class="button button-primary" href="#featured-project">查看主项目</a>
-              <a class="button button-ghost" href="#project-catalog">浏览全部</a>
+              <a class="button button-primary" href="#featured-project">浏览开源项目</a>
+              <a class="button button-ghost" href="#project-catalog">更多项目与工具</a>
             </div>
           </div>
 
-          <aside class="projects-index-panel" aria-label="项目目录状态">
-            <div class="projects-index-panel-head">
-              <span>projects.index</span>
-              <strong><i aria-hidden="true"></i> maintained</strong>
-            </div>
-            <div class="projects-index-count"><span>04</span><small>published artifacts</small></div>
-            <div class="projects-index-types">
-              <span><b>01</b> Agent Skill</span>
-              <span><b>02</b> Web Apps</span>
-              <span><b>01</b> Living Site</span>
-            </div>
-            <div class="projects-index-command"><span>$</span> open /projects/<i aria-hidden="true"></i></div>
+          <aside class="directory-guide" aria-labelledby="projects-guide-title">
+            <h2 id="projects-guide-title">按你的兴趣阅读</h2>
+            <a href="#featured-project"><strong>了解工程实践 <span aria-hidden="true">↗</span></strong><span>3 个开源项目，附说明与源码。</span></a>
+            <a href="#project-catalog"><strong>先用一用 <span aria-hidden="true">↗</span></strong><span>2 个在线工具，无需安装。</span></a>
+            <a href="https://github.com/strive-yang/strive-yang.github.io" target="_blank" rel="noopener noreferrer"><strong>这个网站如何搭建 <span aria-hidden="true">↗</span></strong><span>查看静态页面与内容索引的实现。</span></a>
           </aside>
         </div>
       </section>
@@ -64,30 +62,44 @@
       <section class="section layout" id="featured-project">
         <div class="projects-index-heading">
           <div>
-            <p class="eyebrow">Featured · 01</p>
-            <h2>当前主项目</h2>
+            <p class="eyebrow">01 / 开源项目</p>
+            <h2>工具与工作流</h2>
           </div>
-          <p>从项目索引进入完整说明、设计原则与实际用法。</p>
+          <p>先看项目解决的问题，再深入使用方法和实现细节。</p>
         </div>
 
-        <article class="projects-featured-card">
-          <a class="projects-featured-media" href="/projects/bootstrap-project-contract-skill/" aria-label="查看 bootstrap-project-contract 项目详情">
-            <img src="/assets/projects/bootstrap-contract-hero.webp" width="1536" height="1024" alt="证据、契约与治理等级组成的抽象技术图景">
-            <span>Open source · Apache-2.0</span>
+        <article class="projects-featured-card projects-featured-card-quotarail">
+          <a class="projects-featured-media" href="/projects/quotarail/" aria-label="查看 QuotaRail 项目详情">
+            <img src="/assets/projects/quotarail/desktop-preview.svg" width="960" height="640" alt="QuotaRail 界面示意：Windows 任务栏显示 Codex 5H 与 7D 剩余额度，示例为 58% 和 32%。" loading="lazy">
+            <span>界面示意 · 使用演示数据</span>
           </a>
           <div class="projects-featured-copy">
-            <div class="projects-card-meta"><span>Agent Skill</span><span>2026</span></div>
-            <h2>bootstrap-project-contract</h2>
-            <p>为代码仓库选择并建立<strong>最低充分 Agent 治理契约</strong>。它先读取代码、配置、测试和既有规范，再决定应该复用、修订、创建、跳过还是询问。</p>
-            <div class="projects-featured-points" aria-label="项目特点">
-              <span>Evidence first</span>
-              <span>Level 0 → 3</span>
-              <span>Risk-gated writes</span>
-              <span>Platform independent</span>
-            </div>
+            <div class="projects-card-meta"><span>Windows 桌面应用</span><span>早期测试版</span></div>
+            <h3>QuotaRail</h3>
+            <p class="projects-quotarail-tagline">Codex 额度，抬眼就知道。</p>
+            <p>让 Codex <strong>5H / 7D 剩余额度</strong>常驻 Windows 11 任务栏，点击查看重置时间。支持浮窗、系统托盘与明暗主题，通过本机 Codex CLI 读取账户额度。</p>
+            <div class="projects-featured-points" aria-label="项目特点"><span>任务栏常驻</span><span>剩余额度</span><span>Rust · 原生界面</span><span>MIT</span></div>
             <div class="projects-card-actions">
-              <a class="button button-primary" href="/projects/bootstrap-project-contract-skill/">阅读项目详情</a>
-              <a class="projects-text-link" href="https://github.com/strive-yang/bootstrap-project-contract-skill" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+              <a class="button button-primary" href="/projects/quotarail/">项目详情与下载</a>
+              <a class="projects-text-link" href="https://github.com/strive-yang/QuotaRail" target="_blank" rel="noopener noreferrer">查看源码 <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="projects-featured-card projects-featured-card-feishu">
+          <a class="projects-featured-media" href="/projects/feishu-worker/" aria-label="查看 feishu-worker 项目详情">
+            <img src="/assets/projects/feishu-worker-b2-hero.webp" srcset="/assets/projects/feishu-worker-b2-card.webp 768w, /assets/projects/feishu-worker-b2-hero.webp 1536w" sizes="(max-width: 980px) calc(100vw - 40px), 650px" width="1536" height="1024" alt="概念示意：微信公众号技术文章，经 Agent 核读与按需核验，通过 MCP 整理归档到飞书 Wiki；资料卡保留原文链接与核验来源" loading="lazy">
+            <span>知识归档工作流 · 概念示意</span>
+          </a>
+          <div class="projects-featured-copy">
+            <div class="projects-card-meta"><span>Agent 技能 · 知识管理</span><span>预览版</span></div>
+            <h3>feishu-worker</h3>
+            <p class="projects-feishu-tagline">读过的文章，用得上的知识。</p>
+            <p>用已有 Agent 核读公众号技术文章，整理成<strong>易懂、可汇报、可迁移使用的知识资料卡</strong>，再通过官方飞书 MCP 归档、维护索引并回读核验。</p>
+            <div class="projects-featured-points" aria-label="项目特点"><span>原文核读</span><span>证据分层</span><span>飞书知识库</span><span>Windows 模板</span></div>
+            <div class="projects-card-actions">
+              <a class="button button-primary" href="/projects/feishu-worker/">查看工作流与用法</a>
+              <a class="projects-text-link" href="https://github.com/strive-yang/feishu-worker" target="_blank" rel="noopener noreferrer">查看源码 <span aria-hidden="true">↗</span></a>
             </div>
           </div>
         </article>
@@ -97,75 +109,82 @@
         <div class="layout">
           <div class="projects-index-heading">
             <div>
-              <p class="eyebrow">Catalog · 02—04</p>
-              <h2>项目与实验</h2>
+              <p class="eyebrow">02 / 更多项目与工具</p>
+              <h2>从规范到日常应用</h2>
             </div>
-            <p>站点、工具和实验应用会在达到可访问状态后加入这里。</p>
+            <p>一个 Agent 技能、两个在线工具，以及你正在浏览的这个网站。</p>
           </div>
 
           <div class="projects-catalog-grid">
+            <article class="projects-catalog-card projects-catalog-card-contract">
+              <div class="projects-card-topline"><span>Agent 技能</span><i>开源项目</i></div>
+              <a class="projects-card-visual projects-contract-visual" href="/projects/bootstrap-project-contract-skill/" aria-label="查看 bootstrap-project-contract 项目详情">
+                <img src="/assets/projects/bootstrap-contract-card.svg" width="1080" height="270" alt="治理流程：仓库证据、最低充分等级与最小修改。" loading="lazy">
+              </a>
+              <h3>bootstrap-project-contract</h3>
+              <p>先检查代码、配置与既有规范，再为仓库选择适合当前规模的 Agent 协作契约，让项目规范随实际需要演进。</p>
+              <div class="tag-row"><span class="tag">Agent Skill</span><span class="tag">项目契约</span><span class="tag">Apache-2.0</span></div>
+              <a class="projects-card-link" href="/projects/bootstrap-project-contract-skill/">阅读项目详情 <span aria-hidden="true">→</span></a>
+              <a class="directory-source-link" href="https://github.com/strive-yang/bootstrap-project-contract-skill" target="_blank" rel="noopener noreferrer">查看源码 <span aria-hidden="true">↗</span></a>
+            </article>
+
             <article class="projects-catalog-card projects-catalog-card-site">
-              <div class="projects-card-topline"><span>02 / Living Site</span><i>Active</i></div>
+              <div class="projects-card-topline"><span>静态网站</span><i>持续维护</i></div>
               <div class="projects-card-visual projects-site-visual" aria-hidden="true">
                 <span class="projects-site-dot"></span>
                 <span></span><span></span><span></span>
                 <strong>YS</strong>
               </div>
-              <h3>Personal Tech Lab</h3>
+              <h3>这个个人网站</h3>
               <p>当前个人网站本身：以静态 HTML、CSS 和 JavaScript 连接文章、工具、项目与研究记录。</p>
               <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">GitHub Pages</span></div>
-              <a class="projects-card-link" href="/">访问网站 <span aria-hidden="true">→</span></a>
+              <a class="projects-card-link" href="https://github.com/strive-yang/strive-yang.github.io" target="_blank" rel="noopener noreferrer">查看网站源码 <span aria-hidden="true">↗</span></a>
             </article>
 
             <article class="projects-catalog-card projects-catalog-card-reader">
-              <div class="projects-card-topline"><span>03 / Web App</span><i>Experimental</i></div>
+              <div class="projects-card-topline"><span>阅读工具</span><i>网页应用</i></div>
               <div class="projects-card-visual projects-reader-visual" aria-hidden="true">
                 <span></span><span></span><span></span>
                 <i>EPUB</i>
               </div>
               <h3>EPUB 手机阅读器</h3>
               <p>直接从站点书库加载 EPUB，支持移动端分页、精确进度、书签以及登录后的跨设备同步。</p>
-              <div class="tag-row"><span class="tag">EPUB.js</span><span class="tag">Mobile</span><span class="tag">Cloud Sync</span></div>
+              <div class="tag-row"><span class="tag">EPUB.js</span><span class="tag">手机阅读</span><span class="tag">进度同步</span></div>
               <a class="projects-card-link" href="/tools/epub-reader/">打开阅读器 <span aria-hidden="true">→</span></a>
             </article>
 
             <article class="projects-catalog-card projects-catalog-card-calculator">
-              <div class="projects-card-topline"><span>04 / Utility</span><i>Available</i></div>
+              <div class="projects-card-topline"><span>计算工具</span><i>网页应用</i></div>
               <div class="projects-card-visual projects-calc-visual" aria-hidden="true">
                 <span></span><span></span><span></span><span></span><span></span>
                 <strong>¥</strong>
               </div>
               <h3>阶梯提成计算器</h3>
               <p>按销售额区间逐段计算提成，实时展示各档金额、提成比例和最终有效费率。</p>
-              <div class="tag-row"><span class="tag">JavaScript</span><span class="tag">Calculator</span><span class="tag">Responsive</span></div>
+              <div class="tag-row"><span class="tag">JavaScript</span><span class="tag">分段计算</span><span class="tag">手机可用</span></div>
               <a class="projects-card-link" href="/tools/commission/">使用计算器 <span aria-hidden="true">→</span></a>
             </article>
           </div>
 
-          <div class="projects-next-slot">
-            <div><span>Next slot</span><strong>05</strong></div>
-            <p>新的项目完成最小可访问版本后，会在这里获得一张索引卡片；需要完整叙事的项目，再进入独立详情页。</p>
-            <a href="/research/">查看正在沉淀的研究方向 <span aria-hidden="true">→</span></a>
-          </div>
         </div>
       </section>
 
       <section class="section layout projects-crosslinks">
         <div class="projects-index-heading compact">
-          <div><p class="eyebrow">Explore more</p><h2>作品之外</h2></div>
-          <p>工具页偏向直接使用，研究页保留过程，项目页负责呈现已经形成完整作品的成果。</p>
+          <div><p class="eyebrow">03 / 继续探索</p><h2>也看看研究与记录</h2></div>
+          <p>从工具的使用入口，到研究方法和实现记录，继续了解这些作品背后的思考。</p>
         </div>
         <div class="projects-crosslink-grid">
-          <a href="/tools/"><span>Tools</span><strong>直接使用的小工具与应用</strong><i aria-hidden="true">↗</i></a>
-          <a href="/research/"><span>Research</span><strong>论文、算法与实验过程</strong><i aria-hidden="true">↗</i></a>
-          <a href="/blog/"><span>Blog</span><strong>实现记录与经验复盘</strong><i aria-hidden="true">↗</i></a>
+          <a href="/tools/"><span>工具</span><strong>直接使用的小工具与应用</strong><i aria-hidden="true">↗</i></a>
+          <a href="/research/"><span>研究</span><strong>论文、算法与实验过程</strong><i aria-hidden="true">↗</i></a>
+          <a href="/blog/"><span>文章</span><strong>实现记录与经验复盘</strong><i aria-hidden="true">↗</i></a>
         </div>
       </section>
     </main>
 
     <footer class="site-footer layout">
-      <div><strong>Yang Strive</strong><p>Projects connect ideas with working artifacts.</p></div>
-      <div class="footer-links"><a href="/">Home</a><a href="/tools/">Tools</a><a href="/about/">About</a></div>
+      <div><strong>Yang Strive</strong><p>记录研究、分享工具，也把想法付诸实践。</p></div>
+      <div class="footer-links"><a href="/about/">关于与联系</a><a href="https://github.com/strive-yang" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="mailto:yangzy927@qq.com">邮件联系</a></div>
     </footer>
   </div>
   <script src="/js/script.js"></script>

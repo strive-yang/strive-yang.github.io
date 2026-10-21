@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="760" viewBox="0 0 1080 760" role="img" aria-labelledby="title description">
+  <title id="title">Evidence first, the smallest sufficient contract</title>
+  <desc id="description">A repository file tree leads to a choice between governance levels zero to three. Start at zero and stop at the lowest sufficient level. An illustrative Level 1 decision reuses the README and revises one existing Agent boundary. Possible actions are create, reuse, revise, skip, and ask. No change is a valid outcome.</desc>
+  <defs>
+    <style>
+      .sans { font-family: 'Segoe UI', 'Helvetica Neue', sans-serif; }
+      .mono { font-family: Consolas, 'Liberation Mono', monospace; }
+      .ink { fill: #183d35; }
+      .muted { fill: #69766f; }
+      .line { fill: none; stroke: #d8e1d8; stroke-width: 1.5; }
+    </style>
+    <marker id="arrow" viewBox="0 0 8 8" refX="6.5" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1 4.5 4 1 7" fill="none" stroke="#7d9686" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <g id="file" fill="none" stroke="#87978b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M0 0h8l4 4v13H0Z"/>
+      <path d="M8 0v4h4M3 8h6M3 11h5"/>
+    </g>
+  </defs>
+
+  <rect width="1080" height="760" fill="#edf2ed"/>
+  <rect x="28" y="28" width="1024" height="704" rx="24" fill="#fbfcf8" stroke="#d4dfd4"/>
+
+  <g class="sans">
+    <rect x="68" y="65" width="26" height="26" rx="7" fill="#235447"/>
+    <path d="m76 73-4 5 4 5m10-10 4 5-4 5m-4-12-3 14" fill="none" stroke="#f6faf3" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="108" y="83" fill="#4e6b59" font-size="13" font-weight="600" letter-spacing="2">REPOSITORY CONTRACT</text>
+    <rect x="859" y="65" width="153" height="27" rx="13.5" fill="#e9f0e7"/>
+    <circle cx="876" cy="78.5" r="3" fill="#508a6b"/>
+    <text x="889" y="83" fill="#486b52" font-size="11" font-weight="600" letter-spacing="1.4">EVIDENCE FIRST</text>
+  </g>
+  <text x="68" y="148" fill="#183d35" font-family="Georgia, 'Times New Roman', serif" font-size="44" letter-spacing="-1.2">A reason for every rule.</text>
+  <text class="sans muted" x="70" y="182" font-size="18">Inspect the repository. Keep the smallest sufficient contract.</text>
+  <path d="M68 204H1012" class="line"/>
+
+  <!-- 01: evidence comes from the actual repository. -->
+  <rect x="68" y="232" width="276" height="316" rx="13" fill="#f6f8f2" stroke="#d6e0d3"/>
+  <g class="sans">
+    <circle cx="96" cy="266" r="12" fill="#e2eadd"/>
+    <text x="96" y="270" text-anchor="middle" fill="#49624d" font-size="10" font-weight="700">01</text>
+    <text x="117" y="272" class="ink" font-size="18" font-weight="600">Read the repository</text>
+  </g>
+  <text class="mono ink" x="96" y="316" font-size="18" font-weight="600">repository/</text>
+  <path d="M104 331v144m0-121h18m-18 40h18m-18 40h18m-18 40h18" fill="none" stroke="#c1cec0" stroke-width="1.5"/>
+  <use href="#file" x="133" y="343"/>
+  <use href="#file" x="133" y="383"/>
+  <use href="#file" x="133" y="423"/>
+  <use href="#file" x="133" y="463"/>
+  <g class="mono" fill="#425c4a" font-size="17">
+    <text x="158" y="357">code/</text>
+    <text x="158" y="397">config/</text>
+    <text x="158" y="437">tests/</text>
+    <text x="158" y="477">existing rules</text>
+  </g>
+  <text class="sans muted" x="96" y="523" font-size="14">Use what is already there.</text>
+  <path d="M356 390h26" fill="none" stroke="#7d9686" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- 02: the selected level depends on need, not on a maturity score. -->
+  <rect x="396" y="232" width="616" height="316" rx="13" fill="#ffffff" stroke="#d6e0d3"/>
+  <g class="sans">
+    <circle cx="426" cy="266" r="12" fill="#e2eadd"/>
+    <text x="426" y="270" text-anchor="middle" fill="#49624d" font-size="10" font-weight="700">02</text>
+    <text x="448" y="272" class="ink" font-size="20" font-weight="600">Choose the lowest sufficient level</text>
+
+    <rect x="420" y="293" width="132" height="73" rx="8" fill="#f9faf7" stroke="#dce3d9"/>
+    <rect x="564" y="293" width="132" height="73" rx="8" fill="#f9faf7" stroke="#dce3d9"/>
+    <rect x="708" y="293" width="132" height="73" rx="8" fill="#f9faf7" stroke="#dce3d9"/>
+    <rect x="852" y="293" width="136" height="73" rx="8" fill="#f9faf7" stroke="#dce3d9"/>
+    <g fill="#6a7b6e" font-size="11" font-weight="600" letter-spacing="1.2">
+      <text x="435" y="315">LEVEL 0</text>
+      <text x="579" y="315">LEVEL 1</text>
+      <text x="723" y="315">LEVEL 2</text>
+      <text x="867" y="315">LEVEL 3</text>
+    </g>
+    <g class="ink" font-size="18" font-weight="600">
+      <text x="435" y="347">None</text>
+      <text x="579" y="347">Light</text>
+      <text x="723" y="347">Structured</text>
+      <text x="867" y="347">Governed</text>
+    </g>
+    <text x="420" y="392" class="muted" font-size="14">Start at 0. Stop when the evidence is covered.</text>
+    <path d="M420 408H988" class="line"/>
+    <text x="420" y="435" fill="#628069" font-size="11" font-weight="600" letter-spacing="1.3">ILLUSTRATIVE · LEVEL 1</text>
+    <text x="420" y="464" class="muted" font-size="15">Need</text>
+    <text x="471" y="464" class="ink" font-size="16">Clarify one recurring boundary.</text>
+  </g>
+  <g class="mono" font-size="16" fill="#3c5847">
+    <text x="420" y="497">README.md</text>
+    <text x="420" y="528">AGENTS.md</text>
+  </g>
+  <g class="sans" font-size="12" font-weight="600">
+    <rect x="573" y="481" width="61" height="22" rx="5" fill="#eff3eb"/>
+    <text x="603.5" y="496" text-anchor="middle" fill="#5b7258">reuse</text>
+    <rect x="573" y="512" width="61" height="22" rx="5" fill="#e4eee2"/>
+    <text x="603.5" y="527" text-anchor="middle" fill="#3e6947">revise</text>
+  </g>
+  <path d="M704 557v11" fill="none" stroke="#7d9686" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- 03: every output is an evidence-backed minimal action. -->
+  <rect x="68" y="584" width="944" height="102" rx="13" fill="#eaf0e5" stroke="#d0ddc9"/>
+  <g class="sans">
+    <circle cx="96" cy="615" r="12" fill="#d6e2cf"/>
+    <text x="96" y="619" text-anchor="middle" fill="#49624d" font-size="10" font-weight="700">03</text>
+    <text x="118" y="622" class="ink" font-size="20" font-weight="600">Minimal contract</text>
+
+    <g font-size="14" font-weight="500" fill="#486649">
+      <rect x="537" y="602" width="82" height="29" rx="6" fill="#f6f9f2" stroke="#d7e1d0"/>
+      <rect x="627" y="602" width="78" height="29" rx="6" fill="#f6f9f2" stroke="#d7e1d0"/>
+      <rect x="713" y="602" width="80" height="29" rx="6" fill="#f6f9f2" stroke="#d7e1d0"/>
+      <rect x="801" y="602" width="78" height="29" rx="6" fill="#f6f9f2" stroke="#d7e1d0"/>
+      <rect x="887" y="602" width="101" height="29" rx="6" fill="#f6f9f2" stroke="#d7e1d0"/>
+      <text x="578" y="622" text-anchor="middle">create</text>
+      <text x="666" y="622" text-anchor="middle">reuse</text>
+      <text x="753" y="622" text-anchor="middle">revise</text>
+      <text x="840" y="622" text-anchor="middle">skip</text>
+      <text x="937.5" y="622" text-anchor="middle">ask</text>
+    </g>
+    <text x="94" y="660" fill="#49654c" font-size="17">Reuse and no change are valid outcomes.</text>
+  </g>
+
+  <g class="sans" fill="#78907a" font-size="10" letter-spacing="1.5">
+    <text x="68" y="714">BOOTSTRAP PROJECT CONTRACT</text>
+    <text x="1012" y="714" text-anchor="end">EVIDENCE → DECISION → CONTRACT</text>
+  </g>
+</svg>

@@ -3,70 +3,71 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Archive | Yang Strive</title>
-  <meta name="description" content="Yang Strive 的文章归档。">
+  <title>归档 | Yang Strive</title>
+  <meta name="description" content="Yang Strive 的文章与站点更新归档，按时间查找技术文章、开源项目、在线工具和研究图解。">
+  <meta name="theme-color" content="#f6f8fa">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="归档 | Yang Strive">
+  <meta property="og:description" content="沿着时间线，查看文章、研究、项目和工具的更新。">
+  <meta property="og:url" content="https://strive-yang.github.io/archives/">
+  <meta property="og:locale" content="zh_CN">
+  <link rel="canonical" href="https://strive-yang.github.io/archives/">
+  <link rel="alternate" type="application/atom+xml" title="Yang Strive 文章订阅" href="/atom.xml">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/site-polish.css">
+  <link rel="stylesheet" href="/css/writing.css">
 </head>
-<body>
+<body class="visitor-page archive-page">
+  <a class="skip-link" href="#main-content">跳转到正文</a>
   <div class="site-shell">
     <header class="site-header" data-header>
-      <a class="brand" href="/">
-        <span class="brand-text"><strong>Yang Strive</strong><small>Personal Tech Lab</small></span>
-      </a>
-      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span></button>
-      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/blog/">Blog</a>
-        <a href="/tools/">Tools</a>
-        <a href="/projects/">Projects</a>
-        <a href="/research/">Research</a>
-        <a href="/about/">About</a>
-        <a href="/archives/" class="is-active">Archive</a>
+      <a class="brand" href="/" aria-label="Yang Strive 首页"><span class="brand-text"><strong>Yang Strive</strong><small>研究与工程实践</small></span></a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="展开导航" aria-expanded="false"><span></span><span></span></button>
+      <nav class="site-nav" data-site-nav aria-label="主导航">
+        <a href="/">首页</a><a href="/blog/">文章</a><a href="/tools/">工具</a><a href="/projects/">项目</a><a href="/research/">研究</a><a href="/about/">关于</a><a href="/archives/" class="is-active" aria-current="page">归档</a>
       </nav>
     </header>
 
-    <main>
-      <section class="page-hero">
+    <main id="main-content">
+      <section class="page-hero archive-hero">
         <div class="page-hero-inner layout">
-          <div>
-            <p class="eyebrow">Archive</p>
-            <h1>时间线归档。</h1>
-            <p>这里按时间组织所有文章、研究记录和站点更新。</p>
-          </div>
-          <div class="hero-note">
-            <strong>archive.index</strong>
-            source: /blog/posts.json
-          </div>
+          <div><p class="eyebrow">Archive / 时间索引</p><h1>每一次记录，<br>都有迹可循。</h1><p>按时间查看文章与站点发布，找到研究图解、开源项目和在线工具的来处。</p></div>
+          <nav class="archive-jump-nav" aria-label="归档页面导航"><a href="#articles"><span>阅读</span><strong>文章索引</strong><i aria-hidden="true">↓</i></a><a href="#site-updates"><span>发现</span><strong>站点更新</strong><i aria-hidden="true">↓</i></a></nav>
         </div>
       </section>
 
-      <section class="section layout">
-        <div class="content-panel">
-          <div class="section-heading compact">
-            <p class="eyebrow">Timeline</p>
-            <h2>全部文章</h2>
-          </div>
-          <div class="timeline-list" data-post-list="timeline">
-            <a class="timeline-item" href="/blog/2026/09/29/modern-rag/">
-              <time datetime="2026-09-29">2026.09.29</time>
-              <span>从传统 RAG 到 Agentic RAG：一次流失排查中的新形态检索</span>
-              <small>以 iOS 用户流失排查为案例，图解新形态 RAG 的用途与代价。</small>
-            </a>
-            <a class="timeline-item" href="/blog/2026/07/01/hello-world/">
-              <time datetime="2026-07-01">2026.07.01</time>
-              <span>Hello World</span>
-              <small>站点初始化与个人技术中枢改造起点。</small>
-            </a>
-          </div>
+      <div class="layout archive-content">
+        <aside class="archive-sidebar" aria-label="文章归档导航">
+          <p class="eyebrow">Browse</p><h2>按时间找文章</h2>
+          <nav class="archive-period-nav" aria-label="文章时间筛选"><a class="is-current" href="/archives/" aria-current="page">全部文章 <span aria-hidden="true">↗</span></a><a href="/archives/2026/">2026 年 <span>02 篇</span></a><a class="archive-month" href="/archives/2026/07/">2026 年 7 月 <span>01 篇</span></a></nav>
+          <p class="archive-sidebar-note">文章按发表日期收录。项目、工具与页面的变化记录在站点更新中。</p>
+          <a class="writing-text-link" href="/atom.xml">订阅文章 <span aria-hidden="true">↗</span></a>
+        </aside>
+
+        <div class="archive-streams">
+          <section id="articles" class="archive-stream" aria-labelledby="articles-title">
+            <div class="writing-section-heading"><div><p class="eyebrow">Articles</p><h2 id="articles-title">全部文章</h2></div><a class="writing-text-link" href="/blog/">阅读导览 <span aria-hidden="true">→</span></a></div>
+            <div class="timeline-list" data-post-list="timeline">
+              <a class="timeline-item" href="/blog/2026/09/29/modern-rag/"><time datetime="2026-09-29">2026.09.29</time><span>从传统 RAG 到 Agentic RAG：一次流失排查中的新形态检索</span><small>以 iOS 用户流失排查为案例，比较不同检索方法的用途与代价。</small></a>
+              <a class="timeline-item" href="/blog/2026/07/01/hello-world/"><time datetime="2026-07-01">2026.07.01</time><span>从研究到工具：这个站点记录什么</span><small>从集成聚类研究、检索系统笔记到开源工具，介绍站点的内容线索与阅读入口。</small></a>
+            </div>
+          </section>
+          <section id="site-updates" class="archive-stream" aria-labelledby="updates-title">
+            <div class="writing-section-heading"><div><p class="eyebrow">Site updates</p><h2 id="updates-title">站点更新</h2></div><p>工具、项目、研究与页面的发布记录</p></div>
+            <div class="timeline-list" data-site-update-list data-update-layout="timeline">
+              <a class="timeline-item" href="/projects/bootstrap-project-contract-skill/"><time datetime="2026-10-21">2026.10.21</time><span>重设计 Bootstrap Project Contract 项目页</span><small>项目 · 以浅色项目版式和清晰治理流程示意重整介绍，同步更新首页与项目索引配图，保留治理等级、使用提示词及安装说明。</small></a>
+              <a class="timeline-item" href="/"><time datetime="2026-10-21">2026.10.21</time><span>更新网站导览与内容呈现</span><small>站点 · 重整首页、个人介绍、工具、文章与归档的阅读路线，完善研究和项目入口、移动端布局与站点细节。</small></a>
+              <a class="timeline-item" href="/projects/quotarail/"><time datetime="2026-10-21">2026.10.21</time><span>上线 QuotaRail Windows 任务栏额度监控项目页</span><small>项目 · 介绍在 Windows 11 任务栏查看 Codex 5H / 7D 剩余额度的原生小工具，提供界面示例与开源下载入口。</small></a>
+              <a class="timeline-item" href="/projects/feishu-worker/"><time datetime="2026-10-21">2026.10.21</time><span>更新 feishu-worker 来源溯源展示图</span><small>项目 · 展示知识资料卡中的原文链接、核验来源与飞书归档方式。</small></a>
+              <a class="timeline-item" href="/research/srec/"><time datetime="2026-09-25">2026.09.25</time><span>上线 SREC 大规模集成聚类研究图解</span><small>研究 · 介绍代表点采样、稀疏图、加权共识与分布式实验结果。</small></a>
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
     </main>
 
-    <footer class="site-footer layout">
-      <div><strong>Yang Strive</strong><p>Archive keeps the site navigable as content grows.</p></div>
-      <div class="footer-links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/research/">Research</a></div>
-    </footer>
+    <footer class="site-footer layout"><div><strong>Yang Strive</strong><p>把研究讲清楚，把工具做实用。</p></div><div class="footer-links"><a href="https://github.com/strive-yang" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href="mailto:yangzy927@qq.com">邮件联系</a><a href="/atom.xml">文章订阅</a><a href="/about/">关于我</a></div></footer>
   </div>
   <script src="/js/script.js"></script>
 </body>

@@ -172,7 +172,7 @@
   margin: 0 0 28px;
   color: var(--contract-paper);
   font-size: clamp(50px, 6.2vw, 92px);
-  line-height: 0.98;
+  line-height: 1.18;
 }
 
 .contract-hero h1 em { color: var(--contract-cyan); font-weight: inherit; }
@@ -702,7 +702,7 @@
   font-size: clamp(52px, 6.8vw, 92px);
   font-weight: 500;
   letter-spacing: -0.055em;
-  line-height: 0.98;
+  line-height: 1.18;
 }
 
 .projects-index-copy h1 span {
@@ -1007,7 +1007,7 @@
 
 .projects-catalog-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
 }
 
@@ -1209,7 +1209,6 @@
   .projects-index-panel { max-width: 620px; }
   .projects-featured-media { min-height: 420px; max-height: 560px; }
   .projects-catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .projects-catalog-card:last-child { grid-column: 1 / -1; min-height: 500px; }
 }
 
 @media (max-width: 760px) {
@@ -1243,4 +1242,35 @@
   .projects-index-copy,
   .projects-index-panel,
   .projects-index-command i { animation: none; }
+}
+
+/* Knowledge workflow project */
+.projects-catalog-card h3 { overflow-wrap: anywhere; }
+.projects-contract-visual img { width: 100%; height: 100%; object-fit: cover; }
+.projects-featured-card-feishu .projects-featured-media { display: flex; align-items: center; background: #f2eee5; }
+.projects-featured-card-feishu .projects-featured-media img { height: auto; object-fit: contain; }
+.projects-featured-card-feishu .projects-featured-media::after { display: none; }
+.projects-featured-card-feishu .projects-featured-media > span { background: rgba(23, 61, 50, 0.9); }
+.projects-featured-card-feishu .projects-featured-copy { background: #fbfaf6; }
+.projects-featured-card-feishu .projects-featured-copy h2 { color: #173d32; }
+.projects-featured-card-feishu .projects-feishu-tagline { margin: 0 0 16px; color: #173d32; font-size: 21px; font-weight: 700; }
+.projects-featured-card-feishu .projects-card-meta { color: #37694f; }
+.projects-featured-card-feishu .projects-featured-points span { border-color: #cdd9c9; background: #edf1e8; color: #305540; }
+.projects-featured-card-feishu .button-primary { border-color: #173d32; background: #173d32; color: #fffdf6; }
+.projects-featured-card-feishu .button-primary:hover { background: #285642; }
+.projects-featured-card-feishu .projects-text-link { color: #305540; }
+
+.projects-featured-card + .projects-featured-card { margin-top: 28px; }
+.projects-featured-card-quotarail .projects-featured-media { display: flex; align-items: center; padding: 25px; background: #e4edf3; }
+.projects-featured-card-quotarail .projects-featured-media img { height: auto; object-fit: contain; border: 1px solid #c6d6df; border-radius: 8px; box-shadow: 0 18px 40px #163c5214; }
+.projects-featured-card-quotarail .projects-featured-media::after { display: none; }
+.projects-featured-card-quotarail .projects-featured-media > span { background: #17384c; }
+.projects-featured-card-quotarail .projects-featured-copy { background: #f7fafc; }
+.projects-featured-card-quotarail .projects-featured-copy h2 { color: #17384c; }
+.projects-featured-card-quotarail .projects-quotarail-tagline { margin: 0 0 16px; color: #17384c; font-size: 21px; font-weight: 700; }
+.projects-featured-card-quotarail .button-primary { border-color: #17384c; background: #17384c; color: #fff; }
+.projects-featured-card-quotarail .button-primary:hover { background: #066ea5; }
+
+@media (max-width: 460px) {
+  .projects-featured-card-quotarail .projects-featured-media { min-height: 300px; padding: 16px; }
 }

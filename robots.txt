@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://strive-yang.github.io/sitemap.xml

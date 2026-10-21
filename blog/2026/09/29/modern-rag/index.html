@@ -8,17 +8,21 @@
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/rag-article.css">
+  <link rel="stylesheet" href="/css/site-polish.css">
+  <link rel="canonical" href="https://strive-yang.github.io/blog/2026/09/29/modern-rag/">
+  <meta property="og:url" content="https://strive-yang.github.io/blog/2026/09/29/modern-rag/">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
   <div class="site-shell">
     <header class="site-header" data-header>
-      <a class="brand" href="/"><span class="brand-text"><strong>Yang Strive</strong><small>Personal Tech Lab</small></span></a>
-      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span></button>
-      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
-        <a href="/">Home</a><a href="/blog/" class="is-active">Blog</a><a href="/tools/">Tools</a><a href="/projects/">Projects</a><a href="/research/">Research</a><a href="/about/">About</a><a href="/archives/">Archive</a>
+      <a class="brand" href="/"><span class="brand-text"><strong>Yang Strive</strong><small>研究与工程实践</small></span></a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-controls="site-navigation" aria-label="展开导航" aria-expanded="false"><span></span><span></span></button>
+      <nav class="site-nav" id="site-navigation" data-site-nav aria-label="主导航">
+        <a href="/">首页</a><a href="/blog/" class="is-active" aria-current="page">文章</a><a href="/tools/">工具</a><a href="/projects/">项目</a><a href="/research/">研究</a><a href="/about/">关于</a><a href="/archives/">归档</a>
       </nav>
     </header>
-    <main>
+    <main id="main-content" tabindex="-1">
       <section class="rag-hero"><div class="layout rag-hero-grid">
         <div><p class="eyebrow">Field notes / Retrieval systems / 2026.09.29</p><h1>从传统 RAG 到<br><span>Agentic RAG</span></h1><p class="rag-lead">一次 iOS 用户流失排查，如何把“找相似文本”升级为“规划、核验并串联证据”？</p><div class="rag-hero-links"><a href="#case">从案例开始 ↓</a><a href="#map">查看技术地图 ↗</a></div></div>
         <div class="rag-hero-diagram" role="img" aria-label="检索能力从相似文本、混合召回、质量校验，演进到多来源调查的四个层次"><p class="diagram-kicker">RETRIEVAL EVOLUTION</p><div class="evolution-row"><span>01</span><strong>Retrieve</strong><small>相似文本块</small></div><div class="evolution-row"><span>02</span><strong>Combine</strong><small>关键词 · 向量 · 重排</small></div><div class="evolution-row"><span>03</span><strong>Check</strong><small>相关性 · 时效 · 引用</small></div><div class="evolution-row is-current"><span>04</span><strong>Investigate</strong><small>多来源 · 多步骤 · 可追溯</small></div><p class="diagram-foot">问题越复杂，检索越像一次调查。</p></div>
@@ -62,7 +66,7 @@
         </article>
       </div>
     </main>
-    <footer class="site-footer layout"><div><strong>Yang Strive</strong><p>Notes should be searchable, durable and useful.</p></div><div class="footer-links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/archives/">Archive</a></div></footer>
+    <footer class="site-footer layout"><div><strong>Yang Strive</strong><p>记录技术思考与实践。</p></div><div class="footer-links"><a href="/">首页</a><a href="/blog/">文章</a><a href="/archives/">归档</a></div></footer>
   </div>
   <script src="/js/script.js"></script>
 </body>

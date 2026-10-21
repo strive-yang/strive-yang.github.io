@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="270" viewBox="40 125 1000 250" role="img" aria-labelledby="title description">
+  <title id="title">Bootstrap Project Contract: evidence, sufficient level, minimal change</title>
+  <desc id="description">Three steps: read code, configuration, tests and existing rules; choose the lowest sufficient governance level; make the smallest useful change. Reuse and no change are valid results.</desc>
+  <defs>
+    <style>
+      .sans { font-family: 'Segoe UI', 'Helvetica Neue', sans-serif; }
+      .mono { font-family: Consolas, 'Liberation Mono', monospace; }
+    </style>
+    <marker id="arrow" viewBox="0 0 8 8" refX="6.5" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M1 1 4.5 4 1 7" fill="none" stroke="#7d9686" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect width="1080" height="430" fill="#edf2ed"/>
+  <rect x="24" y="24" width="1032" height="382" rx="22" fill="#fbfcf8" stroke="#d4dfd4"/>
+
+  <rect x="52" y="143" width="278" height="205" rx="11" fill="#f6f8f2" stroke="#d6e0d3"/>
+  <rect x="402" y="143" width="278" height="205" rx="11" fill="#ffffff" stroke="#d6e0d3"/>
+  <rect x="752" y="143" width="276" height="205" rx="11" fill="#eaf0e5" stroke="#d0ddc9"/>
+  <path d="M348 245h35" fill="none" stroke="#7d9686" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <path d="M698 245h35" fill="none" stroke="#7d9686" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <g class="sans">
+    <g fill="#628069" font-size="12" font-weight="600" letter-spacing="1.3">
+      <text x="74" y="176">01 / READ</text>
+      <text x="424" y="176">02 / SELECT</text>
+      <text x="774" y="176">03 / ACT</text>
+    </g>
+    <g fill="#183d35" font-size="25" font-weight="600">
+      <text x="74" y="213">Repository evidence</text>
+      <text x="424" y="213">Lowest sufficient level</text>
+      <text x="774" y="213">Minimal change</text>
+    </g>
+  </g>
+
+  <path d="M77 234v74m0-62h16m-16 30h16m-16 30h16" fill="none" stroke="#c1cec0" stroke-width="1.5"/>
+  <g class="mono" fill="#4d6652" font-size="19">
+    <text x="106" y="252">code / config</text>
+    <text x="106" y="282">tests</text>
+    <text x="106" y="312">existing rules</text>
+  </g>
+
+  <g class="sans" font-size="23" text-anchor="middle">
+    <rect x="424" y="235" width="46" height="44" rx="7" fill="#f8faf6" stroke="#dce3d9"/>
+    <rect x="482" y="235" width="46" height="44" rx="7" fill="#f8faf6" stroke="#dce3d9"/>
+    <rect x="540" y="235" width="46" height="44" rx="7" fill="#f8faf6" stroke="#dce3d9"/>
+    <rect x="598" y="235" width="46" height="44" rx="7" fill="#f8faf6" stroke="#dce3d9"/>
+    <g fill="#2c5540"><text x="447" y="265">0</text><text x="505" y="265">1</text><text x="563" y="265">2</text><text x="621" y="265">3</text></g>
+  </g>
+  <text class="sans" x="424" y="313" fill="#69766f" font-size="17">Start at 0. Stop when sufficient.</text>
+
+  <g class="sans" fill="#4b6950" font-size="19">
+    <text x="774" y="252">create · reuse · revise</text>
+    <text x="774" y="282">skip · ask</text>
+  </g>
+  <path d="M774 296h230" fill="none" stroke="#cfdbca"/>
+  <text class="sans" x="774" y="322" fill="#49654c" font-size="17">No change is a valid result.</text>
+
+</svg>

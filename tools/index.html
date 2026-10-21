@@ -4,95 +4,93 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tools | Yang Strive</title>
-  <meta name="description" content="Yang Strive 的工具模块，收集实验、写作、数据处理和工程辅助工具。">
+  <title>实用工具 | Yang Strive</title>
+  <meta name="description" content="直接在浏览器使用提成计算器与 EPUB 阅读器，或了解 Windows 任务栏 Codex 用量监控工具 QuotaRail。">
+  <meta name="theme-color" content="#f6f7f9">
+  <link rel="canonical" href="https://strive-yang.github.io/tools/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="实用工具 | Yang Strive">
+  <meta property="og:description" content="阶梯提成计算、EPUB 阅读与桌面用量监控，为具体场景准备的小工具。">
+  <meta property="og:url" content="https://strive-yang.github.io/tools/">
+  <meta property="og:locale" content="zh_CN">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/site-polish.css">
+  <link rel="stylesheet" href="/css/about-tools.css">
 </head>
 
-<body>
+<body class="visitor-page tools-page">
+  <a class="skip-link" href="#main-content">跳到正文</a>
   <div class="site-shell">
     <header class="site-header" data-header>
-      <a class="brand" href="/">
-        <span class="brand-text"><strong>Yang Strive</strong><small>Personal Tech Lab</small></span>
-      </a>
-      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation"
-        aria-expanded="false"><span></span><span></span></button>
-      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/blog/">Blog</a>
-        <a href="/tools/" class="is-active">Tools</a>
-        <a href="/projects/">Projects</a>
-        <a href="/research/">Research</a>
-        <a href="/about/">About</a>
-        <a href="/archives/">Archive</a>
+      <a class="brand" href="/" aria-label="Yang Strive 首页"><span class="brand-text"><strong>Yang Strive</strong><small>研究与工程实践</small></span></a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="展开导航" aria-controls="site-navigation" aria-expanded="false"><span></span><span></span></button>
+      <nav id="site-navigation" class="site-nav" data-site-nav aria-label="主导航">
+        <a href="/">首页</a><a href="/blog/">文章</a><a href="/tools/" class="is-active" aria-current="page">工具</a><a href="/projects/">项目</a><a href="/research/">研究</a><a href="/about/">关于</a><a href="/archives/">归档</a>
       </nav>
     </header>
 
-    <main>
-      <section class="page-hero">
-        <div class="page-hero-inner layout">
-          <div>
-            <p class="eyebrow">Toolbox</p>
-            <h1>把重复工作压缩成可复用工具。</h1>
-            <p>这里用于放置在线小工具、实验辅助脚本、格式转换器和论文写作工作流。</p>
-          </div>
-          <div class="hero-note">
-            <strong>module.path</strong>
-            /tools/index.html<br>
-            static apps can live in /tools/name/
-          </div>
+    <main id="main-content" tabindex="-1">
+      <section class="page-hero" aria-labelledby="tools-title">
+        <div class="layout tools-intro">
+          <div><p class="eyebrow">实用工具</p><h1 id="tools-title">为具体的小事，<br>准备顺手的工具。</h1><p>计算一次提成，继续读一本书。选择一个工具，直接开始使用。</p></div>
+          <div class="tools-intro-note"><span class="tools-ready"><i aria-hidden="true"></i> 2 款在线工具</span><p>在浏览器中打开即可使用<br>兼顾桌面与手机</p></div>
         </div>
       </section>
 
-      <section class="section layout">
-        <div class="section-heading">
-          <p class="eyebrow">Catalog</p>
-          <h2>工具规划</h2>
-          <p>第一版先建立入口和分类，后续可以把每个工具拆成独立静态页面或纯前端应用。</p>
-        </div>
-        <div class="tool-grid">
-          <a class="tool-card tool-card-link" href="/tools/commission/" aria-label="打开提成计算器">
-            <span class="tag">Ready</span>
-            <h3>提成计算器</h3>
-            <p>按销售额分段阶梯计算提成，0-50,000 为 5%，最高按 9% 计提。</p>
-            <div class="tag-row">
-              <span class="tag">Finance</span>
-              <span class="tag">Calculator</span>
+      <section class="tools-catalog layout" aria-labelledby="online-tools-title">
+        <div class="tools-section-heading"><h2 id="online-tools-title">在线使用</h2><span>无需安装</span></div>
+        <div class="tools-live-grid">
+          <article class="tools-product">
+            <div class="tools-product-preview tools-commission-preview" aria-hidden="true">
+              <div class="tools-preview-bar"><span>阶梯计算</span><span>¥ / CNY</span></div>
+              <div class="tools-preview-sum"><small>销售额示例</small><strong>75,000<span>.00</span></strong></div>
+              <div class="tools-preview-result"><span>分段提成</span><strong>¥4,000.00</strong></div>
+              <div class="tools-preview-tiers"><span>50,000 × 5%</span><span>25,000 × 6%</span></div>
             </div>
-            <span class="card-link">Open tool</span>
-          </a>
-          <a class="tool-card tool-card-link" href="/tools/epub-reader/" aria-label="打开 EPUB 手机阅读器">
-            <span class="tag">Ready</span>
-            <h3>EPUB 手机阅读器</h3>
-            <p>自动加载 booklist 中的 EPUB，精确保存进度与书签，并可登录后跨设备同步。</p>
-            <div class="tag-row">
-              <span class="tag">Reader</span>
-              <span class="tag">EPUB</span>
+            <div class="tools-product-copy">
+              <div class="tools-product-kicker"><span>01 / 日常计算</span><span>本机计算</span></div>
+              <h3>提成计算器</h3>
+              <p>输入销售额，自动拆分阶梯区间，查看提成总额、综合提点与每段计算明细。</p>
+              <ul class="tools-feature-list"><li>首个 50,000 按 5% 计算，最高 9%</li><li>分段累加，避免把总额套入单一提点</li><li>无需注册，输入金额即可计算</li></ul>
+              <a class="button button-primary" href="/tools/commission/">打开计算器 <span aria-hidden="true">→</span></a>
             </div>
-            <span class="card-link">Open tool</span>
-          </a>
-          <article class="tool-card">
-            <span class="tag">Planned</span>
-            <h3>Paper Note Template</h3>
-            <p>快速生成论文阅读模板，包含问题定义、方法框架、实验结论和复现记录。</p>
-            <div class="tag-row">
-              <span class="tag">Paper</span>
-              <span class="tag">Markdown</span>
+          </article>
+          <article class="tools-product">
+            <div class="tools-product-preview tools-reader-preview" aria-hidden="true">
+              <div class="tools-preview-bar"><span>EPUB</span><span>阅读 · 书签 · 进度</span></div>
+              <div class="tools-reader-paper"><span>继续你的阅读</span><i></i><i></i><i></i><i></i><i></i><div><span>目录</span><span>书签</span><span>Aa</span></div></div>
+              <p class="tools-preview-caption">阅读界面功能示意</p>
+            </div>
+            <div class="tools-product-copy">
+              <div class="tools-product-kicker"><span>02 / 沉浸阅读</span><span>手机友好</span></div>
+              <h3>EPUB 阅读器</h3>
+              <p>打开站内书架，分页阅读 EPUB。支持目录跳转、书签、字号与主题调整，下次打开继续阅读。</p>
+              <ul class="tools-feature-list"><li>进度和书签默认保存在当前浏览器</li><li>云同步可用时，通过邮箱登录后同步</li><li>跨设备使用需登录同一邮箱账户</li></ul>
+              <a class="button button-primary" href="/tools/epub-reader/">打开阅读器 <span aria-hidden="true">→</span></a>
             </div>
           </article>
         </div>
+        <aside class="tools-use-note" aria-label="阅读器使用说明"><span aria-hidden="true">i</span><p><strong>关于阅读记录</strong>　未登录时，记录只保存在当前浏览器，清除网站数据会一并清除。跨设备同步需网络与云同步服务可用，并在阅读器中通过邮箱登录；请以页面显示的同步状态为准。</p></aside>
       </section>
+
+      <section class="tools-desktop layout" aria-labelledby="desktop-title">
+        <div class="tools-section-heading"><h2 id="desktop-title">也有桌面上的工具</h2><span>Windows 应用</span></div>
+        <article class="tools-desktop-card">
+          <div class="tools-desktop-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><rect x="8" y="10" width="32" height="24" rx="3" stroke="currentColor" stroke-width="2"/><path d="M18 40h12M24 34v6M15 26h4v-6h-4v6ZM22 26h4v-10h-4v10ZM29 26h4v-4h-4v4Z" stroke="currentColor" stroke-width="2"/></svg></div>
+          <div><p class="eyebrow">QuotaRail</p><h3>在任务栏查看 Codex 额度。</h3><p>Windows 桌面额度监控工具，把剩余额度放到日常工作时能直接看到的位置。查看项目介绍，了解功能、兼容性与下载方式。</p></div>
+          <a class="button button-ghost" href="/projects/quotarail/">了解与下载 <span aria-hidden="true">↗</span></a>
+        </article>
+      </section>
+
+      <div class="tools-feedback layout"><p>发现问题，或有一个值得做成工具的想法？</p><a class="about-text-link" href="mailto:yangzy927@qq.com">发邮件告诉我 <span aria-hidden="true">→</span></a></div>
     </main>
 
     <footer class="site-footer layout">
-      <div><strong>Yang Strive</strong>
-        <p>Tools for research and engineering workflows.</p>
-      </div>
-      <div class="footer-links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/archives/">Archive</a></div>
+      <div><strong>Yang Strive</strong><p>记录研究、分享项目，让想法成为可用的作品。</p></div>
+      <div class="footer-links"><a href="mailto:yangzy927@qq.com">邮件联系</a><a href="https://github.com/strive-yang" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href="/about/">关于</a></div>
     </footer>
   </div>
   <script src="/js/script.js"></script>
 </body>
-
 </html>

@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Yang Strive Personal Tech Lab</title>
-  <link href="/" />
-  <link href="/atom.xml" rel="self" />
-  <updated>2026-07-01T00:00:00Z</updated>
-  <id>/</id>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
+  <title>Yang Strive · 研究与工程实践</title>
+  <subtitle>机器学习研究、技术文章与工程实践。</subtitle>
+  <link href="https://strive-yang.github.io/blog/" rel="alternate" />
+  <link href="https://strive-yang.github.io/atom.xml" rel="self" type="application/atom+xml" />
+  <updated>2026-10-21T00:00:00Z</updated>
+  <id>https://strive-yang.github.io/</id>
   <author>
     <name>Yang Strive</name>
   </author>
   <entry>
-    <title>Hello World</title>
-    <link href="/blog/2026/07/01/hello-world/" />
-    <id>/blog/2026/07/01/hello-world/</id>
-    <updated>2026-07-01T00:00:00Z</updated>
-    <summary>个人技术网站初始化与模块化改造起点。</summary>
+    <title>从传统 RAG 到 Agentic RAG：一次流失排查中的新形态检索</title>
+    <link href="https://strive-yang.github.io/blog/2026/09/29/modern-rag/" />
+    <id>https://strive-yang.github.io/blog/2026/09/29/modern-rag/</id>
+    <published>2026-09-29T00:00:00Z</published>
+    <updated>2026-09-29T00:00:00Z</updated>
+    <summary>以 iOS 用户流失排查为示意案例，比较不同检索路线的用途、成本与证据边界。</summary>
+  </entry>
+  <entry>
+    <title>从研究到工具：这个站点记录什么</title>
+    <link href="https://strive-yang.github.io/blog/2026/07/01/hello-world/" />
+    <id>https://strive-yang.github.io/blog/2026/07/01/hello-world/</id>
+    <published>2026-07-01T00:00:00Z</published>
+    <updated>2026-10-21T00:00:00Z</updated>
+    <summary>从集成聚类研究、检索系统笔记到开源工具，介绍这个站点的内容线索，以及可以继续阅读和体验的入口。</summary>
   </entry>
 </feed>
