@@ -1,5 +1,12 @@
 [
   {
+    "title": "上线 ChatWing 浏览器扩展项目页",
+    "date": "2026-10-22",
+    "type": "Project",
+    "summary": "介绍面向 Chrome 的 ChatGPT 当前聊天提问目录扩展，展示悬停预览、点击定位与固定面板，并提供安装和源码入口。",
+    "url": "/projects/chatwing/"
+  },
+  {
     "title": "重设计 Bootstrap Project Contract 项目页",
     "date": "2026-10-21",
     "type": "Project",

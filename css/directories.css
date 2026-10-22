@@ -53,11 +53,17 @@
 .projects-index-page .projects-featured-media { display: flex; align-items: center; min-height: 340px; max-height: none; }
 .projects-index-page .projects-featured-card-quotarail .projects-featured-media { padding: 22px; }
 .projects-index-page .projects-featured-card-feishu .projects-featured-media { background: #f0eee5; }
+.projects-index-page .projects-featured-card-chatwing .projects-featured-media { padding: 22px; background: #e9f0f1; }
+.projects-index-page .projects-featured-card-chatwing .projects-featured-media img { height: auto; object-fit: contain; }
+.projects-index-page .projects-featured-card-chatwing .projects-featured-media::after { display: none; }
+.projects-index-page .projects-featured-card-chatwing .projects-featured-media > span { background: #285661; }
 .projects-index-page .projects-featured-media > span { bottom: 14px; left: 14px; padding: 5px 8px; border: 0; border-radius: 3px; color: #fff; font-family: inherit; font-size: 10px; letter-spacing: 0; }
 .projects-index-page .projects-featured-media img { max-height: none; }
 .projects-index-page .projects-featured-copy { padding: 32px; background: #fff; }
 .projects-index-page .projects-featured-copy h3 { margin: 20px 0 12px; color: #173d32; font-family: "Iowan Old Style", Georgia, serif; font-size: clamp(29px, 3.2vw, 40px); font-weight: 500; line-height: 1.2; letter-spacing: -.025em; overflow-wrap: anywhere; }
 .projects-index-page .projects-featured-card-quotarail h3 { color: #17384c; }
+.projects-index-page .projects-featured-card-chatwing h3 { color: #285661; }
+.projects-index-page .projects-featured-copy .projects-chatwing-tagline,
 .projects-index-page .projects-featured-copy .projects-quotarail-tagline,
 .projects-index-page .projects-featured-copy .projects-feishu-tagline { margin-bottom: 14px; font-size: 18px; font-weight: 650; }
 .projects-index-page .projects-featured-copy > p { font-size: 14px; line-height: 1.85; }

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChatWing · ChatGPT 网页提问目录 | Yang Strive</title>
+  <meta name="description" content="ChatWing 是面向 Chrome 的 ChatGPT 网页目录扩展，为当前聊天整理提问目录，支持悬停预览、点击定位、固定面板与键盘导航。">
+  <meta name="theme-color" content="#edf4f2">
+  <link rel="canonical" href="https://strive-yang.github.io/projects/chatwing/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ChatWing · 给长对话，一份顺手的目录。">
+  <meta property="og:description" content="右侧展开提问目录，悬停预览上下文，点击回到对应消息。面向 Chrome 的轻量 ChatGPT 网页扩展。">
+  <meta property="og:url" content="https://strive-yang.github.io/projects/chatwing/">
+  <meta property="og:image" content="https://strive-yang.github.io/assets/projects/chatwing/preview.png">
+  <meta property="og:image:alt" content="ChatWing 提问目录与上下文预览界面示意，使用模拟对话">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/site-polish.css">
+  <link rel="stylesheet" href="/css/chatwing.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ChatWing",
+      "description": "为当前 ChatGPT 网页聊天添加可收起的提问目录。",
+      "url": "https://strive-yang.github.io/projects/chatwing/",
+      "downloadUrl": "https://github.com/strive-yang/ChatWing/releases/download/v0.1.2/ChatWing-0.1.2.zip",
+      "sameAs": "https://github.com/strive-yang/ChatWing",
+      "applicationCategory": "BrowserApplication",
+      "softwareVersion": "0.1.2",
+      "browserRequirements": "Google Chrome",
+      "license": "https://spdx.org/licenses/MIT.html"
+    }
+  </script>
+</head>
+<body class="visitor-page chatwing-page">
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <div class="site-shell">
+    <header class="site-header" data-header>
+      <a class="brand" href="/" aria-label="Yang Strive 首页"><span class="brand-text"><strong>Yang Strive</strong><small>研究与工程实践</small></span></a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-controls="site-navigation" aria-label="展开导航" aria-expanded="false"><span></span><span></span></button>
+      <nav class="site-nav" id="site-navigation" data-site-nav aria-label="主导航"><a href="/">首页</a><a href="/blog/">文章</a><a href="/tools/">工具</a><a href="/projects/" class="is-active" aria-current="page">项目</a><a href="/research/">研究</a><a href="/about/">关于</a><a href="/archives/">归档</a></nav>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <section class="cw-hero">
+        <div class="layout">
+          <div class="cw-breadcrumb"><a href="/projects/">项目</a><span aria-hidden="true">/</span><span>ChatWing</span></div>
+          <div class="cw-hero-grid">
+            <div class="cw-hero-copy">
+              <div class="cw-product-label"><img src="/assets/projects/chatwing/icon.png" width="46" height="46" alt=""><div><strong>ChatWing</strong><span>ChatGPT 网页 · Chrome 扩展</span></div></div>
+              <h1>给长对话，<br><span>一份顺手的目录。</span></h1>
+              <p class="cw-lead">为当前 ChatGPT 聊天整理提问目录。悬停预览上下文，点击回到对应提问，让回看、比对和继续提问更顺手。</p>
+              <div class="cw-actions"><a class="button button-primary" href="https://github.com/strive-yang/ChatWing/releases/latest" target="_blank" rel="noopener noreferrer">下载最新版本 <span aria-hidden="true">↗</span></a><a class="cw-text-link" href="#install">查看安装步骤 <span aria-hidden="true">↓</span></a></div>
+              <p class="cw-release-note">v0.1.2 · 解压加载安装 · 无需 API Key</p>
+            </div>
+            <figure class="cw-hero-art"><img src="/assets/projects/chatwing/preview.svg" width="1080" height="760" alt="ChatWing 界面示意：右侧展开提问目录，悬停显示问题和回答开头的预览，点击可回到对应提问。"><figcaption><span>目录随手可达，阅读保持连贯。</span><span>界面示意 · 模拟对话</span></figcaption></figure>
+          </div>
+          <dl class="cw-facts"><div><dt>主要平台</dt><dd>Google Chrome</dd></div><div><dt>适用页面</dt><dd>ChatGPT 网页聊天</dd></div><div><dt>实现方式</dt><dd>Manifest V3 · 内容脚本</dd></div><div><dt>开源协议</dt><dd><a href="https://github.com/strive-yang/ChatWing/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License ↗</a></dd></div></dl>
+        </div>
+      </section>
+
+      <section class="cw-section layout" aria-labelledby="features-title">
+        <div class="cw-section-heading"><div><p class="cw-eyebrow">01 / Find your way back</p><h2 id="features-title">回到那次提问，<br>也找回当时的上下文。</h2></div><p>每个目录项对应一次用户提问。把鼠标移到页面右侧即可展开，需要持续回看时，也可以固定面板。</p></div>
+        <div class="cw-features">
+          <article><span class="cw-feature-number">01</span><h3>先预览，再决定跳转</h3><p>悬停目录项，阅读完整提问与回答开头。长内容可以在预览面板中滚动，当前阅读位置保持不变。</p></article>
+          <article><span class="cw-feature-number">02</span><h3>点击定位，快速确认</h3><p>点击后回到对应提问，并短暂高亮消息。目录标出当前阅读位置，也支持键盘导航。</p></article>
+          <article><span class="cw-feature-number">03</span><h3>展开与固定，各有节奏</h3><p>平时收在页面右侧，使用时展开；固定后可以连续回看。明暗主题跟随页面，兼顾不同阅读习惯。</p></article>
+        </div>
+      </section>
+
+      <section class="cw-demo-band" aria-labelledby="demo-title">
+        <div class="layout">
+          <div class="cw-section-heading"><div><p class="cw-eyebrow">02 / A closer look</p><h2 id="demo-title">在对话旁边，留一条回看的路。</h2></div><p>下面是项目仓库中的演示图。右侧为提问目录，中间浮层展示正在悬停的提问和回答开头。</p></div>
+          <figure class="cw-demo"><a href="/assets/projects/chatwing/demo.png" target="_blank" rel="noopener noreferrer" aria-label="打开 ChatWing 本地模拟演示原图"><img src="/assets/projects/chatwing/demo.png" width="1440" height="1000" alt="ChatWing 本地测试页面演示：右侧无标题提问目录展开，一条提问被选中，旁边预览完整提问和回答开头；画面使用模拟对话。" loading="lazy"></a><figcaption><span>项目仓库演示图 · 本地测试页面，使用模拟对话</span><span>点击查看原图 ↗</span></figcaption></figure>
+          <div class="cw-continuity"><h3>对话继续，目录也继续更新。</h3><p>新提问、生成中的回答、提问编辑与聊天切换都会触发更新。对于延迟渲染的长对话，可通过滚动补全消息，再恢复阅读位置；补全操作也可以中止。</p><a class="cw-text-link" href="https://github.com/strive-yang/ChatWing/blob/main/docs/usage.md" target="_blank" rel="noopener noreferrer">阅读完整使用指南 <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </section>
+
+      <section class="cw-section layout" id="install" aria-labelledby="install-title">
+        <div class="cw-section-heading"><div><p class="cw-eyebrow">03 / Install in Chrome</p><h2 id="install-title">下载、解压，<br>加载到 Chrome。</h2></div><p>当前通过 GitHub Release 提供扩展 ZIP，安装和运行无需构建。首次使用请按以下步骤手动加载。</p></div>
+        <ol class="cw-install-steps">
+          <li><span>01</span><div><h3>下载扩展 ZIP</h3><p>进入<a href="https://github.com/strive-yang/ChatWing/releases/latest" target="_blank" rel="noopener noreferrer">最新发行页 ↗</a>，下载 <code>ChatWing-&lt;版本&gt;.zip</code> 附件并解压。当前已发布版本为 v0.1.2。</p></div></li>
+          <li><span>02</span><div><h3>打开扩展管理</h3><p>在 Chrome 地址栏打开 <code>chrome://extensions</code>，开启右上角的“开发者模式”。</p><button class="cw-copy-address" type="button" data-copy-value="chrome://extensions">复制扩展管理地址</button></div></li>
+          <li><span>03</span><div><h3>加载解压目录</h3><p>点击“加载已解压的扩展程序”，选择包含 <code>manifest.json</code> 的目录。安装后请保留该目录。</p></div></li>
+          <li><span>04</span><div><h3>刷新 ChatGPT 页面</h3><p>打开或刷新一段 ChatGPT 对话，将鼠标移到页面右侧，开始使用提问目录。</p></div></li>
+        </ol>
+        <div class="cw-install-note"><strong>更新时怎么做？</strong><p>用新版文件替换 Chrome 当前已加载目录的内容，在扩展管理中点击 ChatWing 卡片上的刷新按钮，再刷新 ChatGPT 页面。若改用新目录，可先移除旧扩展，再加载新目录。更多操作请查看<a href="https://github.com/strive-yang/ChatWing/blob/main/docs/usage.md" target="_blank" rel="noopener noreferrer">使用指南 ↗</a>。</p></div>
+      </section>
+
+      <section class="cw-details-band" aria-labelledby="details-title">
+        <div class="layout cw-details-grid">
+          <div><p class="cw-eyebrow">04 / Scope &amp; implementation</p><h2 id="details-title">只围绕当前聊天，<br>把辅助阅读做轻。</h2><p class="cw-details-lead">ChatWing 在当前页面内存中处理聊天文字，不上传、不持久保存。扩展不读取登录令牌，也不调用私有 API。</p><div class="cw-tech-tags"><span>原生 JavaScript + CSS</span><span>Shadow DOM 隔离</span><span>textContent 文本展示</span></div><a class="cw-text-link" href="https://github.com/strive-yang/ChatWing/blob/main/docs/development.md" target="_blank" rel="noopener noreferrer">实现方式与测试说明 <span aria-hidden="true">↗</span></a></div>
+          <div class="cw-boundaries"><h3>使用范围与验证边界</h3><ul><li>面向当前聊天分支的文字，不检索其他聊天，也不识别图片、附件和语音。</li><li>采用 Manifest V3 内容脚本，在 ChatGPT 匹配域名运行，不申请 cookies、tabs、storage 等额外权限。</li><li>验证基于本地模拟页面。真实站点的结构变化、延迟加载消息，可能影响目录识别和补全。</li></ul><p>ChatWing 是独立开源项目，与 OpenAI 无隶属关系。</p></div>
+        </div>
+      </section>
+
+      <section class="cw-final layout"><div class="cw-final-product"><img src="/assets/projects/chatwing/icon.png" width="54" height="54" alt="" loading="lazy"><div><p class="cw-eyebrow">ChatWing</p><h2>让长对话更容易回看。</h2></div></div><div class="cw-final-links"><a class="button button-primary" href="https://github.com/strive-yang/ChatWing" target="_blank" rel="noopener noreferrer">浏览项目源码 <span aria-hidden="true">↗</span></a><a class="cw-text-link" href="https://github.com/strive-yang/ChatWing/issues" target="_blank" rel="noopener noreferrer">反馈问题 <span aria-hidden="true">↗</span></a></div></section>
+    </main>
+    <footer class="site-footer layout"><div><strong>Yang Strive</strong><p>从研究问题到可用作品。</p></div><div class="footer-links"><a href="/projects/">全部项目</a><a href="/projects/quotarail/">QuotaRail</a><a href="/about/">关于与联系</a></div></footer>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+</html>

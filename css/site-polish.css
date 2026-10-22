@@ -56,7 +56,7 @@
 .portfolio-more { display: inline-flex; align-items: center; justify-content: space-between; gap: 14px; color: #126b8e; font-size: 12px; font-weight: 600; }
 .portfolio-more:hover { color: #17735f; text-decoration: underline; text-underline-offset: 4px; }
 .portfolio-section-head > .portfolio-more { flex-shrink: 0; padding-bottom: 4px; }
-.portfolio-project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 21px; }
+.portfolio-project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 21px; }
 .portfolio-project { display: flex; flex-direction: column; min-width: 0; border: 1px solid #dce4e8; border-radius: 8px; overflow: hidden; background: #fff; transition: border-color 180ms ease, box-shadow 180ms ease; }
 .portfolio-project:hover { border-color: #b6cdd8; box-shadow: 0 12px 26px #173d500a; }
 .portfolio-project-image { display: block; aspect-ratio: 3 / 2; overflow: hidden; background: #edf3f6; }
@@ -66,6 +66,8 @@
 .portfolio-image-quota img { object-fit: contain; }
 .portfolio-image-contract { padding: 10px; background: #edf3ee; }
 .portfolio-image-contract img { object-fit: contain; }
+.portfolio-image-chatwing { padding: 10px; background: #e9f0f1; }
+.portfolio-image-chatwing img { object-fit: contain; }
 .portfolio-project-copy { display: flex; flex-direction: column; flex: 1; padding: 24px; }
 .portfolio-label { display: block; margin: 0 0 10px; color: #607987; font-size: 10px; font-weight: 600; letter-spacing: 0.04em; }
 .portfolio-project h3 { margin: 0 0 13px; font-size: 23px; font-weight: 600; letter-spacing: -0.035em; overflow-wrap: anywhere; line-height: 1.3; }
